@@ -1,2 +1,0 @@
-# Algorithms-Visualizer
-DSA project 
