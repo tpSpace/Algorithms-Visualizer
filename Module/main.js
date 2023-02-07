@@ -10,4 +10,4 @@ for (var i = 0; i < CANVAS_WIDTH; i += SQUARE_SIZE) {
         ctx.strokeRect(i, j, SQUARE_SIZE, SQUARE_SIZE);
     }
 }
-
+// Catch mouse event
