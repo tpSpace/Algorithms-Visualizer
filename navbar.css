@@ -1,20 +1,40 @@
+@import url("https://fonts.googleapis.com/css2?family=Roboto+Mono");
 * {
     margin: 0;
     padding: 0;
     box-sizing: border-box;
 }
+:root {
+    --main-color-ligt: #e7eaf6;
+    --main-color-dark: #113f67;
+}
 body {
-    font-family: 'Poppins', sans-serif;
+    font-family: 'Roboto mono','Poppins', sans-serif;
     background: #e7eaf6; 
 }
 .nav-container {
-    background-color: #113f67; 
+    
     height: 80px;
     display: flex;
     justify-content: space-between;
     align-items: center;
     padding: 0 100px;
+    animation: wave 2s ease-in-out infinite;
+    background-image: linear-gradient(to bottom, #00b4db, #0083b0);
+  background-position: 0 0;
+  animation-timing-function: linear;
+
 }
+
+@keyframes wave {
+    0% {
+      background-position: 0 0;
+    }
+    100% {
+      background-position: 0 -200px;
+    }
+  }
+
 .nav-links > ul {
     display: flex;
     justify-content: space-between;
@@ -26,7 +46,9 @@ body {
     margin: 0 20px;
 }
 .nav-logo > h1 {
-    color: #e7eaf6;
+    color: #f1f1f1;
+    text-shadow: 2px 0 black, -2px 0 black, 0 2px black, 0 -2px black,
+               1px 1px black, -1px -1px black, 1px -1px black, -1px 1px black;
 }
 /* remove home decoration */
 .nav-links > ul > li > a {
