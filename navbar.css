@@ -21,8 +21,8 @@ body {
     padding: 0 100px;
     animation: wave 2s ease-in-out infinite;
     background-image: linear-gradient(to bottom, #00b4db, #0083b0);
-  background-position: 0 0;
-  animation-timing-function: linear;
+    background-position: 0 0;
+    animation-timing-function: linear;
 
 }
 
@@ -136,7 +136,7 @@ canvas {
 
 .dropdown-content {
     position: absolute;
-    top: 40px;
+    /* top: 40px; */
 }
 .dropdown:hover .dropdown-button {
     color: #113f67;
