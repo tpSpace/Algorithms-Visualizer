@@ -1,0 +1,133 @@
+body {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    height: 100vh;
+    margin: 0;
+    background-color: #ffffff;
+}
+
+#canvas {
+    display: flex;
+    justify-content: center;
+    align-items: flex-end;
+    gap: 1px;
+    padding: 0 10px;
+    height: 78%;
+    width: 98%;
+    background-color: #ffffff;
+    border-radius: 5px;
+    overflow-x: auto;
+    margin: 0 auto;
+    margin: 0 auto; 
+    border: 1px solid #ff0095; 
+}
+
+.array-bar {
+    background-color: #007bff;
+    width: 100%;
+    max-width: 10px;
+    border-radius: 5px 5px 0 0;
+}
+
+#controls {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    margin-top: 10px;
+}
+
+#numBars {
+    padding: 5px;
+    width: 150px;
+    text-align: center;
+    border-radius: 3px;
+    border: 1px solid #ced4da;
+    font-size: 16px;
+}
+
+#worst-case-button,
+#randomize-button,
+#go-button,
+#reset-button{
+    padding: 10px 15px;
+    border: none;
+    border-radius: 3px;
+    color: #fff;
+    background-color: #28a745;
+    cursor: pointer;
+    font-size: 16px;
+}
+
+#reset-button {
+    background-color: #dc3545;
+}
+
+#worst-case-button{
+    background-color: #007bff;
+}
+
+#randomize-button{
+    background-color: #ffc107;
+}
+
+#alert-text {
+    margin-top: 5px;
+    color: #dc3545;
+    font-size: 14px;
+    display: none;
+}
+
+#numBars {
+    width: 3em; /* Set the width to 3em */
+    height: 1.5em; /* Set the height to 1.5em */
+    padding: 0.5em; /* Add some padding to make it look nicer */
+    appearance: none; /* Remove the default appearance */
+    -moz-appearance: textfield; /* Firefox */
+    -webkit-appearance: none; /* Safari and Chrome */
+    border: 1px solid #ccc; /* Add a border */
+    border-radius: 4px; /* Add some border radius */
+}
+  
+/* Style the input when it's focused */
+#numBars:focus {
+    outline: none;
+    border-color: #007bff; /* Change the border color */
+}
+
+input[type="number"] {
+    font-size: 16px;
+    width: 70px;
+    padding: 5px;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+  }
+  
+  input[type="number"]:invalid {
+    border-color: red;
+  }
+  
+#algorithm-select {
+    padding: 5px;
+    width: 150px;
+    border-radius: 3px;
+    border: 1px solid #ced4da;
+    font-size: 16px;
+    appearance: none;
+    -webkit-appearance: none;
+    background: url("./icons/dropdown.png") no-repeat;
+    background-position: right 10px top 50%;
+    background-size: 10px auto;
+    padding-right: 20px;
+  }
+
+#algorithm-select:focus-within{
+    appearance: none;
+    -webkit-appearance: none;
+    background: url("./icons/collapse.png") no-repeat;
+    background-position: right 10px top 50%;
+    background-size: 10px auto;
+    padding-right: 20px;
+}
+  

@@ -1,56 +1,35 @@
 <!DOCTYPE html>
-<html lang="en">
+<html>
 <head>
-    <meta charset="UTF-8">
+    <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="stylesheet" href="navbar.css">
 
-    <title>Algorithms Visualizer</title>
+    <title>Selection Sort Visualizer</title>
+    <link rel="stylesheet" type="text/css" href="style.css">
 </head>
 <body>
+    
+    <h1>Selection Sort Visualizer</h1>
+    <div id="controls">
+        <input id="numBars" placeholder="(3-200)">
+        <button id="go-button">Go</button>
+        <button id="reset-button">Reset</button>
+        <button id="randomize-button">Randomize</button>
+        <button id="worst-case-button">Worst</button>
+        <p id="alert-text"></p>
+        <select id="algorithm-select">
+            <option value="selection">Selection Sort</option>
+            <option value="insertion">Insertion Sort</option>
+            <option value="bubble">Bubble Sort</option>
+            <option value="merge">Merge Sort</option>
+            <option value="quick">Quick Sort</option>
+        </select>
+    </div>
+    <br>
+    <div id="canvas"></div>
 
-        <div class="nav-container">
-            <div class="nav-logo">
-                <h1>Algorithms Visualizer</h1>
-            </div>
-            <div class="nav-links">
-                <ul>
-                    <li>
-                        
-                            <a href="index.html">Home</a>
-                        
-                    </li>
+    
 
-                    <li>
-                        <div class="dropdown">
-                            <div class="dropdown-button">Sorting</div> 
-                            <div class="dropdown-content">
-                                <a href="./Module/Sorting/Bubble">Bubble</a>
-                                <a href="#">Selection</a>
-                                <a href="#">Insert</a>
-                                <a href="#">Quick</a>
-                                <a href="#">Merge</a>
-                            </div>
-                        </div>
-                    </li>
-                    <li>
-                        <div class="dropdown">
-                            <div class="dropdown-button">Pathfinding</div> 
-                            <div class="dropdown-content">
-                                <a href="#">BFS</a>
-                                <a href="#">DFS</a>
-                                <a href="#">A*</a>
-                            </div>
-                        </div>
-                    </li>
-                </ul>
-            </div>
-        </div>
-        <div class="controller">
-            
-        </div>
-        <canvas id="myCanvas" width="800" height="600"></canvas>
-
-        <script src="main.js"></script>
+    <script type="module" src="./script.js"></script>
 </body>
 </html>
