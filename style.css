@@ -1,0 +1,194 @@
+@import url('https://fonts.googleapis.com/css2?family=Lilita+One');
+
+body{
+    position: relative;
+    display: flex;
+    flex-direction: column;
+    align-items: left;
+    justify-content: center;
+    margin: 0;
+    height: 100vh;
+    background-color: #ffffff;
+}
+
+header{
+    background: linear-gradient(to bottom right, #361907, #844922,#9E723D, #FCE7BF, #E4C999);
+    font-family: 'Lilita One', serif;
+    color: white;
+    -webkit-text-stroke: 1px #000000;
+    opacity: 0.8;
+    position: relative;
+    height: 10vh;
+    width: 100%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin: 0;
+    padding: 0;
+    z-index: 1;
+}
+main{
+    height: 80vh;
+    align-items: left;
+}
+
+footer{
+    background: linear-gradient(to bottom, #F0ECEC, #BFD7EA);
+    height: 10vh;
+    display: flex;
+    justify-content: left;
+    align-items: left;
+  }
+  
+.container {
+    display: flex;
+    align-items: center;
+  }
+  
+.logo img {
+    height: 40px;
+    margin-right: 10px;
+  }
+  
+.text a {
+    color: #000000;
+    font-size: 18px;
+    text-decoration: none;
+}
+
+#canvas{
+    display: flex;
+    justify-content: center;
+    align-items: flex-end;
+    gap: 1px;
+    padding: 0 10px;
+    height: 88%;
+    background-color: #ffffff;
+    border-radius: 5px;
+    overflow-x: auto;
+    margin: 0 auto;
+    margin: 0 auto;
+    background: linear-gradient(to bottom right, #FFFEE9, #FFFBC8, #FFF59E, #FFF157)
+}
+
+.array-bar {
+    background-color: #007bff;
+    width: 100%;
+    max-width: 20px;
+    border-radius: 5px 5px 0 0;
+}
+
+#controls {
+    margin-left: 1vh;
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    margin-top: 10px;
+}
+
+button {
+    background: linear-gradient(to bottom right, #5BCEFA, #F5A9B8);
+    width: 50px;
+    height: 50px;
+    padding: 10px 15px;
+    border: none;
+    border-radius: 3px;
+    font-size: 16px;
+    color: #fff;
+    cursor: pointer;
+    text-transform: uppercase;
+    transition: background-color 0.5s ease;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+button img{
+    width: 40px;
+    height: 40px;
+}
+  
+button:hover {
+    opacity: 0.8;
+}
+
+
+#alert-text {
+    margin-top: 5px;
+    color: #dc3545;
+    font-size: 14px;
+    display: none;
+}
+
+#numBars {
+    background: linear-gradient(to bottom right, #5BCEFA, #F5A9B8);
+    font-family: "Lilita One", sans-serif;
+    color: white;
+    width: 75px;
+    height: 50px;
+    text-align: center;
+    font-size: 16px;
+    appearance: none; 
+    -moz-appearance: textfield; 
+    -webkit-appearance: none; 
+    border: 1px solid #ccc;
+    border-radius: 4px; 
+}
+  
+
+#numBars:focus {
+    outline: none;
+    border-color: #007bff; 
+}
+
+#numBars::placeholder{
+    color: white;
+
+}  
+
+input[type="number"]{
+    font-size: 30px;
+    color: white;
+    width: 120px;
+    padding: 5px;
+    border: none;
+    border-radius: 5px;
+  }
+  
+#algorithm-select {
+    font-family: "Lilita One", sans-serif;
+    font-size: 16px;
+    padding: 5px;
+    width: 150px;
+    height: 50px;
+    border: none;
+    font-size: 16px;
+    appearance: none;
+    -webkit-appearance: none;
+    background: linear-gradient(to bottom right, #5BCEFA, #F5A9B8) !important;
+    color: white;
+    background-image: url("./icons/dropdown.png");
+    background-repeat: no-repeat;
+    background-position: right 10px top 50%;
+    background-size: 10px auto;
+    padding-right: 20px;
+}
+
+#algorithm-select:focus-within {
+    background: url("./icons/collapse.png") no-repeat;
+    border: 1px solid white;
+    background-position: right 10px top 50%;
+    background-size: 10px;
+    padding-right: 20px;
+}
+
+#algorithm-select option {
+    font-family: "Lilita One", sans-serif;
+    font-size: 16px;
+    background: linear-gradient(to bottom right, #5BCEFA, #F5A9B8);
+    border: 1px solid black;
+}
+
+  
+
+  
