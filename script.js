@@ -21,7 +21,7 @@ const numBarsInput = document.getElementById('numBars');
 const resetButton = document.getElementById('reset-button');
 const goButton = document.getElementById('go-button');
 const worstCaseButton = document.getElementById('worst-case-button');
-const randomizeButton = document.getElementById('randomize-button');
+const randomButton = document.getElementById('random-button');
 const algorithmSelect = document.getElementById('algorithm-select');
 
 
@@ -31,7 +31,7 @@ const algorithms = {
   'bubble': bubbleSort,
   'quick': quickSort,
   'insertion': insertionSort,
-  'counting': countingSort
+  'counting': countingSort,
 };
 
 // Functions
@@ -42,6 +42,7 @@ function getRandomInt(min, max) {
 function isValidNumBars(numBars) {
   if (numBars < MIN_NUM_BARS || numBars > MAX_NUM_BARS) {
     alert('Invalid number. Please enter a value between 3 and 200.');
+    numBars = DEFAULT_NUM_BARS;
     return false;
   }
   return true;
@@ -68,7 +69,6 @@ function updateSelectedAlgorithm() {
     console.log(`Invalid algorithm: ${selectedAlgorithm}`);
     alert("Please choose a valid algorithm!");
   }
-  
 }
 
 function displayArray() {
@@ -81,7 +81,7 @@ function displayArray() {
   }
 }
 
-function generateArray(numBars) {
+function generateArray(numBars=DEFAULT_NUM_BARS) {
   arrayStack.length = 0 // clear the stack
   array = Array.from({length: numBars}, () => getRandomInt(MIN_BAR_HEIGHT, MAX_BAR_HEIGHT));
   arrayStack = [...array];
@@ -112,7 +112,7 @@ resetButton.addEventListener('click', () => {
   resetArray()
 });
   
-randomizeButton.addEventListener('click', () => {
+randomButton.addEventListener('click', () => {
   if (isValidNumBars(numBars)) generateArray(numBars);
 });
   
@@ -132,4 +132,15 @@ goButton.addEventListener('click', () => {
   
 algorithmSelect.addEventListener('change', () => {
   updateSelectedAlgorithm();
+});
+
+const buttons = document.querySelectorAll('button');
+
+buttons.forEach(button => {
+  button.addEventListener('click', () => {
+    button.classList.add('clicked');
+    setTimeout(() => {
+      button.classList.remove('clicked');
+    }, 500);
+  });
 });
