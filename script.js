@@ -1,4 +1,9 @@
-import * as sorting from './sorting.js';
+import bubbleSort from './sorting/bubbleSort.js';
+import countingSort from './sorting/countingSort.js';
+import insertionSort from './sorting/insertionSort.js';
+import mergeSort from './sorting/mergeSort.js';
+import quickSort from './sorting/quickSort.js';
+import selectionSort from './sorting/selectionSort.js';
 
 // Constants
 const DEFAULT_NUM_BARS = 50;
@@ -21,11 +26,12 @@ const algorithmSelect = document.getElementById('algorithm-select');
 
 
 const algorithms = {
-  'selection': sorting.selectionSort,
-  'merge': sorting.mergeSort,
-  'bubble': sorting.bubbleSort,
-  'quick': sorting.quickSort,
-  'insertion': sorting.insertionSort,
+  'selection': selectionSort,
+  'merge': mergeSort,
+  'bubble': bubbleSort,
+  'quick': quickSort,
+  'insertion': insertionSort,
+  'counting': countingSort
 };
 
 // Functions
