@@ -1,56 +1,59 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <meta charset="UTF-8">
+    <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="stylesheet" href="navbar.css">
 
     <title>Algorithms Visualizer</title>
+    <link rel="stylesheet" type="text/css" href="style.css">
 </head>
 <body>
-
-        <div class="nav-container">
-            <div class="nav-logo">
-                <h1>Algorithms Visualizer</h1>
-            </div>
-            <div class="nav-links">
-                <ul>
-                    <li>
-                        
-                            <a href="index.html">Home</a>
-                        
-                    </li>
-
-                    <li>
-                        <div class="dropdown">
-                            <div class="dropdown-button">Sorting</div> 
-                            <div class="dropdown-content">
-                                <a href="./Module/Sorting/Bubble">Bubble</a>
-                                <a href="#">Selection</a>
-                                <a href="#">Insert</a>
-                                <a href="#">Quick</a>
-                                <a href="#">Merge</a>
-                            </div>
-                        </div>
-                    </li>
-                    <li>
-                        <div class="dropdown">
-                            <div class="dropdown-button">Pathfinding</div> 
-                            <div class="dropdown-content">
-                                <a href="#">BFS</a>
-                                <a href="#">DFS</a>
-                                <a href="#">A*</a>
-                            </div>
-                        </div>
-                    </li>
-                </ul>
-            </div>
+    <header>
+        <h1>Algorithms Visualizer</h1>
+    </header>
+    <main>
+        <div id="controls">
+            <input id="numBars" placeholder="(3-200)">
+            <button id="go-button">
+                <img src="./icons/go-button.png" alt="Go">
+            </button>
+            <button id="reset-button">
+                <img src="./icons/reset-button.png" alt="Reset">
+            </button>
+            <button id="random-button">
+                <img src="./icons/random-button.png" alt="Random">
+            </button>
+            <button id="worst-case-button">
+                <img src="./icons/worst-case-button.png" alt="Worst Case">
+            </button>
+            <p id="alert-text"></p>
+            <select id="algorithm-select">
+                <option value="selection">Selection Sort</option>
+                <option value="insertion">Insertion Sort</option>
+                <option value="bubble">Bubble Sort</option>
+                <option value="merge">Merge Sort</option>
+                <option value="quick">Quick Sort</option>
+                <option value="counting">Counting Sort</option>
+            </select>
         </div>
-        <div class="controller">
-            
+        <br>
+        <div id="canvas"></div>
+    </main>
+    <footer>
+        <div class="container">
+          <div class="logo">
+            <a href="https://github.com/tpSpace/Algorithms-Visualizer" target="_blank">
+              <img src="./icons/github.png" alt="GitHub Repo">
+            </a>
+          </div>
+          <div class="text">
+            <a href="https://github.com/tpSpace/Algorithms-Visualizer" target="_blank">GitHub Repo</a>
+          </div>
         </div>
-        <canvas id="myCanvas" width="800" height="600"></canvas>
+      </footer>
+      
+    
 
-        <script src="main.js"></script>
+    <script type="module" src="./script.js"></script>
 </body>
 </html>
