@@ -10,6 +10,14 @@
 <body>
     <header>
         <h1>Algorithms Visualizer</h1>
+        <select id="algorithm-select">
+            <option value="selection">Selection Sort</option>
+            <option value="insertion">Insertion Sort</option>
+            <option value="bubble">Bubble Sort</option>
+            <option value="merge">Merge Sort</option>
+            <option value="quick">Quick Sort</option>
+            <option value="counting">Counting Sort</option>
+        </select>
     </header>
     <main>
         <div id="controls">
@@ -24,17 +32,11 @@
                 <img src="./icons/random-button.png" alt="Random">
             </button>
             <button id="worst-case-button">
-                <img src="./icons/worst-case-button.png" alt="Worst Case">
+                <!-- <img src="./icons/worst-case-button.png" alt="Worst Case"> -->
+                Worst case
             </button>
             <p id="alert-text"></p>
-            <select id="algorithm-select">
-                <option value="selection">Selection Sort</option>
-                <option value="insertion">Insertion Sort</option>
-                <option value="bubble">Bubble Sort</option>
-                <option value="merge">Merge Sort</option>
-                <option value="quick">Quick Sort</option>
-                <option value="counting">Counting Sort</option>
-            </select>
+            
         </div>
         <br>
         <div id="canvas"></div>

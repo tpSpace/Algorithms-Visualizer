@@ -12,20 +12,12 @@ body{
 }
 
 header{
-    background: linear-gradient(to bottom right, #361907, #844922,#9E723D, #FCE7BF, #E4C999);
-    font-family: 'Lilita One', serif;
-    color: white;
-    -webkit-text-stroke: 1px #000000;
-    opacity: 0.8;
-    position: relative;
-    height: 10vh;
-    width: 100%;
     display: flex;
-    justify-content: center;
+    justify-content: space-between;
     align-items: center;
-    margin: 0;
-    padding: 0;
-    z-index: 1;
+    flex-direction: row;
+    height: 10vh;
+    margin-right: 10px;
 }
 main{
     height: 80vh;
@@ -87,25 +79,14 @@ footer{
 }
 
 button {
-    background: linear-gradient(to bottom right, #5BCEFA, #F5A9B8);
-    width: 50px;
-    height: 50px;
-    padding: 10px 15px;
-    border: none;
-    border-radius: 3px;
-    font-size: 16px;
-    color: #fff;
-    cursor: pointer;
-    text-transform: uppercase;
-    transition: background-color 0.5s ease;
-    display: flex;
-    justify-content: center;
-    align-items: center;
+    
+    color: #007bff;
 }
 
 button img{
     width: 40px;
     height: 40px;
+    background-color: #dc3545;
 }
   
 button:hover {
@@ -187,6 +168,10 @@ input[type="number"]{
     font-size: 16px;
     background: linear-gradient(to bottom right, #5BCEFA, #F5A9B8);
     border: 1px solid black;
+}
+select {
+    /* turn it into material design m3 */
+    
 }
 
   

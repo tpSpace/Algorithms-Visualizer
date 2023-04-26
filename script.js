@@ -62,7 +62,7 @@ function updateSelectedAlgorithm() {
   const algorithmFunction = algorithms[selectedAlgorithm];
   console.log(algorithmFunction)
   console.log(`Selected algorithm: ${selectedAlgorithm}`)
-
+  generateArray();
   if (algorithmFunction) {
     algorithmFunction(array);
   } else {
