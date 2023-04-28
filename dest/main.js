@@ -1,7 +1,7 @@
-import Book from './Book';
-import bubbleSort from './sorting/BubbleSort';
-import selectionSort from './sorting/SelectionSort';
-import insertionSort from './sorting/InsertionSort';
+import Book from './Book.js';
+import bubbleSort from './sorting/BubbleSort.js';
+import selectionSort from './sorting/SelectionSort.js';
+import insertionSort from './sorting/InsertionSort.js';
 const bookshelfContainer = document.getElementById('bookshelf_container');
 const above = document.getElementById('augmented_container_above');
 //DEFAULT
