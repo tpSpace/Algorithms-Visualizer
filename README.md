@@ -1,4 +1,4 @@
 # Algorithms-Visualizer
 DSA project 
 
-TypeScript ftw
+Giờ nhường các bạn khác phần lz tên là UI.
