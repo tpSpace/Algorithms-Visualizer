@@ -1,59 +1,63 @@
 <!DOCTYPE html>
-<html>
+<html lang="en">
 <head>
-    <meta charset="utf-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-
-    <title>Algorithms Visualizer</title>
-    <link rel="stylesheet" type="text/css" href="style.css">
+  <meta charset="UTF-8">
+  <title>The Library</title>
+  <link rel="stylesheet" href="/style/background.css">
+  <link rel="stylesheet" href="/style/canvas.css">
+  <link rel="stylesheet" href="/style/control.css">
+  <!-- Dropdown Icon -->
+  <link href='https://unpkg.com/boxicons@2.1.1/css/boxicons.min.css' rel='stylesheet'> 
 </head>
-<body>
-    <header>
-        <h1>Algorithms Visualizer</h1>
-    </header>
-    <main>
-        <div id="controls">
-            <input id="numBars" placeholder="(3-200)">
-            <button id="go-button">
-                <img src="./icons/go-button.png" alt="Go">
-            </button>
-            <button id="reset-button">
-                <img src="./icons/reset-button.png" alt="Reset">
-            </button>
-            <button id="random-button">
-                <img src="./icons/random-button.png" alt="Random">
-            </button>
-            <button id="worst-case-button">
-                <img src="./icons/worst-case-button.png" alt="Worst Case">
-            </button>
-            <p id="alert-text"></p>
-            <select id="algorithm-select">
-                <option value="selection">Selection Sort</option>
-                <option value="insertion">Insertion Sort</option>
-                <option value="bubble">Bubble Sort</option>
-                <option value="merge">Merge Sort</option>
-                <option value="quick">Quick Sort</option>
-                <option value="counting">Counting Sort</option>
-            </select>
+  <header>
+    <h1>The Library</h1>
+  </header>
+  <main>
+    <div class="button_container">
+      <div class="box">
+        <div class="slider_books">
+          <input type="Range" min="3" max="25" value="20">
         </div>
-        <br>
-        <div id="canvas"></div>
-    </main>
-    <footer>
-        <div class="container">
-          <div class="logo">
-            <a href="https://github.com/tpSpace/Algorithms-Visualizer" target="_blank">
-              <img src="./icons/github.png" alt="GitHub Repo">
-            </a>
-          </div>
-          <div class="text">
-            <a href="https://github.com/tpSpace/Algorithms-Visualizer" target="_blank">GitHub Repo</a>
-          </div>
+        <div class="value_books">20 books</div>
+      </div>
+      <div class="box">
+        <div class="slider_time">
+          <input type="Range" min="50" max="500" value="100" step="50" >
         </div>
-      </footer>
-      
+        <div class="value_time">100 ms</div>
+      </div>
+      <button id="go-button">
+        <img src="./icons/go-button.png" alt="Go">
+      </button>
+      <button id="reset-button">
+        <img src="./icons/reset-button.png" alt="Reset">
+      </button>
+      <button id="random-button">
+        <img src="./icons/random-button.png" alt="Random">
+      </button>
+      <button id="worst-case-button">
+        <img src="./icons/worst-case-button.png" alt="Worst Case">
+      </button>
+      <div class="select">
+        <select name="format" id="format">
+           <option selected disabled>Choose a sorting style</option>
+           <option value="bubble">Bubble Sort</option>
+           <option value="counting">Counting Sort</option> 
+           <option value="insertion">Insertion Sort</option>
+           <option value="merge">Merge Sort</option>
+           <option value="quick">Quick Sort</option>
+           <option value="selection">Selection Sort</option>
+        </select>
+     </div>
+    </div>
+    <div id="augmented_container_above"> </div>
+    <div id="bookshelf_container"></div>
+  </main>
+  <footer>
     
+  </footer>
+  <script>
 
-    <script type="module" src="./script.js"></script>
-</body>
+  </script>
+  <script src="/dest/main.js" type="module" defer></script>
 </html>
