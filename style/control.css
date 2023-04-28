@@ -1,0 +1,143 @@
+@import url('https://fonts.googleapis.com/css2?family=Lilita+One');
+*{
+  font-family: "Lilita One", serif;
+}
+button {
+  background: linear-gradient(to bottom right, #5BCEFA, #F5A9B8);
+  width: 50px;
+  height: 50px;
+  padding: 10px 15px;
+  border: none;
+  border-radius: 3px;
+  font-size: 16px;
+  color: #fff;
+  cursor: pointer;
+  text-transform: uppercase;
+  transition: background-color 0.5s ease;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+button img{
+  width: 40px;
+  height: 40px;
+}
+
+button:hover {
+  opacity: 0.8;
+}
+
+.box{
+  background: white;
+  padding: 20px 20px 30px 30px;
+  border-radius: 5px;
+  box-shadow: 0 0 5px rgba(0,0,0,0.5);
+  display: flex;
+  align-items: center;
+}
+
+.box .slider_books{
+  height: 40px;
+  width: 100px;
+  display: flex;
+  align-items: center;
+  margin-right: 15px;
+}
+
+.box .slider_time{
+  height: 40px;
+  width: 100px;
+  display: flex;
+  align-items: center;
+  margin-right: 15px;
+}
+
+.box .slider_books input{
+  height: 10px;
+  width: 100%;
+  -webkit-appearance: none;
+  outline: none;
+  background: #f2f2f2;
+  box-shadow: inset 0 0 4px rgba(0, 0, 0, 0.2);
+}
+
+.box .slider_time input{
+  height: 10px;
+  width: 100%;
+  -webkit-appearance: none;
+  outline: none;
+  background: #f2f2f2;
+  box-shadow: inset 0 0 4px rgba(0, 0, 0, 0.2);
+}
+
+.box .value_books{
+  font-size: 20px;
+  font-weight: 300;
+  font-family: 'Lilita One', serif;
+  color: #3498db;
+  width: 55px;
+  text-align: center;
+}
+
+.box .value_time{
+  font-size: 20px;
+  font-weight: 300;
+  font-family: 'Lilita One', serif;
+  color: #3498db;
+  width: 55px;
+  text-align: center;
+}
+
+body{
+  background: #E3F2FD;
+}
+
+select {
+  -webkit-appearance: none;
+  -moz-appearance: none;
+  -ms-appearance: none;
+  appearance: none;
+  outline: 0;
+  border: 0!important;
+  background: #ffffff;
+  background-image: none;
+  padding: 20px 20px 30px 30px;
+  box-shadow: 0 0 5px rgba(0, 0, 0, 0.5);
+  flex: 1;
+  padding: 0 .5em;
+  color: #3498db;
+  cursor: pointer;
+  font-size: 1em;
+  display: flex;
+  align-items: center;
+}
+
+
+select::-ms-expand {
+  display: none;
+}
+.select {
+  position: relative;
+  display: flex;
+  width: 13em;
+  height: 3em;
+  line-height: 3;
+  background: #D3D3D3;
+  overflow: hidden;
+  border-radius: .25em;
+}
+.select::after {
+  content: '\25BC';
+  position: absolute;
+  top: 0;
+  right: 0;
+  padding: 0 1em;
+  background: #D3D3D3;
+  cursor:pointer;
+  pointer-events:none;
+  transition:.25s all ease;
+}
+.select:hover::after {
+  color: #3498db;
+}
