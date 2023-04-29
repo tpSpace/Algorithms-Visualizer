@@ -13,7 +13,7 @@ export default function insertionSort(bookshelf: Book[]) {
     while (j >= 0 && bookshelf[j].name > current.name) {
       moves.push({
         indices: [j, j + 1],
-        type: "shift"
+        type: "swap"
       });
       bookshelf[j + 1] = bookshelf[j];
       j--;
