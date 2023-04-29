@@ -2,12 +2,13 @@ import Book from './Book';
 import bubbleSort from './sorting/BubbleSort';
 import selectionSort from './sorting/SelectionSort';
 import insertionSort from './sorting/InsertionSort';
+import quickSort from './sorting/QuickSort';
 
 const bookshelfContainer = document.getElementById('bookshelf_container')!;
 const above = document.getElementById('augmented_container_above')!;
 //DEFAULT
 const DEFAULT_NUM_BOOKS = 20;
-const DEFAULT_TIMEOUT = 500;
+const DEFAULT_TIMEOUT = 100;
 
 type SortingAlgo = {
   name: string;
@@ -26,6 +27,10 @@ const sortingBooks: Record<string, SortingAlgo> = {
   insertion: {
     name: 'Insertion Sort',
     algo: insertionSort,
+  },
+  quick: {
+    name: 'Quick Sort',
+    algo: quickSort,
   },
 };
 
@@ -172,6 +177,9 @@ function animate(moves: Move[]) {
     [bookshelf[i], bookshelf[j]] = [bookshelf[j], bookshelf[i]];
   }
   visualizeBookshelf(move);
+  setTimeout(function () {
+    visualizeBookshelf();
+  }, timeOut);
   setTimeout(function () {
     animate(moves);
   }, timeOut);

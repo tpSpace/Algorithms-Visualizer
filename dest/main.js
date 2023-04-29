@@ -2,11 +2,12 @@ import Book from './Book.js';
 import bubbleSort from './sorting/BubbleSort.js';
 import selectionSort from './sorting/SelectionSort.js';
 import insertionSort from './sorting/InsertionSort.js';
+import quickSort from './sorting/QuickSort.js';
 const bookshelfContainer = document.getElementById('bookshelf_container');
 const above = document.getElementById('augmented_container_above');
 //DEFAULT
 const DEFAULT_NUM_BOOKS = 20;
-const DEFAULT_TIMEOUT = 500;
+const DEFAULT_TIMEOUT = 100;
 const sortingBooks = {
     bubble: {
         name: 'Bubble Sort',
@@ -19,6 +20,10 @@ const sortingBooks = {
     insertion: {
         name: 'Insertion Sort',
         algo: insertionSort,
+    },
+    quick: {
+        name: 'Quick Sort',
+        algo: quickSort,
     },
 };
 let books = DEFAULT_NUM_BOOKS;
@@ -144,6 +149,9 @@ function animate(moves) {
         [bookshelf[i], bookshelf[j]] = [bookshelf[j], bookshelf[i]];
     }
     visualizeBookshelf(move);
+    setTimeout(function () {
+        visualizeBookshelf();
+    }, timeOut);
     setTimeout(function () {
         animate(moves);
     }, timeOut);
