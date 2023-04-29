@@ -3,69 +3,58 @@ import Book from '../Book';
 type Move = {
   indices: number[],
   type: string
-}
+};
 
 export default function quickSort(bookshelf: Book[]): Move[] {
   const moves: Move[] = [];
 
-  const stack = [{ left: 0, right: bookshelf.length - 1 }];
-
-  while (stack.length) {
-    const item = stack.pop();
-
-    if (!item) {
-      continue;
-    }
-
-    const { left, right } = item;
-
-    if (right - left < 1) {
-      continue;
-    }
-
-    const pivotIndex = partition(left, right);
-    stack.push({ left, right: pivotIndex - 1 });
-    stack.push({ left: pivotIndex, right });
-  }
-
-  return moves;
-
-  function partition(left: number, right: number): number {
+  const partition = (left: number, right: number) => {
     const pivotIndex = Math.floor((left + right) / 2);
-    const pivotValue = bookshelf[pivotIndex].name;
+    const pivot = bookshelf[pivotIndex];
 
     let i = left;
     let j = right;
 
     while (i <= j) {
-      while (bookshelf[i].name < pivotValue) {
+      while (bookshelf[i].name < pivot.name) {
         i++;
         moves.push({
-          indices: [i],
-          type: "compare",
+          indices: [i, pivotIndex],
+          type: "compare"
         });
       }
-
-      while (bookshelf[j].name > pivotValue) {
+      while (bookshelf[j].name > pivot.name) {
         j--;
         moves.push({
-          indices: [j],
-          type: "compare",
+          indices: [j, pivotIndex],
+          type: "compare"
         });
       }
-
       if (i <= j) {
-        moves.push({
-          indices: [i, j],
-          type: "swap",
-        });
+        if (i !== j) {
+          moves.push({
+            indices: [i, j, pivotIndex],
+            type: "swap"
+          });
+        }
         [bookshelf[i], bookshelf[j]] = [bookshelf[j], bookshelf[i]];
         i++;
         j--;
       }
     }
     return i;
-  }
+  };
+
+  const quickSortRecursive = (left: number, right: number) => {
+    if (left >= right) {
+      return;
+    }
+    const index = partition(left, right);
+    quickSortRecursive(left, index - 1);
+    quickSortRecursive(index, right);
+  };
+
+  quickSortRecursive(0, bookshelf.length - 1);
+
+  return moves;
 }
-
-
