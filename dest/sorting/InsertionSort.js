@@ -4,18 +4,18 @@ export default function insertionSort(bookshelf) {
         const current = bookshelf[i];
         let j = i - 1;
         while (j >= 0 && bookshelf[j].name > current.name) {
+            bookshelf[j + 1] = bookshelf[j];
             moves.push({
                 indices: [j, j + 1],
-                type: "shift"
+                type: "swap"
             });
-            bookshelf[j + 1] = bookshelf[j];
             j--;
         }
-        moves.push({
-            indices: [i, j + 1],
-            type: "swap"
-        });
         bookshelf[j + 1] = current;
+        moves.push({
+            indices: [j + 1],
+            type: "compare"
+        });
     }
     return moves;
 }
