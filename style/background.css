@@ -1,10 +1,9 @@
 @import url('https://fonts.googleapis.com/css2?family=Lilita+One');
-
 body{
     position: relative;
     display: flex;
     flex-direction: column;
-    align-items: left;
+    align-items: center;
     justify-content: center;
     margin: 0;
     height: 100vh;
@@ -16,6 +15,7 @@ header{
     height: 10vh;
     font-family: 'Lilita One', serif;
     color: white;
+    font-size: 30px;
     -webkit-text-stroke: 1px #000000;
     opacity: 0.8;
     position: relative;
@@ -40,13 +40,6 @@ footer{
     align-items: left;
 }
 
-body{
-    position: relative;
-    display: flex;
-    align-items: center;
-    flex-direction: column;
-}
-
 .button_container {
     position: relative;
     margin-top: 5px;
@@ -56,9 +49,17 @@ body{
     gap: 10px;
 }
 
-#bookshelf_container, #augmented_container_above{
+#bookshelf_container, #augmented_container{
     height: 25vh;
     display: flex;
     align-items: flex-end;
     justify-content: center;
-  }
+}
+
+
+#mergesort_container{
+    height: 25vh;
+    display: flex;
+    align-items: flex-end;
+    justify-content: center;
+}
