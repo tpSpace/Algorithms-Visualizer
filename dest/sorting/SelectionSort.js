@@ -1,7 +1,12 @@
 export default function selectionSort(bookshelf) {
     const moves = [];
     for (let i = 0; i < bookshelf.length; i++) {
+        var swapped = false;
         let minIndex = i;
+        moves.push({
+            indices: [i, minIndex],
+            type: "compare"
+        });
         for (let j = i + 1; j < bookshelf.length; j++) {
             if (bookshelf[j].name < bookshelf[minIndex].name) {
                 minIndex = j;

@@ -6,7 +6,7 @@ type Move = {
 }
 
 export default function bubbleSort(bookshelf: Book[]) {
-  const moves:Move[] = [];
+  const moves: Move[] = [];
   do{
     var swapped:boolean = false;
     for (let i=1; i<bookshelf.length; i++) {

@@ -3,9 +3,10 @@ import bubbleSort from './sorting/BubbleSort';
 import selectionSort from './sorting/SelectionSort';
 import insertionSort from './sorting/InsertionSort';
 import quickSort from './sorting/QuickSort';
+// import mergeSort from './sorting/MergeSort';
 
 const bookshelfContainer = document.getElementById('bookshelf_container')!;
-const above = document.getElementById('augmented_container_above')!;
+const above = document.getElementById('augmented_container')!;
 //DEFAULT
 const DEFAULT_NUM_BOOKS = 20;
 const DEFAULT_TIMEOUT = 100;
@@ -32,6 +33,10 @@ const sortingBooks: Record<string, SortingAlgo> = {
     name: 'Quick Sort',
     algo: quickSort,
   },
+  // merge:{
+  //   name: 'Merge Sort',
+  //   algo: mergeSort,
+  // }
 };
 
 let books: number = DEFAULT_NUM_BOOKS;
@@ -41,48 +46,36 @@ let timeOut: number = DEFAULT_TIMEOUT;
 let selectedAlgo: string = ""
 createBookshelf(); 
 
-//DOM elements
-const goButton = document.getElementById('go-button')!;
-const randomButton = document.getElementById('random-button')!;
-const resetButton = document.getElementById('reset-button')!;
-const worstCaseButton = document.getElementById('worst-case-button')!;
-const sortingAlgoSelection = document.getElementById('format') as HTMLSelectElement;
-const sliderBooks = document.querySelector('.slider_books input') as HTMLInputElement;
-const valueBooks = document.querySelector('.value_books') as HTMLDivElement;
-const sliderTime = document.querySelector('.slider_time input') as HTMLInputElement;
-const valueTime = document.querySelector('.value_time') as HTMLDivElement;
-
-//Add event listeners
-
-goButton.addEventListener('click', () => {
+//Add event listeners to DOM elements
+document.getElementById('go-button')!.addEventListener('click', () => {
   go();
 });
 
-randomButton.addEventListener('click', () => {
+document.getElementById('random-button')!.addEventListener('click', () => {
   random();
 });
 
-resetButton.addEventListener('click', () => {
+document.getElementById('reset-button')!.addEventListener('click', () => {
   reset()
 });
 
-worstCaseButton.addEventListener('click', () => {
+document.getElementById('worst-case-button')!.addEventListener('click', () => {
   createWorstBookshelf();
 });
 
-sliderBooks.addEventListener('input', function() {
+document.querySelector('#slider_books input')!.addEventListener('input', function(this: HTMLInputElement) {
   books = Number(this.value);
-  valueBooks.textContent = this.value +" books.";
+  document.querySelector('#value_books')!.textContent = this.value +" books.";
   createBookshelf();
 });
 
-sliderTime.addEventListener('input', function() {
+document.querySelector('#slider_time input')!.addEventListener('input', function(this: HTMLInputElement) {
   timeOut = Number(this.value);
-  valueTime.textContent = this.value +"ms";
+  document.querySelector('#value_time')!.textContent = this.value +"ms";
 });
 
-sortingAlgoSelection.addEventListener('change', () => {
-  selectedAlgo = sortingAlgoSelection.value;
+document.getElementById('format')!.addEventListener('change', function(this: HTMLInputElement) {
+  selectedAlgo = this.value;
 });
 
 //Helper functions
@@ -144,12 +137,7 @@ function visualizeBookshelf(move?: { indices: number[]; type: string }) {
   bookshelfContainer.innerHTML = '';
   above.innerHTML = '';
   for (let i = 0; i < bookshelf.length; i++) {
-    const book = document.createElement('div');
-    const bookName = document.createElement('span');
-    book.classList.add('book');
-    book.style.backgroundColor = bookshelf[i].color;
-    bookName.textContent = bookshelf[i].name;
-    book.appendChild(bookName);
+    const book = visualizeBook(bookshelf[i]);
     let bookAbove = document.createElement('div');
     if (move && move.indices.includes(i)) {
       book.style.opacity = '0';
@@ -183,6 +171,16 @@ function animate(moves: Move[]) {
   setTimeout(function () {
     animate(moves);
   }, timeOut);
+}
+
+function visualizeBook(book: Book){
+  const newBook = document.createElement('div');
+  newBook.classList.add('book');
+  newBook.style.backgroundColor = book.color;
+  const newBookName = document.createElement('span');
+  newBookName.textContent = book.name;
+  newBook.appendChild(newBookName);
+  return newBook;
 }
 
 function displayBookshelfConsole(bookshelf: Book[]) {
