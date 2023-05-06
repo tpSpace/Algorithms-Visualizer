@@ -9,7 +9,7 @@ body{
 }
 
 button {
-  background: linear-gradient(to bottom right, #5BCEFA, #F5A9B8);
+  background: #3498db;
   width: 50px;
   height: 50px;
   padding: 10px 15px;
@@ -23,6 +23,7 @@ button {
   display: flex;
   justify-content: center;
   align-items: center;
+  margin: 2px;
 }
 
 button img{
@@ -34,8 +35,22 @@ button:hover {
   opacity: 0.8;
 }
 
+.button-box{
+  position: relative;
+  width: 100px;
+  margin-right: 2px;
+  z-index: 1;
+}
+
+.button-box .buttons-top,
+.button-box .buttons-bottom{
+  display: flex;
+
+}
+
 .box{
   max-width: 300px;
+  height: 55px;
   background: white;
   padding: 20px 20px 30px 30px;
   border-radius: 5px;

@@ -139,9 +139,9 @@ function animate(moves) {
         [bookshelf[i], bookshelf[j]] = [bookshelf[j], bookshelf[i]];
     }
     visualizeBookshelf(move);
-    setTimeout(function () {
-        visualizeBookshelf();
-    }, timeOut);
+    // setTimeout(function () {
+    //   visualizeBookshelf();
+    // }, timeOut);
     setTimeout(function () {
         animate(moves);
     }, timeOut);

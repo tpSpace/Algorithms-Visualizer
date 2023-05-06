@@ -7,6 +7,7 @@
   <link rel="stylesheet" href="./style/background.css">
   <link rel="stylesheet" href="./style/canvas.css">
   <link rel="stylesheet" href="./style/control.css">
+  <link rel="stylesheet" href="./style/tooltip.css">
   <!-- Dropdown Icon -->
   <link href='https://unpkg.com/boxicons@2.1.1/css/boxicons.min.css' rel='stylesheet'> 
 </head>
@@ -33,18 +34,24 @@
           <div class="value" id="value_time">100ms</div>
         </div>
       </div>
-      <button id="go-button">
-        <img src="./icons/go-button.png" alt="Go">
-      </button>
-      <button id="reset-button">
-        <img src="./icons/reset-button.png" alt="Reset">
-      </button>
-      <button id="random-button">
-        <img src="./icons/random-button.png" alt="Random">
-      </button>
-      <button id="worst-case-button">
-        <img src="./icons/worst-case-button.png" alt="Worst Case">
-      </button>
+      <div class="button-box">
+        <div class="buttons-top">
+          <button data-tooltip="Go" id="go-button">
+            <img src="./icons/go-button.png" alt="Go">
+          </button>
+          <button data-tooltip="Reset" id="reset-button">
+            <img src="./icons/reset-button.png" alt="Reset">
+          </button>
+        </div>
+        <div class="buttons-bottom">
+          <button data-tooltip="Random" id="random-button">
+            <img src="./icons/random-button.png" alt="Random">
+          </button>
+          <button data-tooltip="Worst case" id="worst-case-button">
+            <img src="./icons/worst-case-button.png" alt="Worst Case">
+          </button>
+        </div>
+      </div>
       <div class="select">
         <select name="format" id="format">
            <option selected disabled>Choose a sorting style</option>
@@ -57,8 +64,10 @@
      </div>
     </div>
     <div class="canvas">
-      <div id="augmented_container"> </div>
-      <div id="bookshelf_container"></div>
+      <div class="container"> 
+        <div id="augmented_container"> </div>
+        <div id="bookshelf_container"> </div>
+      </div>
     </div>
 
   </main>

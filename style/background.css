@@ -55,11 +55,3 @@ footer{
     align-items: flex-end;
     justify-content: center;
 }
-
-
-#mergesort_container{
-    height: 25vh;
-    display: flex;
-    align-items: flex-end;
-    justify-content: center;
-}

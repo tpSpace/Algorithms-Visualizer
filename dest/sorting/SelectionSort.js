@@ -1,7 +1,6 @@
 export default function selectionSort(bookshelf) {
     const moves = [];
     for (let i = 0; i < bookshelf.length; i++) {
-        var swapped = false;
         let minIndex = i;
         moves.push({
             indices: [i, minIndex],
