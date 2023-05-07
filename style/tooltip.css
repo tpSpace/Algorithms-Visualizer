@@ -18,7 +18,7 @@
 /* Position tooltip above the element */
 [data-tooltip]:before {
   position: absolute;
-  bottom: -80%;
+  bottom: -100%;
   padding: 7px;
   width: 60px;
   -webkit-border-radius: 3px;
@@ -26,7 +26,7 @@
   border-radius: 3px;
   background-color: #ffffff;
   background-color: hsla(0, 0%, 100%, 0.9);
-  color: #3498db;
+  color: #7ce8ff;
   content: attr(data-tooltip);
   text-align: center;
   font-size: 14px;

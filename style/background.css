@@ -11,7 +11,7 @@ body{
 }
 
 header{
-    background: linear-gradient(to right, #FF0000, #FF7F00, #FFFF00, #00FF00, #0000FF, #4B0082, #8F00FF);
+    background: linear-gradient(to bottom right, #ccf9ff, #7ce8ff, #55d0ff);
     height: 10vh;
     font-family: 'Lilita One', serif;
     color: white;
@@ -30,6 +30,10 @@ header{
 }
 main{
     height: 85vh;
+    width: 100%;
+    position: relative;
+    align-items: center;
+    justify-content: center;
 }
 
 footer{
@@ -47,10 +51,13 @@ footer{
     margin-left: 1vh;
     display: flex; 
     gap: 10px;
+    align-items: center;
+    justify-content: center;
 }
 
 #bookshelf_container, #augmented_container{
     height: 25vh;
+    width: 100%;
     display: flex;
     align-items: flex-end;
     justify-content: center;
