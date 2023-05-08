@@ -9,7 +9,7 @@ body{
 }
 
 button {
-  background: linear-gradient(to bottom right, #ccf9ff, #7ce8ff, #55d0ff);
+  background: #5a909c;
   width: 50px;
   height: 50px;
   padding: 10px 15px;
