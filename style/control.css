@@ -9,7 +9,7 @@ body{
 }
 
 button {
-  background: linear-gradient(to bottom right, #ccf9ff, #7ce8ff, #55d0ff);
+  background: #5a909c;
   width: 50px;
   height: 50px;
   padding: 10px 15px;
@@ -54,14 +54,14 @@ button:hover {
   background: white;
   padding: 20px 20px 30px 30px;
   border-radius: 5px;
-  box-shadow: 0 0 5px rgba(0,0,0,0.5);
+
   align-items: center;
 }
 
 .box .content{
   font-size: 20px;
   font-weight: 300;
-  color: #7ce8ff;
+  color: #5a909c;
   display: flex;
   justify-content: center;
 }
@@ -80,7 +80,7 @@ button:hover {
   -webkit-appearance: none;
   outline: none;
   background: #f2f2f2;
-  box-shadow: inset 0 0 4px rgba(0, 0, 0, 0.2);
+
 }
 
 .box .value{
@@ -98,15 +98,14 @@ select {
   background: #ffffff;
   background-image: none;
   padding: 20px 20px 30px 30px;
-  box-shadow: 0 0 5px rgba(0, 0, 0, 0.5);
-  flex: 1;
+
   padding: 0 .5em;
   cursor: pointer;
   display: flex;
   align-items: center;
   font-size: 20px;
   font-weight: 300;
-  color: #7ce8ff;
+  color: #5a909c;
 }
 
 select::-ms-expand {
