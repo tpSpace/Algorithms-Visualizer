@@ -1,10 +1,10 @@
 .book {
   width: 30px;
   height: 90%;
-  border: 2px solid black;
   border-radius: 5px 5px 0px 0px;
   margin: 1px;
   display: flex;
+  flex-direction: column;
   justify-content: center;
   align-items: center;
   font-size: 16px;

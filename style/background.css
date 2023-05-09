@@ -11,16 +11,15 @@ body{
 }
 
 header{
-    background: linear-gradient(to bottom right, #ccf9ff, #7ce8ff, #55d0ff);
+    background: #5a909c;
     height: 10vh;
-    font-family: 'Lilita One', serif;
+    font-family: serif;
     color: white;
     font-size: 30px;
-    -webkit-text-stroke: 1px #000000;
-    opacity: 0.8;
-    position: relative;
+
     height: 10vh;
     width: 100%;
+    
     display: flex;
     justify-content: center;
     align-items: center;
@@ -46,14 +45,12 @@ footer{
 }
 
 .button_container {
-    position: relative;
-    margin-top: 5px;
-    height: 10vh;
-    margin-left: 1vh;
-    display: flex; 
-    gap: 10px;
+    display: flex;
+    flex-direction: row;
     align-items: center;
     justify-content: center;
+    margin-top: 10px;
+    gap: 10px;
 }
 
 #bookshelf_container, #augmented_container{
