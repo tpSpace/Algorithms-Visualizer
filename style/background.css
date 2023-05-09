@@ -13,13 +13,14 @@ body{
 header{
     background: #5a909c;
     height: 10vh;
-    font-family: serif;
+    font-family: 'Lilita One', serif;
     color: white;
     font-size: 30px;
-
+    -webkit-text-stroke: 1px #000000;
+    opacity: 0.8;
+    position: relative;
     height: 10vh;
     width: 100%;
-    
     display: flex;
     justify-content: center;
     align-items: center;
@@ -45,12 +46,14 @@ footer{
 }
 
 .button_container {
-    display: flex;
-    flex-direction: row;
+    position: relative;
+    margin-top: 5px;
+    height: 10vh;
+    margin-left: 1vh;
+    display: flex; 
+    gap: 10px;
     align-items: center;
     justify-content: center;
-    margin-top: 10px;
-    gap: 10px;
 }
 
 #bookshelf_container, #augmented_container{

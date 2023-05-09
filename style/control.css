@@ -9,7 +9,7 @@ body{
 }
 
 button {
-  background: linear-gradient(to bottom right, #ccf9ff, #7ce8ff, #55d0ff);
+  background: #5a909c;
   width: 50px;
   height: 50px;
   padding: 10px 15px;
@@ -62,7 +62,7 @@ button:hover {
 .box .content{
   font-size: 20px;
   font-weight: 300;
-  color: #7ce8ff;
+  color: #5a909c;;
   display: flex;
   justify-content: center;
 }
@@ -107,7 +107,7 @@ select {
   align-items: center;
   font-size: 20px;
   font-weight: 300;
-  color: #7ce8ff;
+  color: #5a909c;
 }
 
 select::-ms-expand {
