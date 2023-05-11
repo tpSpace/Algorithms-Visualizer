@@ -16,33 +16,24 @@
   </header>
   <main>
     <div class="button_container">
-
       <div class="box">
-
         <div class="slider" id="slider_books">
           <input id="number_book_input" type="Range" min="3" max="50" value="20">
         </div>
-
         <div class="content" id="content_book_slider">
           <label for="number_book_input">There are: </label>
           <div class="value" id="value_books">20 books.</div>
         </div>
-
       </div>
-
       <div class="box">
-
         <div class="slider" id="slider_time">
           <input id="time_input"type="Range" min="10" max="500" value="100" step="10" >
         </div>
-
         <div class="content" id="content_time_slider">
           <label for="time_input">Speed: </label>
           <div class="value" id="value_time">100ms</div>
         </div>
-
       </div>
-
       <div class="button-box">
         <div id="above-buttons">
           <div class="select">
@@ -54,10 +45,9 @@
                <option value="quick">Quick Sort</option>
                <option value="selection">Selection Sort</option>
             </select>
+          </div>
         </div>
-      </div>
-
-      <div id="below-buttons">
+        <div id="below-buttons">
           <button data-tooltip="Go" id="go-button">
             <img src="./icons/go-button.png" alt="Go">
           </button>
@@ -70,25 +60,18 @@
           <button data-tooltip="Worst case" id="worst-case-button">
             <img src="./icons/worst-case-button.png" alt="Worst Case">
           </button>
+        </div>
       </div>
-
     </div>
-      
-    </div>
+    <div class="warning"> </div>
     <div class="canvas">
       <div class="container"> 
         <div id="augmented_container"> </div>
         <div id="bookshelf_container"> </div>
       </div>
     </div>
-
   </main>
-  
   <footer>
-    
   </footer>
-  <script>
-
-  </script>
   <script src="./dest/main.js" type="module" defer></script>
 </html>

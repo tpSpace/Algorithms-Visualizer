@@ -1,4 +1,5 @@
 import Book from './Book.js';
+import createText from './popup.js';
 import bubbleSort from './sorting/BubbleSort.js';
 import selectionSort from './sorting/SelectionSort.js';
 import insertionSort from './sorting/InsertionSort.js';
@@ -66,8 +67,10 @@ document.getElementById('format').addEventListener('change', function () {
 function go() {
     const copy = [...bookshelf];
     const sort = sortingBooks[selectedAlgo];
-    if (sort == undefined)
-        alert("Please select a sorting algorithm");
+    if (sort == undefined) {
+        createText("Please select a sorting algorithm.", "red");
+        return;
+    }
     const moves = sort.algo(copy);
     animate(moves);
 }
@@ -131,6 +134,7 @@ function visualizeBookshelf(move) {
 function animate(moves) {
     if (moves.length == 0) {
         visualizeBookshelf();
+        createText("The bookshelf is sorted!", "lime");
         return;
     }
     const move = moves.shift();
