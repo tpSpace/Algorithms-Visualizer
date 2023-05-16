@@ -1,0 +1,37 @@
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box; 
+}
+html {
+    height: 100%;
+    width: 100%;
+    font-size: 16px;
+}
+header{
+    background: #5a909c;
+    opacity: 0.8;
+      
+    width: 100%;
+    height: 10%;
+
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+h1 {
+    font-family: "Gill Sans", sans-serif;
+    color: white;
+    font-size: 2rem;
+}
+body{
+    height: 100%;
+    width: 100%;
+    background-color: #9b5959;
+    overflow: hidden;
+}
+main{
+    height: 90%;
+    width: 100%;
+}
+
