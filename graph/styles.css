@@ -27,11 +27,15 @@ h1 {
 body{
     height: 100%;
     width: 100%;
-    background-color: #9b5959;
+
     overflow: hidden;
 }
 main{
     height: 90%;
     width: 100%;
 }
+#canvas {
+    height: 100%;
+    width: 100%;
 
+}

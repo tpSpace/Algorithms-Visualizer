@@ -1,34 +1,30 @@
 "use strict";
 const canvas = document.getElementById('canvas');
 const ctx = canvas.getContext('2d');
-const width = canvas.width;
-const height = canvas.height;
+const width = canvas.width = window.innerWidth;
+const height = canvas.height = window.innerHeight;
+const gcd = (a, b) => b ? gcd(b, a % b) : a;
 console.log(width, height);
-// gcd of width and height
-const gcd = (a, b) => {
-    if (b === 0)
-        return a;
-    return gcd(b, a % b);
+const scale = (width, heigt) => {
+    if (width > height) {
+        return width / height;
+    }
+    return height / width;
 };
-let size = gcd(width, height);
+const size = gcd(width, height) * scale(width, height);
 console.log(size);
-// get random color
-function getRandomColor() {
-    const red = Math.floor(Math.random() * 256); // giá trị màu đỏ từ 0 đến 255
-    const green = Math.floor(Math.random() * 256); // giá trị màu xanh lá cây từ 0 đến 255
-    const blue = Math.floor(Math.random() * 256); // giá trị màu xanh dương từ 0 đến 255
-    return `rgb(${red}, ${green}, ${blue})`; // trả về chuỗi RGB
-}
-// draw squeares for matrix each square has size = gcd(width, height)
-function drawSquares() {
-    for (let i = 0; i < width; i += size) {
-        for (let j = 0; j < height; j += size) {
-            ctx.fillStyle = getRandomColor();
-            ctx.fillRect(i, j, size, size);
-            console.log(i, j, size, size);
-        }
-        console.log('-----------------');
+// draw line to create matrix for canvas
+const drawLine = (x, y, x2, y2) => {
+    ctx.beginPath();
+    ctx.moveTo(x, y);
+    ctx.lineTo(x2, y2);
+    ctx.strokeStyle = '#000';
+    ctx.stroke();
+};
+// draw matrix
+for (let i = 0; i < width; i += size) {
+    for (let j = 0; j < height; j += size) {
+        drawLine(i, 0, i, height);
+        drawLine(0, j, width, j);
     }
 }
-drawSquares();
-// draw a circle

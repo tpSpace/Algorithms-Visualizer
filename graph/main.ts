@@ -1,41 +1,33 @@
-const canvas: HTMLCanvasElement = document.getElementById('canvas') as HTMLCanvasElement;
-const ctx: CanvasRenderingContext2D | null = canvas.getContext('2d');
+const canvas = document.getElementById('canvas') as HTMLCanvasElement;
+const ctx = canvas.getContext('2d') as CanvasRenderingContext2D;
 
-const width: number = canvas.width;
-const height: number = canvas.height;
+const width = canvas.width = window.innerWidth;
+const height = canvas.height = window.innerHeight;
+const gcd = (a: number, b: number): number => b ? gcd(b, a % b) : a;
 console.log(width, height);
+const scale = (width:number, heigt:number): number => {
+  if (width > height) {
+    return width / height;
+  }
+  return height / width;
 
-// gcd of width and height
-const gcd = (a: number, b: number): number => {
-  if (b === 0) return a;
-  return gcd(b, a % b);
 };
-
-let size: number = gcd(width, height);
+const size = gcd(width, height)*scale(width, height)*10;
 console.log(size);
-
-// get random color
-function getRandomColor(): string {
-  const red: number = Math.floor(Math.random() * 256); // giá trị màu đỏ từ 0 đến 255
-  const green: number = Math.floor(Math.random() * 256); // giá trị màu xanh lá cây từ 0 đến 255
-  const blue: number = Math.floor(Math.random() * 256); // giá trị màu xanh dương từ 0 đến 255
-  return `rgb(${red}, ${green}, ${blue})`; // trả về chuỗi RGB
+// draw line to create matrix for canvas
+const drawLine = (x: number, y: number, x2: number, y2: number): void => {
+  ctx.beginPath();
+  ctx.moveTo(x, y);
+  ctx.lineTo(x2, y2);
+  ctx.strokeStyle = '#000';
+  ctx.stroke();
 }
 
-// draw squares for matrix each square has size = gcd(width, height)
-function drawSquares(): void {
-  for (let i: number = 0; i < width; i += size) {
-    for (let j: number = 0; j < height; j += size) {
-      if (ctx) {
-        ctx.fillStyle = getRandomColor();
-        ctx.fillRect(i, j, size, size);
-        console.log(i, j, size, size);
-      }
-    }
-    console.log('-----------------');
+// draw matrix
+for (let i = 0; i < width; i += size) {
+  for (let j = 0; j < height; j += size) {
+    drawLine(i, 0, i, height);
+    drawLine(0, j, width, j);
   }
 }
 
-drawSquares();
-
-// draw a circle
