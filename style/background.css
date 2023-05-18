@@ -29,7 +29,7 @@ header{
 }
 h1 {
     -webkit-text-stroke: 1px #000000;
-    font-size: 30px;
+    font-size: 40px;
 }
 main{
     height: 85vh;
@@ -38,9 +38,9 @@ main{
     align-items: center;
     justify-content: center;
 }
-#Algorithm{
+.algorithms{
     height: 100%;
-    width: 100%;
+    gap: 10px;
     display: flex;
     flex-direction: row;
     align-items: center;
@@ -52,8 +52,11 @@ a {
     font-weight: bold;
     padding: 10px;
     transition: 0.3s;
-    color: white;
-    font-size: 23px;
+    color: #19A7CE;
+    font-size: 25px;
+    padding: 10px;
+    background-color: #F9FBE7;
+    border-radius: 5px;
 }
 a:hover {
     color: black;
