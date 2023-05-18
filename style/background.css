@@ -12,22 +12,24 @@ body{
 
 header{
     background: #5a909c;
-    height: 10vh;
+
     font-family: 'Lilita One', serif;
     color: white;
-    font-size: 30px;
-    -webkit-text-stroke: 1px #000000;
+    
     opacity: 0.8;
-    position: relative;
+
     height: 10vh;
     width: 100%;
+    
     display: flex;
-    justify-content: center;
+    justify-content: space-around;
     align-items: center;
-    margin: 0;
-    padding: 0;
-    z-index: 1;
+
     margin-bottom: 10px;
+}
+h1 {
+    -webkit-text-stroke: 1px #000000;
+    font-size: 40px;
 }
 main{
     height: 85vh;
@@ -36,7 +38,31 @@ main{
     align-items: center;
     justify-content: center;
 }
-
+.algorithms{
+    height: 100%;
+    gap: 10px;
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: center;
+}
+a {
+    text-decoration: none;
+    font-family: 'Lilita One', serif;
+    font-weight: bold;
+    padding: 10px;
+    transition: 0.3s;
+    color: #19A7CE;
+    font-size: 25px;
+    padding: 10px;
+    background-color: #F9FBE7;
+    border-radius: 5px;
+}
+a:hover {
+    color: black;
+    text-decoration: none;
+    cursor: pointer;
+}
 footer{
     background: linear-gradient(to bottom, #F0ECEC, #BFD7EA);
     height: 5vh;
