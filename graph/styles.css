@@ -64,6 +64,30 @@ main{
     height: 90%;
     width: 100%;
 }
+.control-panel {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    gap: 10px;
+    margin-top: 5px;
+    height:auto;
+    width: 100%;
+}
+button {
+    padding: 15px;
+    transition: 0.3s;
+    font-family: "Gill Sans", sans-serif;
+    font-weight: bold;
+    color: #F9FBE7;
+    font-size: 1.5rem;
+    background-color: #19A7CE;
+    border-radius: 5px;
+}
+button:hover {
+    color: black;
+    cursor: pointer;
+}
 .container {
     display: flex;
     justify-content: center;
@@ -74,5 +98,4 @@ main{
 }
 #canvas {
     border : 1px solid black;
-
 }
