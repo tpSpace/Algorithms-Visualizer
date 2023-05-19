@@ -64,8 +64,15 @@ main{
     height: 90%;
     width: 100%;
 }
-#canvas {
+.container {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+
     height: 100%;
     width: 100%;
+}
+#canvas {
+    border : 1px solid black;
 
 }
