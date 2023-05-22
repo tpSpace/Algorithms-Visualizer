@@ -66,9 +66,10 @@ main{
 }
 .control-panel {
     display: flex;
-    flex-direction: column;
+    flex-direction: row;
     justify-content: center;
     align-items: center;
+
     gap: 10px;
     margin-top: 5px;
     height:auto;
@@ -83,10 +84,23 @@ button {
     font-size: 1.5rem;
     background-color: #19A7CE;
     border-radius: 5px;
+    border: none;
 }
 button:hover {
-    color: black;
     cursor: pointer;
+    box-shadow: 0 0 10px #737b7e;
+}
+#begin {
+    background-color: #43c943;
+}
+#end {
+    background-color: #ff4d4d;
+}
+#clear {
+    background-color: #bebeb6;
+}
+#start {
+    background-color: #ffcc00;
 }
 .container {
     display: flex;
