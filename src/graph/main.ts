@@ -21,7 +21,7 @@ const cols = width / cellSize;
 let matrix: number[][] = [];
 let isDragging: boolean = false;
 let isStart = false;
-let prevStart = [0, 0];
+let prevStart = [-1, -1];
 
 // console.log(rows, cols);
 
@@ -88,6 +88,7 @@ function clearCanvas() {
   ctx.clearRect(0, 0, width, height);
   drawGrid();
   clearMatrix(matrix);
+  prevStart = [-1, -1];
 }
 // delete a square
 function deleteSquare(event: MouseEvent) {
@@ -111,16 +112,50 @@ function deleteSquare(event: MouseEvent) {
     ctx.stroke();
     matrix[i][j] = 0;
 }
+function initPoint(event: MouseEvent) {
+  let x = Math.floor(event.offsetY / cellSize);
+  let y = Math.floor(event.offsetX / cellSize);
+
+  // delete the previous start point
+  if (prevStart[0] !== -1 && prevStart[1] !== -1) {
+    ctx.clearRect(prevStart[1] * cellSize, prevStart[0] * cellSize, cellSize, cellSize);
+    // draw the new start point
+    matrix[x][y] = 1;
+    ctx.fillStyle = 'green';
+    ctx.fillRect(y * cellSize, x * cellSize, cellSize, cellSize);
+    console.log(prevStart);
+    // draw the line again
+    ctx.beginPath();
+    ctx.moveTo(prevStart[1] * cellSize, prevStart[0] * cellSize);
+    ctx.lineTo((prevStart[1] + 1) * cellSize, prevStart[0] * cellSize);
+    // draw 4 edges of the square
+    ctx.moveTo((prevStart[1] + 1) * cellSize, prevStart[0] * cellSize);
+    ctx.lineTo((prevStart[1] + 1) * cellSize, (prevStart[0] + 1) * cellSize);
+    ctx.moveTo((prevStart[1] + 1) * cellSize, (prevStart[0] + 1) * cellSize);
+    ctx.lineTo(prevStart[1] * cellSize, (prevStart[0] + 1) * cellSize);
+    ctx.moveTo(prevStart[1] * cellSize, (prevStart[0] + 1) * cellSize);
+    ctx.lineTo(prevStart[1] * cellSize, prevStart[0] * cellSize);
+    ctx.moveTo(prevStart[1] * cellSize, prevStart[0] * cellSize);
+    ctx.stroke();
+    return [x, y];
+  } else {
+    return [0,0];
+  }
+}
 // Add event listeners
-begin.addEventListener('click', ()=>{isStart = true; console.log('begin')});
+clear.addEventListener('click', ()=>{clearCanvas()});
+begin.addEventListener('click', (event)=>{isStart = true; console.log('begin');});
+wall.addEventListener('click', (event)=>{console.log('wall');isStart= false;});
 end.addEventListener('click', ()=>{console.log('end')});
-wall.addEventListener('click', ()=>{console.log('wall')});
 start.addEventListener('click', ()=>{console.log('start')});
 
 canvas.addEventListener('mousedown', (event)=>{
-    if (event.button === 0) {
+    if (event.button === 0 && !isStart) {
       isDragging = true;
       drawSquare(event);
+    }
+    else if (event.button === 0 && isStart) {
+      prevStart = initPoint(event);
     }
 });
 canvas.addEventListener('mousemove', (event)=>{
@@ -134,7 +169,7 @@ canvas.addEventListener('mouseup', ()=>{
 canvas.addEventListener('contextmenu', (event)=>{
     deleteSquare(event);
 });
-clear.addEventListener('click', ()=>{clearCanvas()});
+
 
 // Run the functions once the page is loaded
 (
