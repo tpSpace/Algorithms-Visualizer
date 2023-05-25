@@ -151,7 +151,7 @@ function setEndPoint(event: MouseEvent) {
   if (prevEnd[0] !== -1 && prevEnd[1] !== -1) {
     ctx.clearRect(prevEnd[1] * cellSize, prevEnd[0] * cellSize, cellSize, cellSize);
     // draw the new start point
-    matrix[x][y] = 1;
+    matrix[x][y] = 3;
     ctx.fillStyle = '#ff4d4d';
     ctx.fillRect(y * cellSize, x * cellSize, cellSize, cellSize);
     console.log(prevEnd);
