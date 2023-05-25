@@ -1,4 +1,4 @@
-import Book from '../Book';
+import Book from '../sort/Book';
 
 type Move = {
   indices: number[],
