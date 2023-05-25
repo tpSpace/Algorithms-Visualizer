@@ -1,9 +1,9 @@
 import Book from './Book';
 import createText from './popup';
-import bubbleSort from '../sortingAlgorithms/BubbleSort';
-import selectionSort from '../sortingAlgorithms/SelectionSort';
-import insertionSort from '../sortingAlgorithms/InsertionSort';
-import quickSort from '../sortingAlgorithms/QuickSort';
+import bubbleSort from '../sortingAlgorithms/BubbleSort.js';
+import selectionSort from '../sortingAlgorithms/SelectionSort.js';
+import insertionSort from '../sortingAlgorithms/InsertionSort.js';
+import quickSort from '../sortingAlgorithms/QuickSort.js';
 // import mergeSort from './sortingAlgorithms/MergeSort';
 
 const bookshelfContainer = document.getElementById('bookshelf_container')!;
