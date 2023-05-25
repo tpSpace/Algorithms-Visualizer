@@ -1,6 +1,7 @@
 "use strict";
 // Project: Algorithms and Data Structures
 // Author: nmvkhoi
+// ts-check
 // constants
 const canvas = document.getElementById('canvas');
 const ctx = canvas.getContext('2d');
@@ -16,6 +17,8 @@ const rows = height / cellSize;
 const cols = width / cellSize;
 let matrix = [];
 let isDragging = false;
+let isStart = false;
+let prevStart = [0, 0];
 // console.log(rows, cols);
 // Functions
 // create a matrix
@@ -90,30 +93,30 @@ function deleteSquare(event) {
     ctx.beginPath();
     ctx.moveTo(j * cellSize, i * cellSize);
     ctx.lineTo((j + 1) * cellSize, i * cellSize);
+    // draw 4 edges of the square
+    ctx.moveTo((j + 1) * cellSize, i * cellSize);
+    ctx.lineTo((j + 1) * cellSize, (i + 1) * cellSize);
+    ctx.moveTo((j + 1) * cellSize, (i + 1) * cellSize);
+    ctx.lineTo(j * cellSize, (i + 1) * cellSize);
+    ctx.moveTo(j * cellSize, (i + 1) * cellSize);
+    ctx.lineTo(j * cellSize, i * cellSize);
+    ctx.moveTo(j * cellSize, i * cellSize);
     ctx.stroke();
     matrix[i][j] = 0;
 }
-function ChoseStart(event) {
-    let x = event.offsetX;
-    let y = event.offsetY;
-    let i = Math.floor(y / cellSize);
-    let j = Math.floor(x / cellSize);
-    ctx.fillStyle = 'green';
-    ctx.fillRect(j * cellSize, i * cellSize, cellSize, cellSize);
-    matrix[i][j] = 1;
-    printMatrix(matrix);
-}
 // Add event listeners
-begin.addEventListener('click', (event) => { ChoseStart(event); });
+begin.addEventListener('click', () => { isStart = true; console.log('begin'); });
 end.addEventListener('click', () => { console.log('end'); });
 wall.addEventListener('click', () => { console.log('wall'); });
 start.addEventListener('click', () => { console.log('start'); });
 canvas.addEventListener('mousedown', (event) => {
-    isDragging = true;
-    drawSquare(event);
+    if (event.button === 0) {
+        isDragging = true;
+        drawSquare(event);
+    }
 });
 canvas.addEventListener('mousemove', (event) => {
-    if (isDragging) {
+    if (isDragging && event.button === 0) {
         drawSquare(event);
     }
 });
@@ -124,7 +127,7 @@ canvas.addEventListener('contextmenu', (event) => {
     deleteSquare(event);
 });
 clear.addEventListener('click', () => { clearCanvas(); });
-// Run the functions
+// Run the functions once the page is loaded
 (function once(arrays) {
     console.log(cellSize);
     console.log(width, height);
