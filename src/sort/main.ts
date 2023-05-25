@@ -1,10 +1,10 @@
 import Book from './Book';
 import createText from './popup';
-import bubbleSort from './sorting/BubbleSort';
-import selectionSort from './sorting/SelectionSort';
-import insertionSort from './sorting/InsertionSort';
-import quickSort from './sorting/QuickSort';
-// import mergeSort from './sorting/MergeSort';
+import bubbleSort from '../sortingAlgorithms/BubbleSort';
+import selectionSort from '../sortingAlgorithms/SelectionSort';
+import insertionSort from '../sortingAlgorithms/InsertionSort';
+import quickSort from '../sortingAlgorithms/QuickSort';
+// import mergeSort from './sortingAlgorithms/MergeSort';
 
 const bookshelfContainer = document.getElementById('bookshelf_container')!;
 const above = document.getElementById('augmented_container')!;
@@ -87,7 +87,7 @@ function go(){
   const copy = [...bookshelf];
   const sort = sortingBooks[selectedAlgo];
   if (sort==undefined){
-    createText("Please select a sorting algorithm.", "red");
+    createText("Please select a sortingAlgorithms algorithm.", "red");
     return;
   }
   const moves = sort.algo(copy);
