@@ -1,8 +1,8 @@
-"use strict";
 // Project: Algorithms and Data Structures
 // Author: nmvkhoi
 // ts-check
 // constants
+import { fromGridToList } from '../pathFindingAlgorithms/utility';
 const canvas = document.getElementById('canvas');
 const ctx = canvas.getContext('2d');
 const clear = document.getElementById('clear');
@@ -16,6 +16,7 @@ const cellSize = 20;
 const rows = height / cellSize;
 const cols = width / cellSize;
 let matrix = [];
+let adjList = [];
 let isDragging = false;
 let isStart = false;
 let prevStart = [-1, -1];
@@ -52,6 +53,9 @@ function printMatrix([]) {
     }
 }
 createMatrix(matrix);
+function updateAdjacencyList() {
+    adjList = fromGridToList(matrix);
+}
 // draw the grid
 function drawGrid() {
     for (let i = cellSize; i < height; i += cellSize) {
@@ -77,6 +81,7 @@ function drawSquare(event) {
     ctx.fillRect(j * cellSize, i * cellSize, cellSize, cellSize);
     matrix[i][j] = 2;
     printMatrix(matrix);
+    // updateAdjacencyList();
 }
 // clear the canvas
 function clearCanvas() {
@@ -106,6 +111,7 @@ function deleteSquare(event) {
     ctx.moveTo(j * cellSize, i * cellSize);
     ctx.stroke();
     matrix[i][j] = 0;
+    // updateAdjacencyList();
 }
 function initPoint(event) {
     let x = Math.floor(event.offsetY / cellSize);
@@ -145,6 +151,7 @@ function setEndPoint(event) {
         ctx.clearRect(prevEnd[1] * cellSize, prevEnd[0] * cellSize, cellSize, cellSize);
         // draw the new start point
         matrix[x][y] = 3;
+        // updateAdjacencyList();
         ctx.fillStyle = '#ff4d4d';
         ctx.fillRect(y * cellSize, x * cellSize, cellSize, cellSize);
         console.log(prevEnd);
