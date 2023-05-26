@@ -1,10 +1,10 @@
-function addEdge(adj, u, v){
+function addEdge(adj: number[][], u: number, v: number){
     adj[u].push(v);
 }
 
 //Check if a vertex is in the grid, if it is return its index in the vertexIndex array
 //If it is not in the grid, return -1
-function findVertexIndex (vertexIndex, row, col){
+function findVertexIndex (vertexIndex: number[][], row: number, col: number){
     for (let i = 0; i < vertexIndex.length; i++){
         if (vertexIndex[i][0] === row && vertexIndex[i][1] === col){
             return i;
@@ -14,16 +14,16 @@ function findVertexIndex (vertexIndex, row, col){
 }
 //# is wall, . is empty, A is start, B is destination
 //every . and A or B are considered a vertex
-function fromGridToList (graph, adj){
+function fromGridToList (graph: string[][], adj: number[][]){
     //number of vertices
-    let v = 0;
+    let v: number = 0;
 
    //source and destination vertices
-    let source = 0;
-    let destination = 0;
+    let source: number = 0;
+    let destination: number = 0;
 
     //array to store the index of each vertex
-    let vertexIndex = [];
+    let vertexIndex: number[][] = [];
 
     for (let i = 0; i < graph.length; i++){
         for (let j = 0; j < graph[i].length; j++){
@@ -31,11 +31,11 @@ function fromGridToList (graph, adj){
             //and increment the number of vertices
             //If the current element is A, set the source vertex to the current vertex
             //If the current element is B, set the destination vertex to the current vertex
-            if (graph[i][j] !== '#'){
-                if (graph[i][j] === 'A'){
+            if (graph[i][j] != '#'){
+                if (graph[i][j] == 'A'){
                     source = v;
                 }
-                if (graph[i][j] === 'B'){
+                if (graph[i][j] == 'B'){
                     destination = v;
                 }
                 vertexIndex[v] = [];
@@ -54,8 +54,8 @@ function fromGridToList (graph, adj){
     //Check for each vertex if there is a path to another vertex
     //if there is, add an edge between them
     for (let i = 0; i < vertexIndex.length; i++){
-        let row = vertexIndex[i][0];
-        let col = vertexIndex[i][1];
+        let row: number = vertexIndex[i][0];
+        let col: number = vertexIndex[i][1];
         //check if there is a path to the vertex above
         if (findVertexIndex(vertexIndex, row - 1, col) !== -1){
             addEdge(adj, i, findVertexIndex(vertexIndex, row - 1, col));
@@ -75,7 +75,7 @@ function fromGridToList (graph, adj){
     }
     console.log('Adjacency List: ',adj);
 }
-let graph = [
+let graph: string[][] = [
     ['#', '#', '#', '#', '#'],
     ['#', 'A', '.', '.', '#'],
     ['#', '#', '#', '.', '#'],
@@ -83,6 +83,6 @@ let graph = [
     ['#', '.', '.', '.', '#'],
     ['#', '#', 'B', '#', '#']
 ];
-let adj = [];
+let adj: number[][] = [];
 
 fromGridToList(graph, adj);
