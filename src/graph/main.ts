@@ -178,10 +178,19 @@ function setEndPoint(event: MouseEvent) {
   }
 }
 // Add event listeners
-begin.addEventListener('click', ()=>{isStart = true; console.log('begin')});
-end.addEventListener('click', ()=>{console.log('end')});
-wall.addEventListener('click', ()=>{console.log('wall')});
-start.addEventListener('click', ()=>{console.log('start')});
+begin.addEventListener('click', ()=>{
+    isStart = true;
+    console.log('begin');
+});
+end.addEventListener('click', ()=>{
+    console.log('end');
+});
+wall.addEventListener('click', ()=>{
+    console.log('wall');
+});
+start.addEventListener('click', ()=>{
+    console.log('start');
+});
 
 canvas.addEventListener('mousedown', (event)=>{
     if (event.button === 0 && !isStart && !isEnd) {
