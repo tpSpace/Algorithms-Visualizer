@@ -5,6 +5,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <title>Algorithms Visualizer</title>
     <link rel="stylesheet" href="styles.css">
+    <link href='https://unpkg.com/boxicons@2.1.1/css/boxicons.min.css' rel='stylesheet'> 
 </head>
 <body oncontextmenu="return false;">
     <header>
@@ -15,12 +16,25 @@
         </div>
     </header>
     <main>
-        <div class="control-panel">
-            <button id="clear">Clear</button>
-            <button id="begin">begin</button>
-            <button id="wall">wall</button>
-            <button id="end">end</button>
-            <button id="start">Start</button>
+        <div class="control-panel" >
+            <div id="upper">
+                <button id="clear">Clear</button>
+                <button id="begin">Begin</button>
+                <button id="wall">Wall</button>
+                <button id="end">End</button>
+            </div>
+            <div id="lower">
+                <button id="start">Start</button>
+                <div class="select">
+                    <select name="format" id="format">
+                    <option selected disabled>Pick an algorithm</option>
+                    <option value="bfs">BFS</option>
+                    <option value="dfs">DFS</option>
+                    <option value="aStar">A*</option>
+                    <option value="dijkstra">Dijkstra</option>
+                    </select>
+                </div>
+            </div>
         </div>
         <div class="container">
             <canvas id="canvas" width="800" height="500"></canvas>

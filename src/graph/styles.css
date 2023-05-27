@@ -7,7 +7,7 @@ body {
     height: 100%;
     width: 100%;
     font-family: "Gill Sans", sans-serif;
-    background-color: #ffffff;
+    background-color: #e3f2fd;
 }
 html {
     height: 100%;
@@ -66,6 +66,18 @@ main{
 }
 .control-panel {
     display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+
+    gap: 10px;
+    margin-top: 5px;
+    height:auto;
+    width: 100%;
+    height: 20%;
+}
+#lower {
+    display: flex;
     flex-direction: row;
     justify-content: center;
     align-items: center;
@@ -75,6 +87,56 @@ main{
     height:auto;
     width: 100%;
 }
+select {
+    -webkit-appearance: none;
+    -moz-appearance: none;
+    -ms-appearance: none;
+    appearance: none;
+    outline: 0;
+    border: 0;
+    background: #ffffff;
+    background-image: none;
+    padding: 20px 20px 30px 30px;
+    box-shadow: 0 0 5px rgba(0, 0, 0, 0.5);
+    flex: 1;
+    padding: 0 .5em;
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    font-size: 1.4rem;
+    font-weight: bold;
+    color: #5a909c;
+}
+
+select::-ms-expand {
+    display: none;
+}
+
+.select {
+    position: relative;
+    display: flex;
+    width: 16em;
+    height: 3.5em;
+    line-height: 3;
+    background: #D3D3D3;
+    overflow: hidden;
+    border-radius: .25em;
+}
+.select::after {
+    content: '\25BC';
+    position: absolute;
+    top: -12px;
+    right: 0;
+    padding: 1em 1em;
+    background: #D3D3D3;
+    cursor:pointer;
+    pointer-events:none;
+    transition:.25s all ease;
+}
+.select:hover::after {
+color: #7ce8ff;
+}
+  
 button {
     padding: 15px;
     transition: 0.3s;
@@ -107,7 +169,7 @@ button:hover {
     justify-content: center;
     align-items: center;
 
-    height: 100%;
+    height: 80%;
     width: 100%;
 }
 #canvas {
