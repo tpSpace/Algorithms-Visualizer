@@ -1,8 +1,8 @@
-"use strict";
 // Project: Algorithms and Data Structures
 // Author: nmvkhoi
 // ts-check
 // constants
+import fromGridToList from '../pathFindingAlgorithms/utility.js';
 const canvas = document.getElementById('canvas');
 const ctx = canvas.getContext('2d');
 const clear = document.getElementById('clear');
@@ -16,6 +16,7 @@ const cellSize = 20;
 const rows = height / cellSize;
 const cols = width / cellSize;
 let matrix = [];
+let adjList = [];
 let isDragging = false;
 let isStart = false;
 let prevStart = [-1, -1];
@@ -205,4 +206,6 @@ canvas.addEventListener('contextmenu', (event) => {
     createMatrix(arrays);
     printMatrix(arrays);
     drawGrid();
+    adjList = fromGridToList(arrays);
+    console.log(adjList);
 })(matrix);

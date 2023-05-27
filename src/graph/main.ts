@@ -3,6 +3,9 @@
 
 // ts-check
 // constants
+
+import fromGridToList from '../pathFindingAlgorithms/utility.js';
+
 const canvas = document.getElementById('canvas') as HTMLCanvasElement;
 const ctx = canvas.getContext('2d') as CanvasRenderingContext2D;
 const clear = document.getElementById('clear') as HTMLButtonElement;
@@ -19,6 +22,7 @@ const rows = height / cellSize;
 const cols = width / cellSize;
 
 let matrix: number[][] = [];
+let adjList: number[][] = [];
 let isDragging: boolean = false;
 let isStart = false;
 let prevStart = [-1, -1];
@@ -214,6 +218,9 @@ canvas.addEventListener('contextmenu', (event)=>{
     createMatrix(arrays);
     printMatrix(arrays);
     drawGrid();
+
+    adjList = fromGridToList(arrays);
+    console.log(adjList);
   }
 )(matrix);
 
