@@ -1,10 +1,21 @@
 // Project: Algorithms and Data Structures
 // Author: nmvkhoi
+var __awaiter = (this && this.__awaiter) || function (thisArg, _arguments, P, generator) {
+    function adopt(value) { return value instanceof P ? value : new P(function (resolve) { resolve(value); }); }
+    return new (P || (P = Promise))(function (resolve, reject) {
+        function fulfilled(value) { try { step(generator.next(value)); } catch (e) { reject(e); } }
+        function rejected(value) { try { step(generator["throw"](value)); } catch (e) { reject(e); } }
+        function step(result) { result.done ? resolve(result.value) : adopt(result.value).then(fulfilled, rejected); }
+        step((generator = generator.apply(thisArg, _arguments || [])).next());
+    });
+};
 // ts-check
 // constants
 import getAdjacencyList from '../pathFindingAlgorithms/utility.js';
 import { getEndNode } from "../pathFindingAlgorithms/utility.js";
 import { getSourceNode } from "../pathFindingAlgorithms/utility.js";
+import { getNodeXCoordinates } from "../pathFindingAlgorithms/utility.js";
+import { getNodeYCoordinates } from "../pathFindingAlgorithms/utility.js";
 import printShortestDistance from "../pathFindingAlgorithms/bfs.js";
 const canvas = document.getElementById('canvas');
 const ctx = canvas.getContext('2d');
@@ -28,7 +39,53 @@ let prevEnd = [-1, -1];
 let adjList = [];
 let startNode;
 let endNode = -1;
+let path = [];
 // Functions
+// draw a square with color
+function drawSquareWithColor(x, y, color) {
+    ctx.fillStyle = color;
+    ctx.fillRect(y * cellSize, x * cellSize, cellSize, cellSize);
+    // border
+    ctx.beginPath();
+    ctx.moveTo(y * cellSize, x * cellSize);
+    ctx.lineTo((y + 1) * cellSize, x * cellSize);
+    // draw 4 edges of the square
+    ctx.moveTo((y + 1) * cellSize, x * cellSize);
+    ctx.lineTo((y + 1) * cellSize, (x + 1) * cellSize);
+    ctx.moveTo((y + 1) * cellSize, (x + 1) * cellSize);
+    ctx.lineTo(y * cellSize, (x + 1) * cellSize);
+    ctx.moveTo(y * cellSize, (x + 1) * cellSize);
+    ctx.lineTo(y * cellSize, x * cellSize);
+    ctx.moveTo(y * cellSize, x * cellSize);
+    ctx.stroke();
+}
+// draw a square with animation zoom out
+function drawSquareWithAnimation(x, y, color) {
+    return __awaiter(this, void 0, void 0, function* () {
+        const initialSize = 1;
+        const targetSize = cellSize;
+        let currentSize = initialSize;
+        let animationStartTime = 0; // milliseconds
+        function animate() {
+            const now = Date.now();
+            const elapsedTime = now - animationStartTime;
+            const progress = elapsedTime / 100; // Divide by 1000 to convert milliseconds to seconds
+            ctx.clearRect(y * cellSize, x * cellSize, cellSize, cellSize); // Clear the previous frame
+            if (progress < 1) {
+                currentSize = initialSize + (targetSize - initialSize) * progress;
+                ctx.fillStyle = color;
+                ctx.fillRect(y * cellSize + (cellSize - currentSize) / 2, x * cellSize + (cellSize - currentSize) / 2, currentSize, currentSize);
+                requestAnimationFrame(animate);
+            }
+            else {
+                ctx.fillStyle = color;
+                ctx.fillRect(y * cellSize, x * cellSize, cellSize, cellSize);
+            }
+        }
+        animationStartTime = Date.now();
+        animate();
+    });
+}
 // create a matrix
 function createMatrix([]) {
     for (let i = 0; i < rows; i++) {
@@ -79,10 +136,11 @@ function drawSquare(event) {
     let y = event.offsetY;
     let i = Math.floor(y / cellSize);
     let j = Math.floor(x / cellSize);
-    ctx.fillStyle = '#19A7CE';
-    ctx.fillRect(j * cellSize, i * cellSize, cellSize, cellSize);
+    // ctx.fillStyle = '#19A7CE';
+    // ctx.fillRect(j * cellSize, i * cellSize, cellSize, cellSize);
     matrix[i][j] = 2;
     // printMatrix(matrix);
+    drawSquareWithAnimation(i, j, '#19A7CE');
 }
 // clear the canvas
 function clearCanvas() {
@@ -178,9 +236,27 @@ function updateAdjacencyList() {
     startNode = getSourceNode(matrix);
     endNode = getEndNode(matrix);
 }
+function resetAdjacencyList() {
+    for (let i = 0; i < adjList.length; i++) {
+        for (let j = 0; j < adjList[i].length; j++) {
+            adjList[i][j] = 0;
+        }
+    }
+    startNode = -1;
+    endNode = -1;
+}
+function initPath(path) {
+    for (let i = path.length - 1; i >= 0; i--) {
+        let x = getNodeXCoordinates(path[i]);
+        let y = getNodeYCoordinates(path[i]);
+        console.log(x, y);
+        drawSquareWithAnimation(x, y, '#FFEA00');
+    }
+}
 // Add event listeners
 clear.addEventListener('click', () => {
     clearCanvas();
+    resetAdjacencyList();
 });
 begin.addEventListener('click', (event) => {
     isStart = true;
@@ -197,9 +273,9 @@ end.addEventListener('click', () => {
     isEnd = true;
 });
 start.addEventListener('click', () => {
-    console.log('start');
     updateAdjacencyList();
-    printShortestDistance(adjList, startNode, endNode);
+    initPath(printShortestDistance(adjList, startNode, endNode));
+    console.log('start');
 });
 canvas.addEventListener('mousedown', (event) => {
     if (event.button === 0 && !isStart && !isEnd) {
@@ -234,3 +310,4 @@ canvas.addEventListener('contextmenu', (event) => {
     printMatrix(arrays);
     drawGrid();
 })(matrix);
+export { matrix, cellSize, width, height, rows, cols, ctx, canvas };

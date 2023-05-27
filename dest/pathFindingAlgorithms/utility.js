@@ -1,3 +1,4 @@
+let vertexIndex = [];
 export function addEdge(adj, u, v) {
     adj[u].push(v);
 }
@@ -16,8 +17,6 @@ export function findVertexIndex(vertexIndex, row, col) {
 export default function getAdjacencyList(graph) {
     //number of vertices
     let v = 0;
-    //array to store the index of each vertex
-    let vertexIndex = [];
     //adjacency list
     let adj = [];
     for (let i = 0; i < graph.length; i++) {
@@ -81,6 +80,22 @@ export function getEndNode(graph) {
                 }
                 v++;
             }
+        }
+    }
+    return -1;
+}
+export function getNodeXCoordinates(v) {
+    for (let i = 0; i < vertexIndex.length; i++) {
+        if (i === v) {
+            return vertexIndex[i][0];
+        }
+    }
+    return -1;
+}
+export function getNodeYCoordinates(v) {
+    for (let i = 0; i < vertexIndex.length; i++) {
+        if (i === v) {
+            return vertexIndex[i][1];
         }
     }
     return -1;

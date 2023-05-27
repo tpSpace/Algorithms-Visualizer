@@ -42,10 +42,12 @@ export default function printShortestDistance(adj, src, dest) {
         path.push(prev[crawl]);
         crawl = prev[crawl];
     }
-    console.log("Shortest path length is : ", dist[dest]);
-    console.log("Path is: ");
-    for (let i = path.length - 1; i >= 0; i--)
-        console.log(path[i]);
+    return path;
+    // console.log("Shortest path length is : ", dist[dest]);
+    //
+    // console.log("Path is: ");
+    // for (let i = path.length - 1; i >= 0; i--)
+    //     console.log(path[i]);
 }
 // //Driver code
 // let V: number = 0;
