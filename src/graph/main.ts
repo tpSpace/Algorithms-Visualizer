@@ -4,7 +4,7 @@
 // ts-check
 // constants
 
-import getAdjacencyList from '../pathFindingAlgorithms/utility.js';
+import getAdjacencyList, {getTotalVertices} from '../pathFindingAlgorithms/utility.js';
 import {getEndNode} from "../pathFindingAlgorithms/utility.js";
 import {getSourceNode} from "../pathFindingAlgorithms/utility.js";
 import printShortestDistance from "../pathFindingAlgorithms/bfs.js";
@@ -185,26 +185,31 @@ function setEndPoint(event: MouseEvent) {
 
 function updateAdjacencyList() {
     adjList = getAdjacencyList(matrix);
-    console.log(adjList);
     startNode = getSourceNode(matrix);
-    console.log(startNode)
     endNode = getEndNode(matrix);
-    console.log(endNode);
 }
 // Add event listeners
-begin.addEventListener('click', ()=>{
+clear.addEventListener('click', ()=>{
+    clearCanvas()
+});
+begin.addEventListener('click', (event)=>{
     isStart = true;
     console.log('begin');
 });
-end.addEventListener('click', ()=>{
-    console.log('end');
-});
-wall.addEventListener('click', ()=>{
+wall.addEventListener('click', (event)=>{
     console.log('wall');
+    isStart= false;
+    isEnd = false;
+});
+end.addEventListener('click', ()=>{
+    console.log('set-end');
+    isStart = false;
+    isEnd = true;
 });
 start.addEventListener('click', ()=>{
-    console.log('start');
+    console.log('start')
     updateAdjacencyList();
+    printShortestDistance(adjList, startNode, endNode);
 });
 
 canvas.addEventListener('mousedown', (event)=>{
@@ -213,7 +218,7 @@ canvas.addEventListener('mousedown', (event)=>{
       drawSquare(event);
     } else if (event.button === 0 && isStart) {
       prevStart = initPoint(event);
-    } else if (event.button === 0 && isEnd) {
+    } else if (event.button === 0 && isEnd === true) {
       console.log('end');
       prevEnd = setEndPoint(event);
     }

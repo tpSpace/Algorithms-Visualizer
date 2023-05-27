@@ -76,7 +76,7 @@ export function getEndNode(graph) {
     for (let i = 0; i < graph.length; i++) {
         for (let j = 0; j < graph[i].length; j++) {
             if (graph[i][j] != 2) {
-                if (graph[i][j] == 4) {
+                if (graph[i][j] == 3) {
                     return v;
                 }
                 v++;
@@ -84,17 +84,6 @@ export function getEndNode(graph) {
         }
     }
     return -1;
-}
-export function getTotalVertices(graph) {
-    let v = 0;
-    for (let i = 0; i < graph.length; i++) {
-        for (let j = 0; j < graph[i].length; j++) {
-            if (graph[i][j] != 2) {
-                v++;
-            }
-        }
-    }
-    return v;
 }
 // let graph: string[][] = [
 //     ['#', '#', '#', '#', '#'],

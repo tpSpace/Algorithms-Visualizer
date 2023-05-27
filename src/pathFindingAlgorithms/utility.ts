@@ -82,7 +82,7 @@ export function getEndNode(graph: number[][]): number{
     for (let i = 0; i < graph.length; i++){
         for (let j = 0; j < graph[i].length; j++){
             if (graph[i][j] != 2){
-                if (graph[i][j] == 4){
+                if (graph[i][j] == 3){
                     return v;
                 }
                 v++;
@@ -90,17 +90,6 @@ export function getEndNode(graph: number[][]): number{
         }
     }
     return -1;
-}
-export function getTotalVertices(graph: number[][]){
-    let v: number = 0;
-    for (let i = 0; i < graph.length; i++){
-        for (let j = 0; j < graph[i].length; j++){
-            if (graph[i][j] != 2){
-                    v++;
-                }
-            }
-        }
-    return v;
 }
 
 
