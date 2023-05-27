@@ -1,4 +1,7 @@
 //BFS algorithm
+import {initPath} from "../graph/main.js";
+import {initPrevPath} from "../graph/main.js";
+
 export function bfs(adj: number[][],
              src: number,
              dest:  number,
@@ -27,6 +30,7 @@ export function bfs(adj: number[][],
                 dist[adj[u][i]] = dist[u] + 1;
                 prev[adj[u][i]] = u;
                 queue.push(adj[u][i]);
+                initPrevPath(adj[u][i]);
                 if (adj[u][i] == dest){
                     return true;
                 }
@@ -36,7 +40,7 @@ export function bfs(adj: number[][],
     return false;
 }
 //Helper function to backtrack the path and print the shortest path
-export default function printShortestDistance(adj: number[][], src: number, dest: number){
+export default function getShortestDistanceBFS(adj: number[][], src: number, dest: number){
     let v = adj.length;
     let prev = new Array(v).fill(0);
     let dist = new Array(v).fill(0);
@@ -53,14 +57,12 @@ export default function printShortestDistance(adj: number[][], src: number, dest
         path.push(prev[crawl]);
         crawl = prev[crawl];
     }
-    return path;
-
-    // console.log("Shortest path length is : ", dist[dest]);
-    //
-    // console.log("Path is: ");
-    // for (let i = path.length - 1; i >= 0; i--)
-    //     console.log(path[i]);
+    for (let i = path.length - 1; i >= 0; i--)
+        initPath(path[i]);
 }
+// export function getPrev(){
+//     return prev;
+// }
 
 // //Driver code
 // let V: number = 0;

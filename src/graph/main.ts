@@ -9,7 +9,8 @@ import {getEndNode} from "../pathFindingAlgorithms/utility.js";
 import {getSourceNode} from "../pathFindingAlgorithms/utility.js";
 import {getNodeXCoordinates} from "../pathFindingAlgorithms/utility.js";
 import {getNodeYCoordinates} from "../pathFindingAlgorithms/utility.js";
-import printShortestDistance, {bfs} from "../pathFindingAlgorithms/bfs.js";
+import getShortestDistanceBFS, {bfs} from "../pathFindingAlgorithms/bfs.js";
+// import {getPrev} from "../pathFindingAlgorithms/bfs.js";
 
 const canvas = document.getElementById('canvas') as HTMLCanvasElement;
 const ctx = canvas.getContext('2d') as CanvasRenderingContext2D;
@@ -38,6 +39,7 @@ let adjList: number[][] = [];
 let startNode: number;
 let endNode: number = -1;
 let path = [];
+let prevPath = [];
 
 // Functions
 // draw a square with color
@@ -59,7 +61,7 @@ function drawSquareWithColor(x: number, y: number, color: string) {
   ctx.stroke();
 }
 // draw a square with animation zoom out
-async function drawSquareWithAnimation(x: number, y: number, color: string) {
+export async function drawSquareWithAnimation(x: number, y: number, color: string) {
   const initialSize = 1;
   const targetSize = cellSize;
 
@@ -149,7 +151,7 @@ function drawSquare(event: MouseEvent) {
     // ctx.fillRect(j * cellSize, i * cellSize, cellSize, cellSize);
     matrix[i][j] = 2;
     // printMatrix(matrix);
-    drawSquareWithAnimation(i, j, '#19A7CE');
+    drawSquareWithAnimation(i, j, '#1239C6');
 }
 // clear the canvas
 function clearCanvas() {
@@ -257,13 +259,15 @@ function resetAdjacencyList() {
     endNode = -1;
 }
 
-function initPath(path : number[]){
-    for (let i = path.length - 1; i >= 0; i--) {
-        let x = getNodeXCoordinates(path[i]);
-        let y = getNodeYCoordinates(path[i]);
-        console.log(x, y);
-        drawSquareWithAnimation(x, y, '#FFEA00');
-    }
+export function initPath(node : number){
+    let x = getNodeXCoordinates(node);
+    let y = getNodeYCoordinates(node);
+    drawSquareWithAnimation(x, y, '#FFEA00');
+}
+export function initPrevPath(node : number){
+    let x = getNodeXCoordinates(node);
+    let y = getNodeYCoordinates(node);
+    drawSquareWithAnimation(x, y, '#33A3FF');
 }
 
 // Add event listeners
@@ -287,7 +291,7 @@ end.addEventListener('click', ()=>{
 });
 start.addEventListener('click', ()=>{
     updateAdjacencyList();
-    initPath(printShortestDistance(adjList, startNode, endNode));
+    getShortestDistanceBFS(adjList, startNode, endNode);
     console.log('start')
 });
 
