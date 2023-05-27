@@ -2,7 +2,9 @@
 // Author: nmvkhoi
 // ts-check
 // constants
-import fromGridToList from '../pathFindingAlgorithms/utility.js';
+import getAdjacencyList from '../pathFindingAlgorithms/utility.js';
+import { getEndNode } from "../pathFindingAlgorithms/utility.js";
+import { getSourceNode } from "../pathFindingAlgorithms/utility.js";
 const canvas = document.getElementById('canvas');
 const ctx = canvas.getContext('2d');
 const clear = document.getElementById('clear');
@@ -16,13 +18,15 @@ const cellSize = 20;
 const rows = height / cellSize;
 const cols = width / cellSize;
 let matrix = [];
-let adjList = [];
 let isDragging = false;
 let isStart = false;
 let prevStart = [-1, -1];
 let isEnd = false;
 let prevEnd = [-1, -1];
 // console.log(rows, cols);
+let adjList = [];
+let startNode;
+let endNode = -1;
 // Functions
 // create a matrix
 function createMatrix([]) {
@@ -77,7 +81,7 @@ function drawSquare(event) {
     ctx.fillStyle = '#19A7CE';
     ctx.fillRect(j * cellSize, i * cellSize, cellSize, cellSize);
     matrix[i][j] = 2;
-    printMatrix(matrix);
+    // printMatrix(matrix);
 }
 // clear the canvas
 function clearCanvas() {
@@ -168,11 +172,29 @@ function setEndPoint(event) {
         return [0, 0];
     }
 }
+function updateAdjacencyList() {
+    adjList = getAdjacencyList(matrix);
+    console.log(adjList);
+    startNode = getSourceNode(matrix);
+    console.log(startNode);
+    endNode = getEndNode(matrix);
+    console.log(endNode);
+}
 // Add event listeners
-begin.addEventListener('click', () => { isStart = true; console.log('begin'); });
-end.addEventListener('click', () => { console.log('end'); });
-wall.addEventListener('click', () => { console.log('wall'); });
-start.addEventListener('click', () => { console.log('start'); });
+begin.addEventListener('click', () => {
+    isStart = true;
+    console.log('begin');
+});
+end.addEventListener('click', () => {
+    console.log('end');
+});
+wall.addEventListener('click', () => {
+    console.log('wall');
+});
+start.addEventListener('click', () => {
+    console.log('start');
+    updateAdjacencyList();
+});
 canvas.addEventListener('mousedown', (event) => {
     if (event.button === 0 && !isStart && !isEnd) {
         isDragging = true;
@@ -181,7 +203,7 @@ canvas.addEventListener('mousedown', (event) => {
     else if (event.button === 0 && isStart) {
         prevStart = initPoint(event);
     }
-    else if (event.button === 0 && isEnd === true) {
+    else if (event.button === 0 && isEnd) {
         console.log('end');
         prevEnd = setEndPoint(event);
     }
@@ -205,6 +227,4 @@ canvas.addEventListener('contextmenu', (event) => {
     createMatrix(arrays);
     printMatrix(arrays);
     drawGrid();
-    adjList = fromGridToList(arrays);
-    console.log(adjList);
 })(matrix);

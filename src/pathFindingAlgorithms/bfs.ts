@@ -1,5 +1,5 @@
 //BFS algorithm
-function bfs(adj: number[][],
+export function bfs(adj: number[][],
              src: number,
              dest:  number,
              v: number,
@@ -36,15 +36,16 @@ function bfs(adj: number[][],
     return false;
 }
 //Helper function to backtrack the path and print the shortest path
-function printShortestDistance(adj: number[][], src: number, dest: number, v: number){
+export default function printShortestDistance(adj: number[][], src: number, dest: number){
+    let v = adj.length;
     let prev = new Array(v).fill(0);
     let dist = new Array(v).fill(0);
 
-    if (bfs(adj, src, dest, v, prev, dist) == false){
+    if (!bfs(adj, src, dest, v, prev, dist)){
         console.log('Source and destination vertex is not connected!');
     }
 
-    let path = new Array();
+    let path = [];
     let crawl = dest;
 
     path.push(crawl);

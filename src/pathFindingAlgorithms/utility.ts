@@ -14,33 +14,21 @@ export function findVertexIndex (vertexIndex: number[][], row: number, col: numb
 }
 //# is wall, . is empty, A is start, B is destination
 //every . and A or B are considered a vertex
-export default function fromGridToList (graph: number[][]){
+export default function getAdjacencyList (graph: number[][]){
     //number of vertices
     let v: number = 0;
-
-   //source and destination vertices
-    let source: number = 0;
-    let destination: number = 0;
 
     //array to store the index of each vertex
     let vertexIndex: number[][] = [];
 
-    //adjaency list
+    //adjacency list
     let adj: number[][] = [];
 
     for (let i = 0; i < graph.length; i++){
         for (let j = 0; j < graph[i].length; j++){
             //If the current element is not a wall, add it to the vertexIndex array
             //and increment the number of vertices
-            //If the current element is A, set the source vertex to the current vertex
-            //If the current element is B, set the destination vertex to the current vertex
             if (graph[i][j] != 2){
-                if (graph[i][j] == 1){
-                    source = v;
-                }
-                if (graph[i][j] == 4){
-                    destination = v;
-                }
                 vertexIndex[v] = [];
                 vertexIndex[v].push(i);
                 vertexIndex[v].push(j);
@@ -49,10 +37,6 @@ export default function fromGridToList (graph: number[][]){
             }
         }
     }
-    console.log('The total number of vertices is: ', v);
-    console.log('The source node is: ', source);
-    console.log('The destination node is: ',destination);
-    console.log('Vertex Index: ',vertexIndex);
 
     //Check for each vertex if there is a path to another vertex
     //if there is, add an edge between them
@@ -78,6 +62,48 @@ export default function fromGridToList (graph: number[][]){
     }
     return adj;
 }
+export function getSourceNode (graph: number[][]): number{
+    let v: number = 0;
+    for (let i = 0; i < graph.length; i++){
+        for (let j = 0; j < graph[i].length; j++){
+            if (graph[i][j] != 2){
+                if (graph[i][j] == 1){
+                    return v;
+                }
+                v++;
+            }
+        }
+    }
+    return -1;
+}
+
+export function getEndNode(graph: number[][]): number{
+    let v: number = 0;
+    for (let i = 0; i < graph.length; i++){
+        for (let j = 0; j < graph[i].length; j++){
+            if (graph[i][j] != 2){
+                if (graph[i][j] == 4){
+                    return v;
+                }
+                v++;
+            }
+        }
+    }
+    return -1;
+}
+export function getTotalVertices(graph: number[][]){
+    let v: number = 0;
+    for (let i = 0; i < graph.length; i++){
+        for (let j = 0; j < graph[i].length; j++){
+            if (graph[i][j] != 2){
+                    v++;
+                }
+            }
+        }
+    return v;
+}
+
+
 // let graph: string[][] = [
 //     ['#', '#', '#', '#', '#'],
 //     ['#', 'A', '.', '.', '#'],

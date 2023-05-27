@@ -1,6 +1,5 @@
-"use strict";
 //BFS algorithm
-function bfs(adj, src, dest, v, prev, dist) {
+export function bfs(adj, src, dest, v, prev, dist) {
     let queue = [];
     let visited = new Array(v);
     for (let i = 0; i < v; i++) {
@@ -29,13 +28,14 @@ function bfs(adj, src, dest, v, prev, dist) {
     return false;
 }
 //Helper function to backtrack the path and print the shortest path
-function printShortestDistance(adj, src, dest, v) {
+export default function printShortestDistance(adj, src, dest) {
+    let v = adj.length;
     let prev = new Array(v).fill(0);
     let dist = new Array(v).fill(0);
-    if (bfs(adj, src, dest, v, prev, dist) == false) {
+    if (!bfs(adj, src, dest, v, prev, dist)) {
         console.log('Source and destination vertex is not connected!');
     }
-    let path = new Array();
+    let path = [];
     let crawl = dest;
     path.push(crawl);
     while (prev[crawl] != -1) {

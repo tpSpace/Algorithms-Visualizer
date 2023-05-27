@@ -4,7 +4,10 @@
 // ts-check
 // constants
 
-import fromGridToList from '../pathFindingAlgorithms/utility.js';
+import getAdjacencyList from '../pathFindingAlgorithms/utility.js';
+import {getEndNode} from "../pathFindingAlgorithms/utility.js";
+import {getSourceNode} from "../pathFindingAlgorithms/utility.js";
+import printShortestDistance from "../pathFindingAlgorithms/bfs.js";
 
 const canvas = document.getElementById('canvas') as HTMLCanvasElement;
 const ctx = canvas.getContext('2d') as CanvasRenderingContext2D;
@@ -22,7 +25,6 @@ const rows = height / cellSize;
 const cols = width / cellSize;
 
 let matrix: number[][] = [];
-let adjList: number[][] = [];
 let isDragging: boolean = false;
 let isStart = false;
 let prevStart = [-1, -1];
@@ -30,6 +32,9 @@ let isEnd = false;
 let prevEnd = [-1, -1];
 // console.log(rows, cols);
 
+let adjList: number[][] = [];
+let startNode: number;
+let endNode: number = -1;
 
 // Functions
 // create a matrix
@@ -86,7 +91,7 @@ function drawSquare(event: MouseEvent) {
     ctx.fillStyle = '#19A7CE';
     ctx.fillRect(j * cellSize, i * cellSize, cellSize, cellSize);
     matrix[i][j] = 2;
-    printMatrix(matrix);
+    // printMatrix(matrix);
 }
 // clear the canvas
 function clearCanvas() {
@@ -177,6 +182,15 @@ function setEndPoint(event: MouseEvent) {
     return [0,0];
   }
 }
+
+function updateAdjacencyList() {
+    adjList = getAdjacencyList(matrix);
+    console.log(adjList);
+    startNode = getSourceNode(matrix);
+    console.log(startNode)
+    endNode = getEndNode(matrix);
+    console.log(endNode);
+}
 // Add event listeners
 begin.addEventListener('click', ()=>{
     isStart = true;
@@ -190,6 +204,7 @@ wall.addEventListener('click', ()=>{
 });
 start.addEventListener('click', ()=>{
     console.log('start');
+    updateAdjacencyList();
 });
 
 canvas.addEventListener('mousedown', (event)=>{
@@ -198,7 +213,7 @@ canvas.addEventListener('mousedown', (event)=>{
       drawSquare(event);
     } else if (event.button === 0 && isStart) {
       prevStart = initPoint(event);
-    } else if (event.button === 0 && isEnd === true) {
+    } else if (event.button === 0 && isEnd) {
       console.log('end');
       prevEnd = setEndPoint(event);
     }
@@ -226,9 +241,6 @@ canvas.addEventListener('contextmenu', (event)=>{
     createMatrix(arrays);
     printMatrix(arrays);
     drawGrid();
-
-    adjList = fromGridToList(arrays);
-    console.log(adjList);
   }
 )(matrix);
 
