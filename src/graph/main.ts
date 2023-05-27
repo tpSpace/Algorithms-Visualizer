@@ -28,6 +28,24 @@ let prevEnd = [-1, -1];
 
 
 // Functions
+// draw a square with color
+function drawSquareWithColor(x: number, y: number, color: string) {
+  ctx.fillStyle = color;
+  ctx.fillRect(y * cellSize, x * cellSize, cellSize, cellSize);
+  // border
+  ctx.beginPath();
+  ctx.moveTo(y * cellSize, x * cellSize);
+  ctx.lineTo((y + 1) * cellSize, x * cellSize);
+  // draw 4 edges of the square
+  ctx.moveTo((y + 1) * cellSize, x * cellSize);
+  ctx.lineTo((y + 1) * cellSize, (x + 1) * cellSize);
+  ctx.moveTo((y + 1) * cellSize, (x + 1) * cellSize);
+  ctx.lineTo(y * cellSize, (x + 1) * cellSize);
+  ctx.moveTo(y * cellSize, (x + 1) * cellSize);
+  ctx.lineTo(y * cellSize, x * cellSize);
+  ctx.moveTo(y * cellSize, x * cellSize);
+  ctx.stroke();
+}
 // create a matrix
 function createMatrix([]: number[][]) {
   for (let i = 0; i < rows; i++) {
