@@ -1,6 +1,14 @@
-"use strict";
 // Project: Algorithms and Data Structures
 // Author: nmvkhoi
+var __awaiter = (this && this.__awaiter) || function (thisArg, _arguments, P, generator) {
+    function adopt(value) { return value instanceof P ? value : new P(function (resolve) { resolve(value); }); }
+    return new (P || (P = Promise))(function (resolve, reject) {
+        function fulfilled(value) { try { step(generator.next(value)); } catch (e) { reject(e); } }
+        function rejected(value) { try { step(generator["throw"](value)); } catch (e) { reject(e); } }
+        function step(result) { result.done ? resolve(result.value) : adopt(result.value).then(fulfilled, rejected); }
+        step((generator = generator.apply(thisArg, _arguments || [])).next());
+    });
+};
 // ts-check
 // constants
 const canvas = document.getElementById('canvas');
@@ -23,6 +31,51 @@ let isEnd = false;
 let prevEnd = [-1, -1];
 // console.log(rows, cols);
 // Functions
+// draw a square with color
+function drawSquareWithColor(x, y, color) {
+    ctx.fillStyle = color;
+    ctx.fillRect(y * cellSize, x * cellSize, cellSize, cellSize);
+    // border
+    ctx.beginPath();
+    ctx.moveTo(y * cellSize, x * cellSize);
+    ctx.lineTo((y + 1) * cellSize, x * cellSize);
+    // draw 4 edges of the square
+    ctx.moveTo((y + 1) * cellSize, x * cellSize);
+    ctx.lineTo((y + 1) * cellSize, (x + 1) * cellSize);
+    ctx.moveTo((y + 1) * cellSize, (x + 1) * cellSize);
+    ctx.lineTo(y * cellSize, (x + 1) * cellSize);
+    ctx.moveTo(y * cellSize, (x + 1) * cellSize);
+    ctx.lineTo(y * cellSize, x * cellSize);
+    ctx.moveTo(y * cellSize, x * cellSize);
+    ctx.stroke();
+}
+// draw a square with animation zoom out 
+function drawSquareWithAnimation(x, y, color) {
+    return __awaiter(this, void 0, void 0, function* () {
+        const initialSize = 1;
+        const targetSize = cellSize;
+        let currentSize = initialSize;
+        let animationStartTime = 0; // milliseconds
+        function animate() {
+            const now = Date.now();
+            const elapsedTime = now - animationStartTime;
+            const progress = elapsedTime / 100; // Divide by 1000 to convert milliseconds to seconds
+            ctx.clearRect(y * cellSize, x * cellSize, cellSize, cellSize); // Clear the previous frame
+            if (progress < 1) {
+                currentSize = initialSize + (targetSize - initialSize) * progress;
+                ctx.fillStyle = color;
+                ctx.fillRect(y * cellSize + (cellSize - currentSize) / 2, x * cellSize + (cellSize - currentSize) / 2, currentSize, currentSize);
+                requestAnimationFrame(animate);
+            }
+            else {
+                ctx.fillStyle = color;
+                ctx.fillRect(y * cellSize, x * cellSize, cellSize, cellSize);
+            }
+        }
+        animationStartTime = Date.now();
+        animate();
+    });
+}
 // create a matrix
 function createMatrix([]) {
     for (let i = 0; i < rows; i++) {
@@ -73,10 +126,11 @@ function drawSquare(event) {
     let y = event.offsetY;
     let i = Math.floor(y / cellSize);
     let j = Math.floor(x / cellSize);
-    ctx.fillStyle = '#19A7CE';
-    ctx.fillRect(j * cellSize, i * cellSize, cellSize, cellSize);
+    // ctx.fillStyle = '#19A7CE';
+    // ctx.fillRect(j * cellSize, i * cellSize, cellSize, cellSize);
     matrix[i][j] = 2;
     printMatrix(matrix);
+    drawSquareWithAnimation(i, j, '#19A7CE');
 }
 // clear the canvas
 function clearCanvas() {
@@ -206,3 +260,4 @@ canvas.addEventListener('contextmenu', (event) => {
     printMatrix(arrays);
     drawGrid();
 })(matrix);
+export { matrix, cellSize, width, height, rows, cols, ctx, canvas };
