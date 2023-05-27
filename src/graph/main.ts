@@ -272,3 +272,4 @@ canvas.addEventListener('contextmenu', (event)=>{
   }
 )(matrix);
 
+export {matrix, cellSize, width, height, rows, cols, ctx, canvas};

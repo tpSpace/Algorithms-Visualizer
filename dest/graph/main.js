@@ -1,4 +1,3 @@
-"use strict";
 // Project: Algorithms and Data Structures
 // Author: nmvkhoi
 var __awaiter = (this && this.__awaiter) || function (thisArg, _arguments, P, generator) {
@@ -261,3 +260,4 @@ canvas.addEventListener('contextmenu', (event) => {
     printMatrix(arrays);
     drawGrid();
 })(matrix);
+export { matrix, cellSize, width, height, rows, cols, ctx, canvas };
