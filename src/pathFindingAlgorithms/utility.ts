@@ -14,6 +14,11 @@ export function findVertexIndex (vertexIndex: number[][], row: number, col: numb
     }
     return -1;
 }
+
+export function resetVertexIndex(){
+    vertexIndex = [];
+}
+
 //# is wall, . is empty, A is start, B is destination
 //every . and A or B are considered a vertex
 export default function getAdjacencyList (graph: number[][]){
@@ -21,7 +26,9 @@ export default function getAdjacencyList (graph: number[][]){
     let v: number = 0;
 
     //adjacency list
-    let adj: number[][] = [];
+    let adj: number[][] = new Array(graph.length * graph[0].length);
+
+    resetVertexIndex();
 
     for (let i = 0; i < graph.length; i++){
         for (let j = 0; j < graph[i].length; j++){

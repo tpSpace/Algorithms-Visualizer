@@ -17,7 +17,6 @@ import { getSourceNode } from "../pathFindingAlgorithms/utility.js";
 import { getNodeXCoordinates } from "../pathFindingAlgorithms/utility.js";
 import { getNodeYCoordinates } from "../pathFindingAlgorithms/utility.js";
 import getShortestDistanceBFS from "../pathFindingAlgorithms/bfs.js";
-// import {getPrev} from "../pathFindingAlgorithms/bfs.js";
 const canvas = document.getElementById('canvas');
 const ctx = canvas.getContext('2d');
 const clear = document.getElementById('clear');
@@ -237,6 +236,7 @@ function updateAdjacencyList() {
     adjList = getAdjacencyList(matrix);
     startNode = getSourceNode(matrix);
     endNode = getEndNode(matrix);
+    console.log(adjList);
 }
 function resetAdjacencyList() {
     for (let i = 0; i < adjList.length; i++) {
@@ -279,6 +279,7 @@ end.addEventListener('click', () => {
 start.addEventListener('click', () => {
     updateAdjacencyList();
     getShortestDistanceBFS(adjList, startNode, endNode);
+    // getShortestPathDFS(adjList, startNode, endNode);
     console.log('start');
 });
 canvas.addEventListener('mousedown', (event) => {

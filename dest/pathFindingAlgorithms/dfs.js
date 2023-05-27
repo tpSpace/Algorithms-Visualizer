@@ -1,13 +1,14 @@
-"use strict";
+import { initPath } from "../graph/main.js";
+import { initPrevPath } from "../graph/main.js";
 //BFS Algorithm
-function printPath(source, destination, v, visited, adj) {
-    visited = new Array(v);
+export default function getShortestPathDFS(adj, source, destination) {
+    let v = adj.length;
+    let visited = new Array(v);
     visited[source] = true;
     if (source == destination) {
-        console.log('The path is: ');
         for (let i = 0; i < v; i++) {
             if (visited[i]) {
-                console.log(i);
+                initPath(i);
             }
         }
         return;
@@ -15,7 +16,8 @@ function printPath(source, destination, v, visited, adj) {
     for (let i = 0; i < adj[source].length; i++) {
         let vertex = adj[source][i];
         if (!visited[vertex]) {
-            printPath(vertex, destination, v, visited, adj);
+            initPrevPath(vertex);
+            getShortestPathDFS(adj, vertex, destination);
         }
     }
 }

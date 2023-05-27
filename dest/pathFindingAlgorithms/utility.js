@@ -12,13 +12,17 @@ export function findVertexIndex(vertexIndex, row, col) {
     }
     return -1;
 }
+export function resetVertexIndex() {
+    vertexIndex = [];
+}
 //# is wall, . is empty, A is start, B is destination
 //every . and A or B are considered a vertex
 export default function getAdjacencyList(graph) {
     //number of vertices
     let v = 0;
     //adjacency list
-    let adj = [];
+    let adj = new Array(graph.length * graph[0].length);
+    resetVertexIndex();
     for (let i = 0; i < graph.length; i++) {
         for (let j = 0; j < graph[i].length; j++) {
             //If the current element is not a wall, add it to the vertexIndex array
