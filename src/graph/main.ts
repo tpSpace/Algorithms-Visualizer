@@ -46,6 +46,42 @@ function drawSquareWithColor(x: number, y: number, color: string) {
   ctx.moveTo(y * cellSize, x * cellSize);
   ctx.stroke();
 }
+// draw a square with animation zoom out 
+async function drawSquareWithAnimation(x: number, y: number, color: string) {
+  const initialSize = 1;
+  const targetSize = cellSize;
+
+  let currentSize = initialSize;
+  let animationStartTime= 0; // milliseconds
+
+  function animate() {
+    const now = Date.now();
+    const elapsedTime = now - animationStartTime;
+    const progress = elapsedTime / 100; // Divide by 1000 to convert milliseconds to seconds
+
+    ctx.clearRect(y * cellSize, x * cellSize, cellSize, cellSize); // Clear the previous frame
+
+    if (progress < 1) {
+      currentSize = initialSize + (targetSize - initialSize) * progress;
+
+      ctx.fillStyle = color;
+      ctx.fillRect(
+        y * cellSize + (cellSize - currentSize) / 2,
+        x * cellSize + (cellSize - currentSize) / 2,
+        currentSize,
+        currentSize
+      );
+
+      requestAnimationFrame(animate);
+    } else {
+      ctx.fillStyle = color;
+      ctx.fillRect(y * cellSize, x * cellSize, cellSize, cellSize);
+    }
+  }
+
+  animationStartTime = Date.now();
+  animate();
+}
 // create a matrix
 function createMatrix([]: number[][]) {
   for (let i = 0; i < rows; i++) {
@@ -97,10 +133,11 @@ function drawSquare(event: MouseEvent) {
     let y = event.offsetY;
     let i = Math.floor(y / cellSize);
     let j = Math.floor(x / cellSize);
-    ctx.fillStyle = '#19A7CE';
-    ctx.fillRect(j * cellSize, i * cellSize, cellSize, cellSize);
+    // ctx.fillStyle = '#19A7CE';
+    // ctx.fillRect(j * cellSize, i * cellSize, cellSize, cellSize);
     matrix[i][j] = 2;
     printMatrix(matrix);
+    drawSquareWithAnimation(i, j, '#19A7CE');
 }
 // clear the canvas
 function clearCanvas() {
