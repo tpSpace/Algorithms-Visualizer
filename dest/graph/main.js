@@ -2,7 +2,7 @@
 // Author: nmvkhoi
 // ts-check
 // constants
-import { fromGridToList } from '../pathFindingAlgorithms/utility';
+import fromGridToList from '../pathFindingAlgorithms/utility.js';
 const canvas = document.getElementById('canvas');
 const ctx = canvas.getContext('2d');
 const clear = document.getElementById('clear');
@@ -53,9 +53,6 @@ function printMatrix([]) {
     }
 }
 createMatrix(matrix);
-function updateAdjacencyList() {
-    adjList = fromGridToList(matrix);
-}
 // draw the grid
 function drawGrid() {
     for (let i = cellSize; i < height; i += cellSize) {
@@ -81,7 +78,6 @@ function drawSquare(event) {
     ctx.fillRect(j * cellSize, i * cellSize, cellSize, cellSize);
     matrix[i][j] = 2;
     printMatrix(matrix);
-    // updateAdjacencyList();
 }
 // clear the canvas
 function clearCanvas() {
@@ -111,7 +107,6 @@ function deleteSquare(event) {
     ctx.moveTo(j * cellSize, i * cellSize);
     ctx.stroke();
     matrix[i][j] = 0;
-    // updateAdjacencyList();
 }
 function initPoint(event) {
     let x = Math.floor(event.offsetY / cellSize);
@@ -151,7 +146,6 @@ function setEndPoint(event) {
         ctx.clearRect(prevEnd[1] * cellSize, prevEnd[0] * cellSize, cellSize, cellSize);
         // draw the new start point
         matrix[x][y] = 3;
-        // updateAdjacencyList();
         ctx.fillStyle = '#ff4d4d';
         ctx.fillRect(y * cellSize, x * cellSize, cellSize, cellSize);
         console.log(prevEnd);
@@ -175,10 +169,9 @@ function setEndPoint(event) {
     }
 }
 // Add event listeners
-clear.addEventListener('click', () => { clearCanvas(); });
-begin.addEventListener('click', (event) => { isStart = true; console.log('begin'); });
-wall.addEventListener('click', (event) => { console.log('wall'); isStart = false; isEnd = false; });
-end.addEventListener('click', () => { console.log('set-end'); isStart = false; isEnd = true; });
+begin.addEventListener('click', () => { isStart = true; console.log('begin'); });
+end.addEventListener('click', () => { console.log('end'); });
+wall.addEventListener('click', () => { console.log('wall'); });
 start.addEventListener('click', () => { console.log('start'); });
 canvas.addEventListener('mousedown', (event) => {
     if (event.button === 0 && !isStart && !isEnd) {
@@ -212,4 +205,6 @@ canvas.addEventListener('contextmenu', (event) => {
     createMatrix(arrays);
     printMatrix(arrays);
     drawGrid();
+    adjList = fromGridToList(arrays);
+    console.log(adjList);
 })(matrix);
