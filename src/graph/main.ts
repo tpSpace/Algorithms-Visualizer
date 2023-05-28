@@ -185,12 +185,13 @@ function deleteSquare(event: MouseEvent) {
 function initPoint(event: MouseEvent) {
   let x = Math.floor(event.offsetY / cellSize);
   let y = Math.floor(event.offsetX / cellSize);
-
   // delete the previous start point
   if (prevStart[0] !== -1 && prevStart[1] !== -1) {
     ctx.clearRect(prevStart[1] * cellSize, prevStart[0] * cellSize, cellSize, cellSize);
     // draw the new start point
     matrix[x][y] = 1;
+    updateAdjacencyList();
+
     ctx.fillStyle = '#43c943';
     ctx.fillRect(y * cellSize, x * cellSize, cellSize, cellSize);
     console.log(prevStart);
@@ -221,6 +222,7 @@ function setEndPoint(event: MouseEvent) {
     ctx.clearRect(prevEnd[1] * cellSize, prevEnd[0] * cellSize, cellSize, cellSize);
     // draw the new start point
     matrix[x][y] = 3;
+    updateAdjacencyList();
     ctx.fillStyle = '#ff4d4d';
     ctx.fillRect(y * cellSize, x * cellSize, cellSize, cellSize);
     console.log(prevEnd);
@@ -247,7 +249,6 @@ function updateAdjacencyList() {
     adjList = getAdjacencyList(matrix);
     startNode = getSourceNode(matrix);
     endNode = getEndNode(matrix);
-    console.log(adjList);
 }
 
 function resetAdjacencyList() {
@@ -261,14 +262,10 @@ function resetAdjacencyList() {
 }
 
 export function initPath(node : number){
-    let x = getNodeXCoordinates(node);
-    let y = getNodeYCoordinates(node);
-    drawSquareWithAnimation(x, y, '#FFEA00');
+    drawSquareWithAnimation(getNodeXCoordinates(node), getNodeYCoordinates(node), '#FFEA00');
 }
 export function initPrevPath(node : number){
-    let x = getNodeXCoordinates(node);
-    let y = getNodeYCoordinates(node);
-    drawSquareWithAnimation(x, y, '#33A3FF');
+    drawSquareWithAnimation(getNodeXCoordinates(node), getNodeYCoordinates(node), '#33A3FF');
 }
 
 // Add event listeners
@@ -281,20 +278,20 @@ begin.addEventListener('click', (event)=>{
     console.log('begin');
 });
 wall.addEventListener('click', (event)=>{
-    console.log('wall');
     isStart = false;
     isEnd = false;
 });
 end.addEventListener('click', ()=>{
+    console.log(endNode);
+    updateAdjacencyList();
     console.log('set-end');
     isStart = false;
     isEnd = true;
 });
 start.addEventListener('click', ()=>{
     updateAdjacencyList();
-    // getShortestDistanceBFS(adjList, startNode, endNode);
-    getPathDFS(adjList, startNode, endNode);
-    console.log('start')
+    getShortestDistanceBFS(adjList, startNode, endNode);
+    // getPathDFS(adjList, startNode, endNode);
 });
 
 canvas.addEventListener('mousedown', (event)=>{
@@ -310,7 +307,7 @@ canvas.addEventListener('mousedown', (event)=>{
 });
 canvas.addEventListener('mousemove', (event)=>{
     if(isDragging && event.button === 0){
-        drawSquare(event);
+        drawSquare(event)   ;
     }
 })
 canvas.addEventListener('mouseup', ()=>{
@@ -324,10 +321,9 @@ canvas.addEventListener('contextmenu', (event)=>{
 // Run the functions once the page is loaded
 (
   function once(arrays: number[][])  {
-    console.log(cellSize);
-    console.log(width, height);
-    console.log(rows, cols);
-
+    // console.log(cellSize);
+    // console.log(width, height);
+    // console.log(rows, cols);
     createMatrix(arrays);
     printMatrix(arrays);
     drawGrid();

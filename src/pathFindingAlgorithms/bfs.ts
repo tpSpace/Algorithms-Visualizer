@@ -24,7 +24,7 @@ export function bfs(adj: number[][],
     while(queue.length > 0){
         let u = queue[0];
         queue.shift();
-        for (let i = 0; i < adj[u].length; i++){
+        for (let i in adj[u]){
             if (visited[adj[u][i]] == false){
                 visited[adj[u][i]] = true;
                 dist[adj[u][i]] = dist[u] + 1;
