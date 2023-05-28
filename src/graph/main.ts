@@ -224,6 +224,22 @@ function setEndPoint(event: MouseEvent) {
     return [0,0];
   }
 }
+// check if the matrix is set begin node and end node
+function checkMatrix(matrix: number[][]): boolean {
+    let count = 0;
+    for (let i in matrix) {
+        for (let j in matrix[i]) {
+            if (matrix[i][j] === 1 || matrix[i][j] === 3) {
+                count++;
+            }
+        }
+    }
+    if (count === 2) {
+        return true;
+    } else {
+        return false;
+    }
+}
 
 function updateAdjacencyList() {
     adjList = getAdjacencyList(matrix);
@@ -269,9 +285,12 @@ end.addEventListener('click', ()=>{
     isEnd = true;
 });
 start.addEventListener('click', ()=>{
+    if (checkMatrix(matrix)) {
     updateAdjacencyList();
     getShortestDistanceBFS(adjList, startNode, endNode);
-    // getPathDFS(adjList, startNode, endNode);
+    } else {
+       alert('Please set the start and end point'); 
+    }
 });
 
 canvas.addEventListener('mousedown', (event)=>{
