@@ -2,6 +2,7 @@
 import {initPath} from "../graph/main.js";
 import {initPrevPath} from "../graph/main.js";
 
+//Helper function that uses BFS to transverse the graph
 export function bfs(adj: number[][],
              src: number,
              dest:  number,
@@ -24,7 +25,7 @@ export function bfs(adj: number[][],
     while(queue.length > 0){
         let u = queue[0];
         queue.shift();
-        for (let i = 0; i < adj[u].length; i++){
+        for (let i in adj[u]){
             if (visited[adj[u][i]] == false){
                 visited[adj[u][i]] = true;
                 dist[adj[u][i]] = dist[u] + 1;
@@ -60,25 +61,3 @@ export default function getShortestDistanceBFS(adj: number[][], src: number, des
     for (let i = path.length - 1; i >= 0; i--)
         initPath(path[i]);
 }
-// export function getPrev(){
-//     return prev;
-// }
-
-// //Driver code
-// let V: number = 0;
-// let adj = new Array(V);
-//
-// addEdge(adj, 0, 1, V);
-// addEdge(adj, 0, 3, V);
-// addEdge(adj, 1, 2, V);
-// addEdge(adj, 3, 4, V);
-// addEdge(adj, 3, 7, V);
-// addEdge(adj, 4, 5, V);
-// addEdge(adj, 4, 6, V);
-// addEdge(adj, 4, 7, V);
-// addEdge(adj, 5, 6, V);
-// addEdge(adj, 6, 7, V);
-// let source: number = 0;
-// let destination: number = 7;
-//
-// printShortestDistance(adj, source, destination, V);
