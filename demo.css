@@ -24,7 +24,7 @@ header {
   color: #fff;
   font-size: 100px;
   height: 100vh;
-  background-image: url("bubble_sort_bg.jpg");
+  background-image: url("./image/bubble_sort_bg.jpg");
   background-size: cover;
   background-position: center;
   background-repeat: no-repeat;
@@ -486,14 +486,14 @@ section {
   display: flex;
   align-items: center;
   justify-content: space-between;
-  width: 50%;
+  width: 60%;
   max-width: 1000px;
   margin: 0 auto;
   padding: 20px;
 }
 
 .information-logo {
-  font-size: 60px;
+  font-size: 40px;
   font-weight: bold;
   color: #000;
   font-family: 'Proxima Nova';
@@ -502,7 +502,7 @@ section {
 .contact-info {
   display: flex;
   flex-direction: column;
-  align-items: flex-end;
+  align-items: flex-start;
 }
 
 .team-member {
