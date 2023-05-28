@@ -17,6 +17,7 @@ import { getSourceNode } from "../pathFindingAlgorithms/utility.js";
 import { getNodeXCoordinates } from "../pathFindingAlgorithms/utility.js";
 import { getNodeYCoordinates } from "../pathFindingAlgorithms/utility.js";
 import getShortestDistanceBFS from "../pathFindingAlgorithms/bfs.js";
+import { getPathDFS } from "../pathFindingAlgorithms/dfs.js";
 const canvas = document.getElementById('canvas');
 const ctx = canvas.getContext('2d');
 const clear = document.getElementById('clear');
@@ -24,6 +25,7 @@ const begin = document.getElementById('begin');
 const end = document.getElementById('end');
 const wall = document.getElementById('wall');
 const start = document.getElementById('start');
+const select = document.getElementById('select');
 const width = canvas.width;
 const height = canvas.height;
 const cellSize = 20;
@@ -35,6 +37,7 @@ let isStart = false;
 let prevStart = [-1, -1];
 let isEnd = false;
 let prevEnd = [-1, -1];
+let selectedAlgorithm = '';
 // console.log(rows, cols);
 let adjList = [];
 let startNode;
@@ -214,6 +217,23 @@ function setEndPoint(event) {
         return [0, 0];
     }
 }
+// check if the matrix is set begin node and end node
+function checkMatrix(matrix) {
+    let count = 0;
+    for (let i in matrix) {
+        for (let j in matrix[i]) {
+            if (matrix[i][j] === 1 || matrix[i][j] === 3) {
+                count++;
+            }
+        }
+    }
+    if (count === 2) {
+        return true;
+    }
+    else {
+        return false;
+    }
+}
 function updateAdjacencyList() {
     adjList = getAdjacencyList(matrix);
     startNode = getSourceNode(matrix);
@@ -255,9 +275,37 @@ end.addEventListener('click', () => {
     isEnd = true;
 });
 start.addEventListener('click', () => {
-    updateAdjacencyList();
-    getShortestDistanceBFS(adjList, startNode, endNode);
-    // getPathDFS(adjList, startNode, endNode);
+    if (checkMatrix(matrix)) {
+        updateAdjacencyList();
+        // switch case
+        if (selectedAlgorithm !== '') {
+            switch (selectedAlgorithm) {
+                case 'bfs': {
+                    getShortestDistanceBFS(adjList, startNode, endNode);
+                    break;
+                }
+                case 'dfs': {
+                    getPathDFS(adjList, startNode, endNode);
+                    break;
+                }
+                default: {
+                    alert("Please pick an algorithms");
+                    break;
+                }
+            }
+        }
+        else {
+            alert("Please pick an algorithms");
+        }
+    }
+    else {
+        alert('Please set the start and end point');
+    }
+});
+select.addEventListener('change', (event) => {
+    const target = event.target;
+    selectedAlgorithm = target.value;
+    console.log(selectedAlgorithm);
 });
 canvas.addEventListener('mousedown', (event) => {
     if (event.button === 0 && !isStart && !isEnd) {
