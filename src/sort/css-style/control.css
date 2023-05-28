@@ -1,0 +1,154 @@
+@import url('https://fonts.googleapis.com/css2?family=Lilita+One');
+
+
+body{
+  background: #E3F2FD;
+}
+*{
+  font-family: "Gill Sans", sans-serif;
+  font-weight: bold;
+}
+
+button {
+  background: #5a909c;
+  width: 50px;
+  height: 50px;
+  padding: 10px 15px;
+  border: none;
+  border-radius: 3px;
+  font-size: 16px;
+  color: #fff;
+  cursor: pointer;
+  text-transform: uppercase;
+  transition: background-color 0.5s ease;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  margin: 2px;
+}
+button:hover {
+  cursor: pointer;
+  box-shadow: 0 0 10px #737b7e;
+  opacity: 0.8;
+}
+
+button img{
+  width: 40px;
+  height: 40px;
+}
+
+
+.button-box{
+  position: relative;
+  margin-right: 2px;
+  z-index: 1;
+}
+
+.button-box #below-buttons{
+  display: flex;
+  justify-content: space-between;
+  margin-top: 3px;
+}
+
+.box{
+  max-width: 300px;
+  height: 55px;
+  background: white;
+  padding: 20px 20px 30px 30px;
+  border-radius: 5px;
+  box-shadow: 0 0 5px rgba(0,0,0,0.5);
+  align-items: center;
+}
+
+.box .content{
+  font-size: 20px;
+  font-weight: 300;
+  color: #5a909c;;
+  display: flex;
+  justify-content: center;
+}
+
+.box .slider{
+  height: 40px;
+  width: 200px;
+  display: flex;
+  align-items: center;
+  margin-right: 15px;
+}
+
+.box .slider input{
+  height: 10px;
+  width: 100%;
+  -webkit-appearance: none;
+  outline: none;
+  background: #f2f2f2;
+  box-shadow: inset 0 0 4px rgba(0, 0, 0, 0.2);
+}
+
+.box .value{
+  width: 100px;
+  text-align: center;
+}
+
+select {
+  -webkit-appearance: none;
+  -moz-appearance: none;
+  -ms-appearance: none;
+  appearance: none;
+  outline: 0;
+  border: 0;
+  background: #ffffff;
+  background-image: none;
+  padding: 20px 20px 30px 30px;
+  box-shadow: 0 0 5px rgba(0, 0, 0, 0.5);
+  flex: 1;
+  padding: 0 .5em;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  font-size: 20px;
+  font-weight: bold;
+  color: #5a909c;
+}
+
+select::-ms-expand {
+  display: none;
+}
+
+.select {
+  position: relative;
+  display: flex;
+  width: 16em;
+  height: 3em;
+  line-height: 3;
+  background: #D3D3D3;
+  overflow: hidden;
+  border-radius: .25em;
+}
+.select::after {
+  content: '\25BC';
+  position: absolute;
+  top: 0;
+  right: 0;
+  padding: 0 1em;
+  background: #D3D3D3;
+  cursor:pointer;
+  pointer-events:none;
+  transition:.25s all ease;
+}
+.select:hover::after {
+  color: #7ce8ff;
+}
+
+label{
+  max-width: 100px;
+}
+
+.warning{
+  align-items: center;
+  display: flex;
+  justify-content: center;
+  font-size: 20px;
+  margin-top: 10px;
+  height: 30px;
+}

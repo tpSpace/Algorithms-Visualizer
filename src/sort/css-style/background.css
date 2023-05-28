@@ -1,0 +1,98 @@
+@import url('https://fonts.googleapis.com/css2?family=Lilita+One');
+* {
+    font-family: "Gill Sans", sans-serif;
+}
+body{
+    position: relative;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    margin: 0;
+    height: 100vh;
+    background-color: #ffffff;
+}
+
+header{
+    background: #5a909c;
+
+    font-family: "Gill Sans", sans-serif;
+    color: white;
+    
+    height: 10%;
+    width: 100%;
+    
+    display: flex;
+    justify-content: space-around;
+    align-items: center;
+
+    margin-bottom: 10px;
+}
+h1 {
+    font-size: 40px;
+    font-weight: bold;
+    font-family: "Gill Sans", sans-serif;
+}
+#h1 {
+    text-decoration: none;
+    cursor: pointer;   
+    color: #F9FBE7;
+}
+main{
+    height: 85vh;
+    width: 100%;
+    position: relative;
+    align-items: center;
+    justify-content: center;
+}
+.algorithms{
+    height: 100%;
+    gap: 10px;
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: center;
+}
+.algorithms > a {
+    text-decoration: none;
+    font-family: "Gill Sans", sans-serif;
+    font-weight: bold;
+    padding: 10px;
+    transition: 0.3s;
+    color: #19A7CE;
+    font-size: 25px;
+    padding: 10px;
+    background-color: #F9FBE7;
+    border-radius: 5px;
+}
+.algorithms  > a:hover {
+    color: black;
+    text-decoration: none;
+    cursor: pointer;
+}
+footer{
+    background: linear-gradient(to bottom, #F0ECEC, #BFD7EA);
+    height: 5vh;
+    display: flex;
+    justify-content: left;
+    align-items: left;
+}
+
+.button_container {
+    position: relative;
+    margin-top: 5px;
+    height: 10vh;
+    margin-left: 1vh;
+    display: flex; 
+    gap: 10px;
+    align-items: center;
+    justify-content: center;
+}
+
+#bookshelf_container, #augmented_container{
+    height: 25vh;
+    width: 100%;
+    display: flex;
+    align-items: flex-end;
+    justify-content: center;
+}
