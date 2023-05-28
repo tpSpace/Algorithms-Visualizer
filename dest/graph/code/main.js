@@ -11,13 +11,11 @@ var __awaiter = (this && this.__awaiter) || function (thisArg, _arguments, P, ge
 };
 // ts-check
 // constants
-import getAdjacencyList from '../pathFindingAlgorithms/utility.js';
-import { getEndNode } from "../pathFindingAlgorithms/utility.js";
-import { getSourceNode } from "../pathFindingAlgorithms/utility.js";
-import { getNodeXCoordinates } from "../pathFindingAlgorithms/utility.js";
-import { getNodeYCoordinates } from "../pathFindingAlgorithms/utility.js";
-import { getShortestDistanceBFS } from "../pathFindingAlgorithms/bfs.js";
-import { getPathDFS } from "../pathFindingAlgorithms/dfs.js";
+import getAdjacencyList from '../code/pathFindingAlgorithms/utility.js';
+import { getEndNode, getSourceNode, getNodeXCoordinates, getNodeYCoordinates } from "./pathFindingAlgorithms/utility.js";
+import { getShortestDistanceBFS } from "./pathFindingAlgorithms/bfs.js";
+import { getPathDFS } from "./pathFindingAlgorithms/dfs.js";
+import createText from "./popup.js";
 const canvas = document.getElementById('canvas');
 const ctx = canvas.getContext('2d');
 const clear = document.getElementById('clear');
@@ -310,17 +308,17 @@ start.addEventListener('click', () => {
                 }
                 // case 'aStar': {getShortestPathAStar(adjList); break;}
                 default: {
-                    alert("Please pick an algorithms");
+                    createText("Please select an algorithm", "red");
                     break;
                 }
             }
         }
         else {
-            alert("Please pick an algorithms");
+            createText("Please select an algorithms", "red");
         }
     }
     else {
-        alert('Please set the start and end point');
+        createText('Please set the start and end point', "red");
     }
 });
 select.addEventListener('change', (event) => {

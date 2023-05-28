@@ -1,5 +1,5 @@
-import {initPath} from "../graph/main.js";
-import {initPrevPath} from "../graph/main.js";
+import {initPath} from "../main.js";
+import {initPrevPath} from "../main.js";
 import {delayRender} from "./utility.js";
 
 

@@ -4,13 +4,11 @@
 // ts-check
 // constants
 
-import getAdjacencyList from '../pathFindingAlgorithms/utility.js';
-import {getEndNode} from "../pathFindingAlgorithms/utility.js";
-import {getSourceNode} from "../pathFindingAlgorithms/utility.js";
-import {getNodeXCoordinates} from "../pathFindingAlgorithms/utility.js";
-import {getNodeYCoordinates} from "../pathFindingAlgorithms/utility.js";
-import {getShortestDistanceBFS} from "../pathFindingAlgorithms/bfs.js";
-import {getPathDFS} from "../pathFindingAlgorithms/dfs.js";
+import getAdjacencyList from '../code/pathFindingAlgorithms/utility.js';
+import {getEndNode, getSourceNode, getNodeXCoordinates, getNodeYCoordinates} from "./pathFindingAlgorithms/utility.js";
+import {getShortestDistanceBFS} from "./pathFindingAlgorithms/bfs.js";
+import {getPathDFS} from "./pathFindingAlgorithms/dfs.js";
+import createText from "./popup.js";
 
 const canvas = document.getElementById('canvas') as HTMLCanvasElement;
 const ctx = canvas.getContext('2d') as CanvasRenderingContext2D;
@@ -311,16 +309,25 @@ start.addEventListener('click', ()=>{
       // switch case
       if (selectedAlgorithm !== '') {
         switch (selectedAlgorithm) {
-            case 'bfs': {getShortestDistanceBFS(adjList, startNode, endNode);matrix[prevStart[0]][prevStart[1]] = 1; break;}
-            case 'dfs': {getPathDFS(adjList, startNode, endNode); break;}
+            case 'bfs': {
+              getShortestDistanceBFS(adjList, startNode, endNode);matrix[prevStart[0]][prevStart[1]] = 1;
+              break;
+            }
+            case 'dfs': {
+              getPathDFS(adjList, startNode, endNode);
+              break;
+            }
             // case 'aStar': {getShortestPathAStar(adjList); break;}
-            default: {alert("Please pick an algorithms"); break;}
+            default: {
+              createText("Please select an algorithm","red");
+              break;
+            }
         } 
       } else {
-        alert("Please pick an algorithms");
+        createText("Please select an algorithms","red");
       }
     } else {
-       alert('Please set the start and end point'); 
+       createText('Please set the start and end point',"red");
     }
 });
 select.addEventListener('change', (event)=>{

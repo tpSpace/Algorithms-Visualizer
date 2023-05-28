@@ -7,8 +7,7 @@ var __awaiter = (this && this.__awaiter) || function (thisArg, _arguments, P, ge
         step((generator = generator.apply(thisArg, _arguments || [])).next());
     });
 };
-import { initPath } from "../graph/main.js";
-import { initPrevPath } from "../graph/main.js";
+import { initPath } from "../main.js";
 import { delayRender } from "./utility.js";
 export function drawPath(stack) {
     return __awaiter(this, void 0, void 0, function* () {
@@ -31,8 +30,6 @@ export function DFS(visited, adjList, source, destination, stack) {
                 yield DFS(visited, adjList, adjList[source][i], destination, stack);
             }
         }
-        initPrevPath(source);
-        yield delayRender(10);
         stack.pop();
     });
 }
