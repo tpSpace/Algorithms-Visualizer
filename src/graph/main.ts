@@ -19,6 +19,7 @@ const begin = document.getElementById('begin') as HTMLButtonElement;
 const end = document.getElementById('end') as HTMLButtonElement;
 const wall = document.getElementById('wall') as HTMLButtonElement;
 const start = document.getElementById('start') as HTMLButtonElement;
+const select = document.getElementById('select') as HTMLSelectElement;
 
 const width = canvas.width;
 const height = canvas.height;
@@ -33,6 +34,7 @@ let isStart = false;
 let prevStart = [-1, -1];
 let isEnd = false;
 let prevEnd = [-1, -1];
+let selectedAlgorithm = '';
 // console.log(rows, cols);
 
 let adjList: number[][] = [];
@@ -286,13 +288,26 @@ end.addEventListener('click', ()=>{
 });
 start.addEventListener('click', ()=>{
     if (checkMatrix(matrix)) {
-    updateAdjacencyList();
-    getShortestDistanceBFS(adjList, startNode, endNode);
+      updateAdjacencyList();
+      // switch case
+      if (selectedAlgorithm !== '') {
+        switch (selectedAlgorithm) {
+            case 'bfs': {getShortestDistanceBFS(adjList, startNode, endNode); break;}
+            case 'dfs': {getPathDFS(adjList, startNode, endNode); break;}
+            default: {alert("Please pick an algorithms"); break;}
+        } 
+      } else {
+        alert("Please pick an algorithms");
+      }
     } else {
        alert('Please set the start and end point'); 
     }
 });
-
+select.addEventListener('change', (event)=>{
+  const target = event.target as HTMLSelectElement;
+  selectedAlgorithm = target.value;
+  console.log(selectedAlgorithm);
+});
 canvas.addEventListener('mousedown', (event)=>{
     if (event.button === 0 && !isStart && !isEnd) {
       isDragging = true;
