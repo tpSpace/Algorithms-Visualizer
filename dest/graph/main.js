@@ -1,7 +1,23 @@
-"use strict";
 // Project: Algorithms and Data Structures
 // Author: nmvkhoi
+var __awaiter = (this && this.__awaiter) || function (thisArg, _arguments, P, generator) {
+    function adopt(value) { return value instanceof P ? value : new P(function (resolve) { resolve(value); }); }
+    return new (P || (P = Promise))(function (resolve, reject) {
+        function fulfilled(value) { try { step(generator.next(value)); } catch (e) { reject(e); } }
+        function rejected(value) { try { step(generator["throw"](value)); } catch (e) { reject(e); } }
+        function step(result) { result.done ? resolve(result.value) : adopt(result.value).then(fulfilled, rejected); }
+        step((generator = generator.apply(thisArg, _arguments || [])).next());
+    });
+};
+// ts-check
 // constants
+import getAdjacencyList from '../pathFindingAlgorithms/utility.js';
+import { getEndNode } from "../pathFindingAlgorithms/utility.js";
+import { getSourceNode } from "../pathFindingAlgorithms/utility.js";
+import { getNodeXCoordinates } from "../pathFindingAlgorithms/utility.js";
+import { getNodeYCoordinates } from "../pathFindingAlgorithms/utility.js";
+import getShortestDistanceBFS from "../pathFindingAlgorithms/bfs.js";
+import { getPathDFS } from "../pathFindingAlgorithms/dfs.js";
 const canvas = document.getElementById('canvas');
 const ctx = canvas.getContext('2d');
 const clear = document.getElementById('clear');
@@ -9,6 +25,7 @@ const begin = document.getElementById('begin');
 const end = document.getElementById('end');
 const wall = document.getElementById('wall');
 const start = document.getElementById('start');
+const select = document.getElementById('select');
 const width = canvas.width;
 const height = canvas.height;
 const cellSize = 20;
@@ -16,8 +33,43 @@ const rows = height / cellSize;
 const cols = width / cellSize;
 let matrix = [];
 let isDragging = false;
+let isStart = false;
+let prevStart = [-1, -1];
+let isEnd = false;
+let prevEnd = [-1, -1];
+let selectedAlgorithm = '';
 // console.log(rows, cols);
+let adjList = [];
+let startNode;
+let endNode = -1;
 // Functions
+// draw a square with animation zoom out
+export function drawSquareWithAnimation(x, y, color) {
+    return __awaiter(this, void 0, void 0, function* () {
+        const initialSize = 1;
+        const targetSize = cellSize;
+        let currentSize = initialSize;
+        let animationStartTime = 0; // milliseconds
+        function animate() {
+            const now = Date.now();
+            const elapsedTime = now - animationStartTime;
+            const progress = elapsedTime / 100; // Divide by 1000 to convert milliseconds to seconds
+            ctx.clearRect(y * cellSize, x * cellSize, cellSize, cellSize); // Clear the previous frame
+            if (progress < 1) {
+                currentSize = initialSize + (targetSize - initialSize) * progress;
+                ctx.fillStyle = color;
+                ctx.fillRect(y * cellSize + (cellSize - currentSize) / 2, x * cellSize + (cellSize - currentSize) / 2, currentSize, currentSize);
+                requestAnimationFrame(animate);
+            }
+            else {
+                ctx.fillStyle = color;
+                ctx.fillRect(y * cellSize, x * cellSize, cellSize, cellSize);
+            }
+        }
+        animationStartTime = Date.now();
+        animate();
+    });
+}
 // create a matrix
 function createMatrix([]) {
     for (let i = 0; i < rows; i++) {
@@ -68,17 +120,38 @@ function drawSquare(event) {
     let y = event.offsetY;
     let i = Math.floor(y / cellSize);
     let j = Math.floor(x / cellSize);
-    ctx.fillStyle = 'red';
-    ctx.fillRect(j * cellSize, i * cellSize, cellSize, cellSize);
+    // ctx.fillStyle = '#19A7CE';
+    // ctx.fillRect(j * cellSize, i * cellSize, cellSize, cellSize);
     matrix[i][j] = 2;
-    printMatrix(matrix);
+    // printMatrix(matrix);
+    drawSquareWithAnimation(i, j, '#1239C6');
 }
 // clear the canvas
 function clearCanvas() {
     ctx.clearRect(0, 0, width, height);
     drawGrid();
     clearMatrix(matrix);
+    prevStart = [-1, -1];
 }
+// clear the path and keep the wall and start and end point 
+// function clearPath() {
+//   ctx.clearRect(0, 0, width, height);
+//   drawGrid();
+//   for (let i in matrix) {
+//     for (let j in matrix[i]) {
+//       if (matrix[i][j] === 2) {
+//         ctx.fillStyle = '#1239C6';
+//         ctx.fillRect(j * cellSize, i * cellSize, cellSize, cellSize);
+//       } else if (matrix[i][j] === 1) {
+//         ctx.fillStyle = '#43c943';
+//         ctx.fillRect(j * cellSize, i * cellSize, cellSize, cellSize);
+//       } else if (matrix[i][j] === 3) {
+//         ctx.fillStyle = '#ff4d4d';
+//         ctx.fillRect(j * cellSize, i * cellSize, cellSize, cellSize);
+//       }
+//     }
+//   }
+// }
 // delete a square
 function deleteSquare(event) {
     let x = event.offsetX;
@@ -90,30 +163,186 @@ function deleteSquare(event) {
     ctx.beginPath();
     ctx.moveTo(j * cellSize, i * cellSize);
     ctx.lineTo((j + 1) * cellSize, i * cellSize);
+    // draw 4 edges of the square
+    ctx.moveTo((j + 1) * cellSize, i * cellSize);
+    ctx.lineTo((j + 1) * cellSize, (i + 1) * cellSize);
+    ctx.moveTo((j + 1) * cellSize, (i + 1) * cellSize);
+    ctx.lineTo(j * cellSize, (i + 1) * cellSize);
+    ctx.moveTo(j * cellSize, (i + 1) * cellSize);
+    ctx.lineTo(j * cellSize, i * cellSize);
+    ctx.moveTo(j * cellSize, i * cellSize);
     ctx.stroke();
     matrix[i][j] = 0;
 }
-function ChoseStart(event) {
-    let x = event.offsetX;
-    let y = event.offsetY;
-    let i = Math.floor(y / cellSize);
-    let j = Math.floor(x / cellSize);
-    ctx.fillStyle = 'green';
-    ctx.fillRect(j * cellSize, i * cellSize, cellSize, cellSize);
-    matrix[i][j] = 1;
-    printMatrix(matrix);
+function initPoint(event) {
+    let x = Math.floor(event.offsetY / cellSize);
+    let y = Math.floor(event.offsetX / cellSize);
+    // delete the previous start point
+    if (prevStart[0] !== -1 && prevStart[1] !== -1) {
+        ctx.clearRect(prevStart[1] * cellSize, prevStart[0] * cellSize, cellSize, cellSize);
+        // draw the new start point
+        matrix[x][y] = 1;
+        updateAdjacencyList();
+        ctx.fillStyle = '#43c943';
+        ctx.fillRect(y * cellSize, x * cellSize, cellSize, cellSize);
+        console.log(prevStart);
+        // draw the line again
+        ctx.beginPath();
+        ctx.moveTo(prevStart[1] * cellSize, prevStart[0] * cellSize);
+        ctx.lineTo((prevStart[1] + 1) * cellSize, prevStart[0] * cellSize);
+        // draw 4 edges of the square
+        ctx.moveTo((prevStart[1] + 1) * cellSize, prevStart[0] * cellSize);
+        ctx.lineTo((prevStart[1] + 1) * cellSize, (prevStart[0] + 1) * cellSize);
+        ctx.moveTo((prevStart[1] + 1) * cellSize, (prevStart[0] + 1) * cellSize);
+        ctx.lineTo(prevStart[1] * cellSize, (prevStart[0] + 1) * cellSize);
+        ctx.moveTo(prevStart[1] * cellSize, (prevStart[0] + 1) * cellSize);
+        ctx.lineTo(prevStart[1] * cellSize, prevStart[0] * cellSize);
+        ctx.moveTo(prevStart[1] * cellSize, prevStart[0] * cellSize);
+        ctx.stroke();
+        return [x, y];
+    }
+    else {
+        return [0, 0];
+    }
+}
+function setEndPoint(event) {
+    let x = Math.floor(event.offsetY / cellSize);
+    let y = Math.floor(event.offsetX / cellSize);
+    // delete the previous start point
+    if (prevEnd[0] !== -1 && prevEnd[1] !== -1) {
+        ctx.clearRect(prevEnd[1] * cellSize, prevEnd[0] * cellSize, cellSize, cellSize);
+        // draw the new start point
+        matrix[x][y] = 3;
+        updateAdjacencyList();
+        ctx.fillStyle = '#ff4d4d';
+        ctx.fillRect(y * cellSize, x * cellSize, cellSize, cellSize);
+        console.log(prevEnd);
+        // draw the line again
+        ctx.beginPath();
+        ctx.moveTo(prevEnd[1] * cellSize, prevEnd[0] * cellSize);
+        ctx.lineTo((prevEnd[1] + 1) * cellSize, prevEnd[0] * cellSize);
+        // draw 4 edges of the square
+        ctx.moveTo((prevEnd[1] + 1) * cellSize, prevEnd[0] * cellSize);
+        ctx.lineTo((prevEnd[1] + 1) * cellSize, (prevEnd[0] + 1) * cellSize);
+        ctx.moveTo((prevEnd[1] + 1) * cellSize, (prevEnd[0] + 1) * cellSize);
+        ctx.lineTo(prevEnd[1] * cellSize, (prevEnd[0] + 1) * cellSize);
+        ctx.moveTo(prevEnd[1] * cellSize, (prevEnd[0] + 1) * cellSize);
+        ctx.lineTo(prevEnd[1] * cellSize, prevEnd[0] * cellSize);
+        ctx.moveTo(prevEnd[1] * cellSize, prevEnd[0] * cellSize);
+        ctx.stroke();
+        return [x, y];
+    }
+    else {
+        return [0, 0];
+    }
+}
+// check if the matrix is set begin node and end node
+function checkMatrix(matrix) {
+    let count = 0;
+    for (let i in matrix) {
+        for (let j in matrix[i]) {
+            if (matrix[i][j] === 1 || matrix[i][j] === 3) {
+                count++;
+            }
+        }
+    }
+    if (count === 2) {
+        return true;
+    }
+    else {
+        return false;
+    }
+}
+function updateAdjacencyList() {
+    adjList = getAdjacencyList(matrix);
+    startNode = getSourceNode(matrix);
+    endNode = getEndNode(matrix);
+}
+function resetAdjacencyList() {
+    for (let i in adjList) {
+        for (let j in adjList[i]) {
+            adjList[i][j] = 0;
+        }
+    }
+    startNode = -1;
+    endNode = -1;
+}
+export function initPath(node) {
+    drawSquareWithAnimation(getNodeXCoordinates(node), getNodeYCoordinates(node), '#FFEA00');
+}
+export function initPrevPath(node) {
+    drawSquareWithAnimation(getNodeXCoordinates(node), getNodeYCoordinates(node), '#33A3FF');
 }
 // Add event listeners
-begin.addEventListener('click', (event) => { ChoseStart(event); });
-end.addEventListener('click', () => { console.log('end'); });
-wall.addEventListener('click', () => { console.log('wall'); });
-start.addEventListener('click', () => { console.log('start'); });
+clear.addEventListener('click', () => {
+    clearCanvas();
+    resetAdjacencyList();
+});
+begin.addEventListener('click', (event) => {
+    isStart = true;
+    console.log('begin');
+});
+wall.addEventListener('click', (event) => {
+    isStart = false;
+    isEnd = false;
+});
+end.addEventListener('click', () => {
+    console.log(endNode);
+    updateAdjacencyList();
+    console.log('set-end');
+    isStart = false;
+    isEnd = true;
+});
+start.addEventListener('click', () => {
+    if (checkMatrix(matrix)) {
+        updateAdjacencyList();
+        // switch case
+        if (selectedAlgorithm !== '') {
+            switch (selectedAlgorithm) {
+                case 'bfs': {
+                    getShortestDistanceBFS(adjList, startNode, endNode);
+                    matrix[prevStart[0]][prevStart[1]] = 1;
+                    break;
+                }
+                case 'dfs': {
+                    getPathDFS(adjList, startNode, endNode);
+                    break;
+                }
+                // case 'aStar': {getShortestPathAStar(adjList); break;}
+                default: {
+                    alert("Please pick an algorithms");
+                    break;
+                }
+            }
+        }
+        else {
+            alert("Please pick an algorithms");
+        }
+    }
+    else {
+        alert('Please set the start and end point');
+    }
+});
+select.addEventListener('change', (event) => {
+    const target = event.target;
+    selectedAlgorithm = target.value;
+    console.log(selectedAlgorithm);
+});
 canvas.addEventListener('mousedown', (event) => {
-    isDragging = true;
-    drawSquare(event);
+    if (event.button === 0 && !isStart && !isEnd) {
+        isDragging = true;
+        drawSquare(event);
+    }
+    else if (event.button === 0 && isStart) {
+        prevStart = initPoint(event);
+    }
+    else if (event.button === 0 && isEnd === true) {
+        console.log('end');
+        prevEnd = setEndPoint(event);
+    }
 });
 canvas.addEventListener('mousemove', (event) => {
-    if (isDragging) {
+    if (isDragging && event.button === 0) {
         drawSquare(event);
     }
 });
@@ -123,13 +352,13 @@ canvas.addEventListener('mouseup', () => {
 canvas.addEventListener('contextmenu', (event) => {
     deleteSquare(event);
 });
-clear.addEventListener('click', () => { clearCanvas(); });
-// Run the functions
+// Run the functions once the page is loaded
 (function once(arrays) {
-    console.log(cellSize);
-    console.log(width, height);
-    console.log(rows, cols);
+    // console.log(cellSize);
+    // console.log(width, height);
+    // console.log(rows, cols);
     createMatrix(arrays);
     printMatrix(arrays);
     drawGrid();
 })(matrix);
+export { matrix, cellSize, width, height, rows, cols, ctx, canvas };
