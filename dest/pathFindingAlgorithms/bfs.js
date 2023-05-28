@@ -37,7 +37,7 @@ export default function getShortestDistanceBFS(adj, src, dest) {
     let prev = new Array(v).fill(0);
     let dist = new Array(v).fill(0);
     if (!bfs(adj, src, dest, v, prev, dist)) {
-        console.log('Source and destination vertex is not connected!');
+        alert('Source and destination vertex is not connected!');
     }
     let path = [];
     let crawl = dest;

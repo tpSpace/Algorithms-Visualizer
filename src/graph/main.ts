@@ -11,6 +11,7 @@ import {getNodeXCoordinates} from "../pathFindingAlgorithms/utility.js";
 import {getNodeYCoordinates} from "../pathFindingAlgorithms/utility.js";
 import getShortestDistanceBFS from "../pathFindingAlgorithms/bfs.js";
 import {getPathDFS} from "../pathFindingAlgorithms/dfs.js";
+import {getShortestPathAStar} from "../pathFindingAlgorithms/aStar.js";
 
 const canvas = document.getElementById('canvas') as HTMLCanvasElement;
 const ctx = canvas.getContext('2d') as CanvasRenderingContext2D;
@@ -142,6 +143,25 @@ function clearCanvas() {
   clearMatrix(matrix);
   prevStart = [-1, -1];
 }
+// clear the path and keep the wall and start and end point 
+// function clearPath() {
+//   ctx.clearRect(0, 0, width, height);
+//   drawGrid();
+//   for (let i in matrix) {
+//     for (let j in matrix[i]) {
+//       if (matrix[i][j] === 2) {
+//         ctx.fillStyle = '#1239C6';
+//         ctx.fillRect(j * cellSize, i * cellSize, cellSize, cellSize);
+//       } else if (matrix[i][j] === 1) {
+//         ctx.fillStyle = '#43c943';
+//         ctx.fillRect(j * cellSize, i * cellSize, cellSize, cellSize);
+//       } else if (matrix[i][j] === 3) {
+//         ctx.fillStyle = '#ff4d4d';
+//         ctx.fillRect(j * cellSize, i * cellSize, cellSize, cellSize);
+//       }
+//     }
+//   }
+// }
 // delete a square
 function deleteSquare(event: MouseEvent) {
     let x = event.offsetX;
@@ -292,8 +312,9 @@ start.addEventListener('click', ()=>{
       // switch case
       if (selectedAlgorithm !== '') {
         switch (selectedAlgorithm) {
-            case 'bfs': {getShortestDistanceBFS(adjList, startNode, endNode); break;}
+            case 'bfs': {getShortestDistanceBFS(adjList, startNode, endNode);matrix[prevStart[0]][prevStart[1]] = 1; break;}
             case 'dfs': {getPathDFS(adjList, startNode, endNode); break;}
+            // case 'aStar': {getShortestPathAStar(adjList); break;}
             default: {alert("Please pick an algorithms"); break;}
         } 
       } else {
