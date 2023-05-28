@@ -32,7 +32,11 @@ header{
     justify-content: center;
     gap: 10px;
 }
-a {
+#h1 {
+    text-decoration: none;
+    cursor: pointer;
+}
+.algorithms > a {
     padding: 5px;
     transition: 0.3s;
     text-decoration: none;

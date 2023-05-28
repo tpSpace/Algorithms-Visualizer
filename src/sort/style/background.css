@@ -31,6 +31,11 @@ h1 {
     -webkit-text-stroke: 1px #000000;
     font-size: 40px;
 }
+#h1 {
+    text-decoration: none;
+    cursor: pointer;   
+    color: #F9FBE7;
+}
 main{
     height: 85vh;
     width: 100%;
@@ -46,7 +51,7 @@ main{
     align-items: center;
     justify-content: center;
 }
-a {
+.algorithms > a {
     text-decoration: none;
     font-family: 'Lilita One', serif;
     font-weight: bold;
@@ -58,7 +63,7 @@ a {
     background-color: #F9FBE7;
     border-radius: 5px;
 }
-a:hover {
+.algorithms  > a:hover {
     color: black;
     text-decoration: none;
     cursor: pointer;
