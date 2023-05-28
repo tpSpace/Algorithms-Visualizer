@@ -200,37 +200,14 @@ section {
 }
 
 
-#merge-sort .sort-info::before {
+#selection-sort .sort-info::before {
   content: '';
   position: absolute;
-  top: -15%;
+  top: -10%;
   left: -75%;
   width: 253%;
   height: 3px;
   background-color: #fff;
-  transform-origin: left;
-  transform: scaleX(0);
-  animation: animate-line 1s forwards;
-  animation-delay: 1s;
-}
-
-@keyframes animate-line {
-  0% {
-    transform: scaleX(0);
-  }
-  100% {
-    transform: scaleX(1);
-  }
-}
-
-#selection-sort .sort-info::before {
-  content: '';
-  position: absolute;
-  top: -15%;
-  left: -75%;
-  width: 253%;
-  height: 3px;
-  background-color: #000;
   transform-origin: left;
   transform: scaleX(0);
   animation: animate-line 1s forwards;
@@ -254,7 +231,7 @@ section {
   left: -75%;
   width: 253%;
   height: 3px;
-  background-color: #fff;
+  background-color: #000;
   transform-origin: left;
   transform: scaleX(0);
   animation: animate-line 1s forwards;
@@ -278,7 +255,7 @@ section {
   left: -75%;
   width: 253%;
   height: 3px;
-  background-color: #000;
+  background-color: #fff;
   transform-origin: left;
   transform: scaleX(0);
   animation: animate-line 1s forwards;
@@ -297,11 +274,11 @@ section {
 #pathfinder .sort-info::before {
   content: '';
   position: absolute;
-  top: -5%;
+  top: -20%;
   left: -75%;
   width: 253%;
   height: 3px;
-  background-color: #fff;
+  background-color: #000;
   transform-origin: left;
   transform: scaleX(0);
   animation: animate-line 1s forwards;
@@ -316,7 +293,6 @@ section {
     transform: scaleX(1);
   }
 }
-
 
 
 .sort-name {
@@ -396,81 +372,62 @@ section {
 }
 
 
-#merge-sort {
+#selection-sort {
   background-color: black; 
 }
-#merge-sort .sort-name {
+#selection-sort .sort-name {
   color: white; 
 }
-#merge-sort .sort-definition {
+#selection-sort .sort-definition {
   color: white; 
 }
-#merge-sort .try-link{
+#selection-sort .try-link{
   background-color: white;
   color: black;  
 }
-#merge-sort .try-link::after{
+#selection-sort .try-link::after{
   background-color: rgba(255, 255, 255, 0.635);
-}
-
-
-#selection-sort {
-  background-color: white; 
-}
-#selection-sort .sort-name {
-  color: black; 
-}
-#selection-sort .sort-definition {
-  color: black; 
 }
 
 
 #quick-sort {
-  background-color: black; 
+  background-color: white; 
 }
 #quick-sort .sort-name {
-  color: white; 
+  color: black; 
 }
 #quick-sort .sort-definition {
-  color: white; 
-}
-#quick-sort .try-link{
-  background-color: white;
-  color: black;  
-}
-#quick-sort .try-link::after{
-  background-color: rgba(255, 255, 255, 0.635);
+  color: black; 
 }
 
 
 #insertion-sort {
-  background-color: white; 
+  background-color: black; 
 }
 #insertion-sort .sort-name {
-  color: black; 
+  color: white; 
 }
 #insertion-sort .sort-definition {
-  color: black; 
+  color: white; 
+}
+#insertion-sort .try-link{
+  background-color: white;
+  color: black;  
+}
+#insertion-sort .try-link::after{
+  background-color: rgba(255, 255, 255, 0.635);
 }
 
 
 #pathfinder {
-  background-color: black; 
+  background-color: white; 
 }
 #pathfinder .sort-name {
-  color: white; 
+  color: black; 
 }
 #pathfinder .sort-definition {
-  color: white; 
+  color: black; 
 }
-#pathfinder .try-link{
-  background-color: white;
-  color: black;  
-}
-#pathfinder .try-link::after{
-  background-color: rgba(255, 255, 255, 0.635);
-}
-
 
 
 #back-to-top {

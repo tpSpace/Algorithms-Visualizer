@@ -13,11 +13,7 @@
       document.getElementById('bubble-sort-button').addEventListener('click', function() {
         window.location.href = 'BubbleSort.html'; /* Add file Bubble to direct to new tab*/
       });
-      
-      document.getElementById('merge-sort-button').addEventListener('click', function() {
-        window.location.href = 'MergeSort.html';  /* Add file Merge to direct to new tab*/
-      });
-      
+            
       document.getElementById('selection-sort-button').addEventListener('click', function() {
         window.location.href = 'SelectionSort.html'; /* Add file Selection to direct to new tab*/
       });
@@ -41,7 +37,6 @@
 <body>
   <nav id="menu">
     <a href="#bubble-sort">Bubble Sort</a>
-    <a href="#merge-sort">Merge Sort</a>
     <a href="#selection-sort">Selection Sort</a>
     <a href="#quick-sort">Quick Sort</a>
     <a href="#insertion-sort">Insertion Sort</a>
@@ -66,17 +61,6 @@
     </div>
     <div class="video-container">
       <video src="BubbleSort.mp4" controls></video>
-    </div>
-  </section>
-
-  <section id="merge-sort" class=" hidden">
-    <div class="sort-info">
-      <div class="sort-name">Merge Sort</div>
-      <div class="sort-definition">Merge sort is a divide-and-conquer algorithm that works by repeatedly dividing the unsorted list into smaller sublists, sorting those sublists, and then merging them back together. It utilizes recursion to sort the elements of the original list.</div>
-      <a class="try-link" id="merge-sort-button">Try Merge Sort</a>
-    </div>
-    <div class="video-container">
-      <video src="MergeSort.mp4" controls></video>
     </div>
   </section>
 
