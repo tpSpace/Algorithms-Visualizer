@@ -16,7 +16,7 @@ import { getEndNode } from "../pathFindingAlgorithms/utility.js";
 import { getSourceNode } from "../pathFindingAlgorithms/utility.js";
 import { getNodeXCoordinates } from "../pathFindingAlgorithms/utility.js";
 import { getNodeYCoordinates } from "../pathFindingAlgorithms/utility.js";
-import getShortestDistanceBFS from "../pathFindingAlgorithms/bfs.js";
+import { DFSCall } from "../pathFindingAlgorithms/dfs.js";
 const canvas = document.getElementById('canvas');
 const ctx = canvas.getContext('2d');
 const clear = document.getElementById('clear');
@@ -278,8 +278,8 @@ end.addEventListener('click', () => {
 });
 start.addEventListener('click', () => {
     updateAdjacencyList();
-    getShortestDistanceBFS(adjList, startNode, endNode);
-    // getShortestPathDFS(adjList, startNode, endNode);
+    // getShortestDistanceBFS(adjList, startNode, endNode);
+    DFSCall(adjList, startNode, endNode);
     console.log('start');
 });
 canvas.addEventListener('mousedown', (event) => {

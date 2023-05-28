@@ -1,42 +1,33 @@
 import { initPath } from "../graph/main.js";
-import { initPrevPath } from "../graph/main.js";
-//BFS Algorithm
-export default function getShortestPathDFS(adj, source, destination) {
-    let v = adj.length;
-    let visited = new Array(v);
-    visited[source] = true;
-    if (source == destination) {
-        for (let i = 0; i < v; i++) {
-            if (visited[i]) {
-                initPath(i);
-            }
-        }
-        return;
-    }
-    for (let i = 0; i < adj[source].length; i++) {
-        let vertex = adj[source][i];
-        if (!visited[vertex]) {
-            initPrevPath(vertex);
-            getShortestPathDFS(adj, vertex, destination);
-        }
+export function drawPath(stack) {
+    for (let i = 1; i < stack.length - 1; i++) {
+        initPath(stack[i]);
+        console.log(stack[i]);
     }
 }
-// // Driver code
-// let V: number = 0;
-// let adj:number[][] = [];
-//
-// addEdge(adj, 0, 1, V);
-// addEdge(adj, 0, 3, V);
-// addEdge(adj, 1, 2, V);
-// addEdge(adj, 3, 4, V);
-// addEdge(adj, 3, 7, V);
-// addEdge(adj, 4, 5, V);
-// addEdge(adj, 4, 6, V);
-// addEdge(adj, 4, 7, V);
-// addEdge(adj, 5, 6, V);
-// addEdge(adj, 6, 7, V);
-//
-// let source: number = 0;
-// let destination: number = 7;
-// let visited: boolean[] = [];
-// printPath(source, destination, V, visited);
+// An utility function to do
+// DFS of graph recursively
+// from a given vertex x.
+export function DFS(visited, adjList, source, destination, stack) {
+    visited[source] = true;
+    stack.push(source);
+    if (source == destination) {
+        drawPath(stack);
+        return;
+    }
+    for (let i = 0; i < adjList[source].length; i++) {
+        if (!visited[adjList[source][i]]) {
+            DFS(visited, adjList, adjList[source][i], destination, stack);
+        }
+    }
+    stack.pop();
+}
+export function DFSCall(adjList, source, destination) {
+    let n = adjList.length;
+    let visited = new Array(n + 1);
+    let stack = [];
+    for (let i = 0; i < (n + 1); i++) {
+        visited[i] = false;
+    }
+    DFS(visited, adjList, source, destination, stack);
+}
