@@ -104,6 +104,9 @@ export function getNodeYCoordinates(v) {
     }
     return -1;
 }
+export function delayRender(ms) {
+    return new Promise(resolve => setTimeout(resolve, ms));
+}
 // let graph: string[][] = [
 //     ['#', '#', '#', '#', '#'],
 //     ['#', 'A', '.', '.', '#'],
