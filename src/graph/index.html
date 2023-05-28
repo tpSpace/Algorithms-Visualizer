@@ -4,7 +4,8 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <title>Algorithms Visualizer</title>
-    <link rel="stylesheet" href="styles.css">
+    <link rel="stylesheet" href="./css-style/styles.css">
+    <link rel="stylesheet" href="./css-style/tooltip.css">
     <link href='https://unpkg.com/boxicons@2.1.1/css/boxicons.min.css' rel='stylesheet'> 
 </head>
 <body oncontextmenu="return false;">
@@ -18,13 +19,23 @@
     <main>
         <div class="control-panel" >
             <div id="upper">
-                <button id="clear">Clear</button>
-                <button id="begin">Begin</button>
-                <button id="wall">Wall</button>
-                <button id="end">End</button>
+                <button data-tooltip="Clear canvas" id="clear">
+                    <img src="./css-style/icons/eraser.png" alt="Clear"/>
+                </button>
+                <button data-tooltip="Set Start" id="begin">
+                    <img src="./css-style/icons/begin.png" alt="Begin"/>
+                </button>
+                <button data-tooltip="Draw Wall" id="wall">
+                    <img src="./css-style/icons/wall.png" alt="Wall"/>
+                </button>
+                <button data-tooltip="Set Goal" id="end">
+                    <img src="./css-style/icons/end.png" alt="End"/>
+                </button>
+                <button data-tooltip="Run" id="start">
+                    <img src="./css-style/icons/start.png" alt="Start"/>
+                </button>
             </div>
             <div id="lower">
-                <button id="start">Start</button>
                 <div class="select">
                     <select name="format" id="select">
                         <option selected disabled>Pick an algorithm</option>
@@ -36,11 +47,12 @@
                 </div>
             </div>
         </div>
+        <div class="warning"> </div>
         <div class="container">
             <canvas id="canvas" width="800" height="500"></canvas>
         </div>
     </main>
-    <script src="../../dest/graph/main.js" type="module" defer></script>
+    <script src="../../dest/graph/code/main.js" type="module" defer></script>
 </body>
     
 </html>
