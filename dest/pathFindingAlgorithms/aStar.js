@@ -17,7 +17,7 @@ function getShortestPathAStar(maze) {
         for (let col = 0; col < cols; col++) {
             if (maze[row][col] !== 1) {
                 const nodeIndex = row * cols + col;
-                if (row > 0 && maze[row - 1][col] !== '0') {
+                if (row > 0 && maze[row - 1][col] !== 1) {
                     adjList[nodeIndex].push((row - 1) * cols + col);
                 }
                 if (row < rows - 1 && maze[row + 1][col] !== 1) {
