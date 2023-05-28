@@ -1,0 +1,17 @@
+.book {
+  width: 30px;
+  height: 90%;
+  border-radius: 5px 5px 0px 0px;
+  margin: 1px;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  font-size: 16px;
+  font-weight: bold;
+  text-shadow: -1px -1px 0 white, 1px -1px 0 white, -1px 1px 0 white, 1px 1px 0 white;
+}
+
+.canvas{
+  width: 100%;
+}

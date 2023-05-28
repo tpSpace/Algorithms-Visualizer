@@ -1,0 +1,144 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>The Library - Book Sorting Visualizer</title>
+  <link rel="stylesheet" href="main.css">
+  <script src="main.js" defer></script>
+  <link href="https://fonts.googleapis.com/css2?family=Source+Sans+Pro:wght@400;700&display=swap" rel="stylesheet">
+  
+  
+  <script>
+    document.addEventListener('DOMContentLoaded', function() {
+      document.getElementById('bubble-sort-button').addEventListener('click', function() {
+        window.location.href = 'BubbleSort.html'; /* Add file Bubble to direct to new tab*/
+      });
+            
+      document.getElementById('selection-sort-button').addEventListener('click', function() {
+        window.location.href = 'SelectionSort.html'; /* Add file Selection to direct to new tab*/
+      });
+      
+      document.getElementById('quick-sort-button').addEventListener('click', function() {
+        window.location.href = 'QuickSort.html';  /* Add file Quick to direct to new tab*/
+      });
+      
+      document.getElementById('insertion-sort-button').addEventListener('click', function() {
+        window.location.href = 'InsertionSort.html'; /* Add file Insertion to direct to new tab*/
+      });
+
+      document.getElementById('pathfinder-button').addEventListener('click', function() {
+        window.location.href = 'Pathfinder.html';  /* Add file Pathfinder to direct to new tab*/
+      });
+      
+    });
+    
+  </script>
+</head>
+<body>
+  <nav id="menu">
+    <a href="#bubble-sort">Bubble Sort</a>
+    <a href="#selection-sort">Selection Sort</a>
+    <a href="#quick-sort">Quick Sort</a>
+    <a href="#insertion-sort">Insertion Sort</a>
+    <a href="#pathfinder">Path finder</a>
+
+  </nav>
+  
+  <header>
+    <div class="logo">Algorithms Visualizer</div>
+    <h1>
+      Book Sorting <br> Visualizer
+    </h1>    
+    <div class="vertical-line1"></div>
+    <div class="vertical-line2"></div>
+  </header>
+
+  <section id="bubble-sort" class = "hidden">
+    <div class="sort-info">
+      <div class="sort-name">Bubble Sort</div>
+      <div class="sort-definition">Bubble sort is a simple algorithm for sorting integers or other objects. The procedure examines each group of neighboring items from left to right, swapping their locations if they are out of order. The algorithm repeats this until it finds no items to swap in the entire array.</div>
+      <a class="try-link" id="bubble-sort-button" href="./src/sort/index.html">Try Bubble Sort</a>
+    </div>
+    <div class="video-container">
+      <video src="./video/BubbleSort.mp4" controls></video>
+    </div>
+  </section>
+
+  <section id="selection-sort" class = "hidden">
+    <div class="sort-info">
+      <div class="sort-name">Selection Sort</div>
+      <div class="sort-definition">Selection sort is an in-place comparison sorting algorithm. It divides the input array into a sorted and an unsorted region. It repeatedly selects the smallest element from the unsorted region and swaps it with the leftmost element in the unsorted region, expanding the sorted region by one element.</div>
+      <a class="try-link" id="selection-sort-button" href="./src/sort/index.html">Try Selection Sort</a>
+    </div>
+    <div class="video-container">
+      <video src="./video/SelectionSort.mp4" controls></video>
+    </div>
+  </section>
+
+  <section id="quick-sort" class = "hidden">
+    <div class="sort-info">
+      <div class="sort-name">Quick Sort</div>
+      <div class="sort-definition">Quick sort is a highly efficient sorting algorithm and is based on the divide-and-conquer strategy. It works by selecting a pivot element from the array and partitioning the other elements into two sub-arrays, according to whether they are less than or greater than the pivot. The sub-arrays are then sorted recursively. This process is repeated for the sub-arrays until the entire array is sorted.</div>
+      <a class="try-link" id="quick-sort-button" href="./src/sort/index.html">Try Quick Sort</a>
+    </div>
+    <div class="video-container">
+      <video src="./video/QuickSort.mp4" controls></video>
+    </div>
+  </section>
+
+  <section id="insertion-sort" class = "hidden">
+    <div class="sort-info">
+      <div class="sort-name">Insertion Sort</div>
+      <div class="sort-definition">Insertion sort is a simple sorting algorithm that builds the final sorted array one item at a time. It works by iterating through the array, comparing each element with the previous elements, and moving the elements greater than the current element one position ahead.</div>
+      <a class="try-link" id="insertion-sort-button" href="./src/sort/index.html">Try Insertion Sort</a>
+    </div>
+    <div class="video-container">
+      <video src="./video/InsertionSort.mp4" controls></video>
+    </div>
+  </section> 
+
+  <section id="pathfinder" class="hidden">
+    <div class="sort-info">
+      <div class="sort-name">Pathfinder</div>
+      <div class="sort-definition">
+        Pathfinder is a tool or concept used to find the best path between two points, considering obstacles and constraints. It involves algorithms and techniques for efficient navigation or routing.
+      </div>
+      <a class="try-link" id="pathfinder-button" href="./src/graph/index.html">Try Pathfinder</a>
+    </div>
+    <div class="image-container">
+      <img src="./image/pathfinder.png" alt="Pathfinder Image">
+    </div>
+  </section> 
+  
+  <a id="back-to-top" href="#header">
+    <img src="./image/up-arrow.png" alt="Up Arrow">
+    <span class="tooltip">Back to top</span>
+  </a>  
+  
+  <section id="information">
+    <div class="information-content">
+      <div class="information-logo">Algorithms Visualizer</div>
+      <div class="contact-info">
+        <div class="team-member">Đỗ Anh Quân</div>
+        <div class="team-member">Phạm Vũ Quang</div>
+        <div class="team-member">Nguyễn Mạnh Việt Khôi</div>
+        <div class="team-member">Lê Tuấn Phúc</div>
+      </div>
+    </div>
+  </section>
+</body>
+</html>
+
+
+
+
+
+
+
+
+
+
+
+
+

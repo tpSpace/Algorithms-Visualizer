@@ -11,7 +11,6 @@ import {getNodeXCoordinates} from "../pathFindingAlgorithms/utility.js";
 import {getNodeYCoordinates} from "../pathFindingAlgorithms/utility.js";
 import getShortestDistanceBFS from "../pathFindingAlgorithms/bfs.js";
 import {getPathDFS} from "../pathFindingAlgorithms/dfs.js";
-import {getShortestPathAStar} from "../pathFindingAlgorithms/aStar.js";
 
 const canvas = document.getElementById('canvas') as HTMLCanvasElement;
 const ctx = canvas.getContext('2d') as CanvasRenderingContext2D;
