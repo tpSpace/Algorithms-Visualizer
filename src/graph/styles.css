@@ -16,11 +16,8 @@ html {
 }
 header{
     background: #5a909c;
-
-
     width: 100%;
     height: 10%;
-
     display: flex;
     justify-content: space-around;
     align-items: center;
@@ -37,7 +34,7 @@ header{
     cursor: pointer;
 }
 .algorithms > a {
-    padding: 5px;
+    padding: 10px;
     transition: 0.3s;
     text-decoration: none;
     font-family: "Gill Sans", sans-serif;
