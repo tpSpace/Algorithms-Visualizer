@@ -1,9 +1,9 @@
-import Book from './Book.js';
-import createText from './popup.js';
-import bubbleSort from './sorting/BubbleSort.js';
-import selectionSort from './sorting/SelectionSort.js';
-import insertionSort from './sorting/InsertionSort.js';
-import quickSort from './sorting/QuickSort.js';
+import Book from './Book';
+import createText from './popup';
+import bubbleSort from '../sortingAlgorithms/BubbleSort.js';
+import selectionSort from '../sortingAlgorithms/SelectionSort.js';
+import insertionSort from '../sortingAlgorithms/InsertionSort.js';
+import quickSort from '../sortingAlgorithms/QuickSort.js';
 // import mergeSort from './sortingAlgorithms/MergeSort';
 const bookshelfContainer = document.getElementById('bookshelf_container');
 const above = document.getElementById('augmented_container');
@@ -27,6 +27,10 @@ const sortingBooks = {
         name: 'Quick Sort',
         algo: quickSort,
     },
+    // merge:{
+    //   name: 'Merge Sort',
+    //   algo: mergeSort,
+    // }
 };
 let books = DEFAULT_NUM_BOOKS;
 let bookshelf = [];
@@ -34,47 +38,39 @@ let bookshelfStack = [];
 let timeOut = DEFAULT_TIMEOUT;
 let selectedAlgo = "";
 createBookshelf();
-//DOM elements
-const goButton = document.getElementById('go-button');
-const randomButton = document.getElementById('random-button');
-const resetButton = document.getElementById('reset-button');
-const worstCaseButton = document.getElementById('worst-case-button');
-const sortingAlgoSelection = document.getElementById('format');
-const sliderBooks = document.querySelector('.slider_books input');
-const valueBooks = document.querySelector('.value_books');
-const sliderTime = document.querySelector('.slider_time input');
-const valueTime = document.querySelector('.value_time');
-//Add event listeners
-goButton.addEventListener('click', () => {
+//Add event listeners to DOM elements
+document.getElementById('go-button').addEventListener('click', () => {
     go();
 });
-randomButton.addEventListener('click', () => {
+document.getElementById('random-button').addEventListener('click', () => {
     random();
 });
-resetButton.addEventListener('click', () => {
+document.getElementById('reset-button').addEventListener('click', () => {
     reset();
 });
-worstCaseButton.addEventListener('click', () => {
+document.getElementById('worst-case-button').addEventListener('click', () => {
     createWorstBookshelf();
 });
-sliderBooks.addEventListener('input', function () {
+document.querySelector('#slider_books input').addEventListener('input', function () {
     books = Number(this.value);
-    valueBooks.textContent = this.value + " books.";
+    document.querySelector('#value_books').textContent = this.value + " books.";
     createBookshelf();
 });
-sliderTime.addEventListener('input', function () {
+document.querySelector('#slider_time input').addEventListener('input', function () {
     timeOut = Number(this.value);
-    valueTime.textContent = this.value + "ms";
+    document.querySelector('#value_time').textContent = this.value + "ms";
 });
-sortingAlgoSelection.addEventListener('change', () => {
-    selectedAlgo = sortingAlgoSelection.value;
+document.getElementById('format').addEventListener('change', function () {
+    selectedAlgo = this.value;
 });
 //Helper functions
 function go() {
     const copy = [...bookshelf];
     const sort = sortingBooks[selectedAlgo];
-    if (sort == undefined)
-        alert("Please select a sortingAlgorithms algorithm");
+    if (sort == undefined) {
+        createText("Please select a sortingAlgorithms algorithm.", "red");
+        return;
+    }
     const moves = sort.algo(copy);
     animate(moves);
 }
@@ -119,12 +115,7 @@ function visualizeBookshelf(move) {
     bookshelfContainer.innerHTML = '';
     above.innerHTML = '';
     for (let i = 0; i < bookshelf.length; i++) {
-        const book = document.createElement('div');
-        const bookName = document.createElement('span');
-        book.classList.add('book');
-        book.style.backgroundColor = bookshelf[i].color;
-        bookName.textContent = bookshelf[i].name;
-        book.appendChild(bookName);
+        const book = visualizeBook(bookshelf[i]);
         let bookAbove = document.createElement('div');
         if (move && move.indices.includes(i)) {
             book.style.opacity = '0';
@@ -143,6 +134,7 @@ function visualizeBookshelf(move) {
 function animate(moves) {
     if (moves.length == 0) {
         visualizeBookshelf();
+        createText("The bookshelf is sorted!", "lime");
         return;
     }
     const move = moves.shift();
@@ -151,12 +143,21 @@ function animate(moves) {
         [bookshelf[i], bookshelf[j]] = [bookshelf[j], bookshelf[i]];
     }
     visualizeBookshelf(move);
-    setTimeout(function () {
-        visualizeBookshelf();
-    }, timeOut);
+    // setTimeout(function () {
+    //   visualizeBookshelf();
+    // }, timeOut);
     setTimeout(function () {
         animate(moves);
     }, timeOut);
+}
+function visualizeBook(book) {
+    const newBook = document.createElement('div');
+    newBook.classList.add('book');
+    newBook.style.backgroundColor = book.color;
+    const newBookName = document.createElement('span');
+    newBookName.textContent = book.name;
+    newBook.appendChild(newBookName);
+    return newBook;
 }
 function displayBookshelfConsole(bookshelf) {
     const bookNames = bookshelf.map((book) => book.name);
