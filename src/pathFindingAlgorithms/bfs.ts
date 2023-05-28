@@ -47,7 +47,7 @@ export default function getShortestDistanceBFS(adj: number[][], src: number, des
     let dist = new Array(v).fill(0);
 
     if (!bfs(adj, src, dest, v, prev, dist)){
-        console.log('Source and destination vertex is not connected!');
+        alert('Source and destination vertex is not connected!');
     }
 
     let path = [];
