@@ -11,23 +11,27 @@
   <script>
     document.addEventListener('DOMContentLoaded', function() {
       document.getElementById('bubble-sort-button').addEventListener('click', function() {
-        window.location.href = 'BubbleSort.html';
+        window.location.href = 'BubbleSort.html'; /* Add file Bubble to direct to new tab*/
       });
       
       document.getElementById('merge-sort-button').addEventListener('click', function() {
-        window.location.href = 'MergeSort.html';
+        window.location.href = 'MergeSort.html';  /* Add file Merge to direct to new tab*/
       });
       
       document.getElementById('selection-sort-button').addEventListener('click', function() {
-        window.location.href = 'SelectionSort.html';
+        window.location.href = 'SelectionSort.html'; /* Add file Selection to direct to new tab*/
       });
       
       document.getElementById('quick-sort-button').addEventListener('click', function() {
-        window.location.href = 'QuickSort.html';
+        window.location.href = 'QuickSort.html';  /* Add file Quick to direct to new tab*/
       });
       
       document.getElementById('insertion-sort-button').addEventListener('click', function() {
-        window.location.href = 'InsertionSort.html';
+        window.location.href = 'InsertionSort.html'; /* Add file Insertion to direct to new tab*/
+      });
+
+      document.getElementById('pathfinder-button').addEventListener('click', function() {
+        window.location.href = 'Pathfinder.html';  /* Add file Pathfinder to direct to new tab*/
       });
       
     });
@@ -41,6 +45,8 @@
     <a href="#selection-sort">Selection Sort</a>
     <a href="#quick-sort">Quick Sort</a>
     <a href="#insertion-sort">Insertion Sort</a>
+    <a href="#pathfinder">Path finder</a>
+
   </nav>
   
   <header>
@@ -106,6 +112,19 @@
       <video src="InsertionSort.mp4" controls></video>
     </div>
   </section> 
+
+  <section id="pathfinder" class="hidden">
+    <div class="sort-info">
+      <div class="sort-name">Pathfinder</div>
+      <div class="sort-definition">
+        Pathfinder is a tool or concept used to find the best path between two points, considering obstacles and constraints. It involves algorithms and techniques for efficient navigation or routing.
+      </div>
+      <a class="try-link" id="pathfinder-button">Try Pathfinder</a>
+    </div>
+    <div class="image-container">
+      <img src="pathfinder.png" alt="Pathfinder Image">
+    </div>
+  </section> 
   
   <a id="back-to-top" href="#header">
     <img src="up-arrow.png" alt="Up Arrow">
@@ -125,6 +144,7 @@
   </section>
 </body>
 </html>
+
 
 
 
