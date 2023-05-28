@@ -38,28 +38,8 @@ let prevEnd = [-1, -1];
 let adjList: number[][] = [];
 let startNode: number;
 let endNode: number = -1;
-let path = [];
-let prevPath = [];
 
 // Functions
-// draw a square with color
-function drawSquareWithColor(x: number, y: number, color: string) {
-  ctx.fillStyle = color;
-  ctx.fillRect(y * cellSize, x * cellSize, cellSize, cellSize);
-  // border
-  ctx.beginPath();
-  ctx.moveTo(y * cellSize, x * cellSize);
-  ctx.lineTo((y + 1) * cellSize, x * cellSize);
-  // draw 4 edges of the square
-  ctx.moveTo((y + 1) * cellSize, x * cellSize);
-  ctx.lineTo((y + 1) * cellSize, (x + 1) * cellSize);
-  ctx.moveTo((y + 1) * cellSize, (x + 1) * cellSize);
-  ctx.lineTo(y * cellSize, (x + 1) * cellSize);
-  ctx.moveTo(y * cellSize, (x + 1) * cellSize);
-  ctx.lineTo(y * cellSize, x * cellSize);
-  ctx.moveTo(y * cellSize, x * cellSize);
-  ctx.stroke();
-}
 // draw a square with animation zoom out
 export async function drawSquareWithAnimation(x: number, y: number, color: string) {
   const initialSize = 1;
@@ -252,8 +232,8 @@ function updateAdjacencyList() {
 }
 
 function resetAdjacencyList() {
-    for (let i = 0; i < adjList.length; i++) {
-        for (let j = 0; j < adjList[i].length; j++) {
+    for (let i in adjList) {
+        for (let j in adjList[i]) {
             adjList[i][j] = 0;
         }
     }
