@@ -1,5 +1,5 @@
-import Book from './Book';
-import createText from './popup';
+import Book from './Book.js';
+import createText from './popup.js';
 import bubbleSort from './sortingAlgorithms/BubbleSort.js';
 import selectionSort from './sortingAlgorithms/SelectionSort.js';
 import insertionSort from './sortingAlgorithms/InsertionSort.js';
