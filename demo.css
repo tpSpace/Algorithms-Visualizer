@@ -294,6 +294,30 @@ section {
   }
 }
 
+#pathfinder .sort-info::before {
+  content: '';
+  position: absolute;
+  top: -5%;
+  left: -75%;
+  width: 253%;
+  height: 3px;
+  background-color: #fff;
+  transform-origin: left;
+  transform: scaleX(0);
+  animation: animate-line 1s forwards;
+  animation-delay: 1s;
+}
+
+@keyframes animate-line {
+  0% {
+    transform: scaleX(0);
+  }
+  100% {
+    transform: scaleX(1);
+  }
+}
+
+
 
 .sort-name {
   font-size: 65px;
@@ -429,6 +453,26 @@ section {
   color: black; 
 }
 
+
+#pathfinder {
+  background-color: black; 
+}
+#pathfinder .sort-name {
+  color: white; 
+}
+#pathfinder .sort-definition {
+  color: white; 
+}
+#pathfinder .try-link{
+  background-color: white;
+  color: black;  
+}
+#pathfinder .try-link::after{
+  background-color: rgba(255, 255, 255, 0.635);
+}
+
+
+
 #back-to-top {
   position: fixed;
   bottom: 30px;
@@ -535,5 +579,19 @@ section {
   object-fit: cover;
 }
 
+.image-container {
+  position: absolute;
+  top: 50%;
+  right: 10%;
+  transform: translateY(-50%);
+  width: 550px;
+  height: auto; 
+}
+
+.image-container img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
 
   
