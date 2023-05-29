@@ -1,7 +1,9 @@
 //BFS algorithm
-import {initPath} from "../main.js";
+import {initPath,delay} from "../main.js";
 import {initPrevPath} from "../main.js";
 import {delayRender} from "./utility.js";
+import createText from "../popup.js";
+
 
 //Helper function that uses BFS to transverse the graph
 export async function bfs(adj: number[][],
@@ -33,7 +35,7 @@ export async function bfs(adj: number[][],
                 prev[adj[u][i]] = u;
                 queue.push(adj[u][i]);
                 initPrevPath(adj[u][i]);
-                await delayRender(10);
+                await delayRender(delay);
                 if (adj[u][i] == dest){
                     return true;
                 }
@@ -49,7 +51,7 @@ export async function getShortestDistanceBFS(adj: number[][], src: number, dest:
     let dist = new Array(v).fill(0);
 
     if (!await bfs(adj, src, dest, v, prev, dist)){
-        alert('Source and destination vertex is not connected!');
+        createText('Source and destination vertex is not connected!',"red");
     }
 
     let path = [];
@@ -61,7 +63,7 @@ export async function getShortestDistanceBFS(adj: number[][], src: number, dest:
         crawl = prev[crawl];
     }
     for (let i = path.length - 1; i >= 0; i--){
-        await delayRender(80);
+        await delayRender(4*delay);
         initPath(path[i]);
     }
 }

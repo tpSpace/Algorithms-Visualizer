@@ -19,9 +19,15 @@ const wall = document.getElementById('wall') as HTMLButtonElement;
 const start = document.getElementById('start') as HTMLButtonElement;
 const select = document.getElementById('select') as HTMLSelectElement;
 
+document.querySelector('#slider_time input')!.addEventListener('input', function(this: HTMLInputElement) {
+  delay = Number(this.value);
+  document.querySelector('#value_time')!.textContent = this.value +"ms";
+});
+
 const width = canvas.width;
 const height = canvas.height;
 const cellSize = 20;
+export let delay:number = 10;
 
 const rows = height / cellSize;
 const cols = width / cellSize;
@@ -370,5 +376,24 @@ canvas.addEventListener('contextmenu', (event)=>{
     drawGrid();
   }
 )(matrix);
+
+function featureEnabling(bool:boolean):void{
+  if(!bool){
+    clear.setAttribute('disabled','true');
+    begin.setAttribute('disabled','true');
+    wall.setAttribute('disabled','true');
+    end.setAttribute('disabled','true');
+    start.setAttribute('disabled','true');
+    select.setAttribute('disabled','true');
+  }else{
+    clear.removeAttribute('disabled');
+    begin.removeAttribute('disabled');
+    wall.removeAttribute('disabled');
+    end.removeAttribute('disabled');
+    start.removeAttribute('disabled');
+    select.removeAttribute('disabled');
+  }
+}
+
 
 export {matrix, cellSize, width, height, rows, cols, ctx, canvas};

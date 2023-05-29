@@ -22,6 +22,12 @@ header{
     justify-content: space-around;
     align-items: center;
 }
+
+main{
+    height: 90%;
+    width: 100%;
+}
+
 .algorithms {
     display: flex;
     flex-direction: row;
@@ -55,39 +61,66 @@ h1 {
     font-size: 2.5rem;
     font-weight: bold;
 }
-body{
-    height: 100%;
-    width: 100%;
 
-    overflow: hidden;
-}
-main{
-    height: 90%;
-    width: 100%;
-}
-.control-panel {
-    display: flex;
-    flex-direction: column;
-    justify-content: center;
-    align-items: center;
 
-    gap: 10px;
+.control-panel{
+    position: relative;
     margin-top: 5px;
-    height:auto;
-    width: 100%;
     height: 20%;
+    margin-left: 1vh;
+    display: flex; 
+    gap: 10px;
+    align-items: center;
+    justify-content: center;
 }
-#lower {
+
+.box{
+    max-width: 300px;
+    height: 120px;
+    background: white;
+    padding: 20px 20px 30px 30px;
+    border-radius: 5px;
+    box-shadow: 0 0 5px rgba(0,0,0,0.5);
+    align-items: center;
+  }
+  
+.box .content{
+    font-size: 20px;
+    font-weight: 300;
+    color: #5a909c;;
     display: flex;
-    flex-direction: row;
+    justify-content: center;
+  }
+  
+.box .slider{
+    height: 40px;
+    width: 200px;
+    display: flex;
+    align-items: center;
+    margin-right: 15px;
+  }
+  
+.box .slider input{
+    height: 10px;
+    width: 100%;
+    -webkit-appearance: none;
+    outline: none;
+    background: #f2f2f2;
+    box-shadow: inset 0 0 4px rgba(0, 0, 0, 0.2);
+  }
+  
+.box .value{
+    width: 100px;
+    text-align: center;
+}
+
+.control-panel .right .lower{
+    display: flex;
     justify-content: center;
     align-items: center;
-
-    gap: 10px;
-    margin-top: 5px;
-    height:auto;
-    width: 100%;
+    margin-top: 10px;
 }
+
 select {
     -webkit-appearance: none;
     -moz-appearance: none;
