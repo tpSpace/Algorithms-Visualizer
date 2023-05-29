@@ -1,13 +1,16 @@
 import {initPath} from "../main.js";
 import {initPrevPath} from "../main.js";
+import {delayRender} from "./utility.js";
 
-export function drawPath(stack: number[]) {
+
+export async function drawPath(stack: number[]) {
     for(let i in stack) {
         initPath(stack[i]);
+        await delayRender(10);
     }
 }
 
-export function DFS(visited: boolean[],
+export async function DFS(visited: boolean[],
                     adjList: number[][],
                     source: number,
                     destination: number,
@@ -16,19 +19,19 @@ export function DFS(visited: boolean[],
     stack.push(source);
 
     if (source == destination) {
-        drawPath(stack);
+        await drawPath(stack);
         return;
     }
 
     for (let i in adjList[source]) {
         if (!visited[adjList[source][i]]) {
-            DFS(visited, adjList, adjList[source][i], destination, stack);
+            await DFS(visited, adjList, adjList[source][i], destination, stack);
         }
     }
     stack.pop();
 }
 
-export function getPathDFS(adjList: number[][], source: number, destination: number) {
+export async function getPathDFS(adjList: number[][], source: number, destination: number) {
     let n = adjList.length;
     let visited: boolean[] = new Array(n + 1);
     let stack: number[] = [];
@@ -37,7 +40,7 @@ export function getPathDFS(adjList: number[][], source: number, destination: num
       visited[i] = false;
     }
     
-    DFS(visited, adjList, source, destination, stack);
+    await DFS(visited, adjList, source, destination, stack);
     
     if (stack.length === 0) {
       alert("No path found!");
