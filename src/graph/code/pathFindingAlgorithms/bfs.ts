@@ -1,9 +1,10 @@
 //BFS algorithm
 import {initPath} from "../main.js";
 import {initPrevPath} from "../main.js";
+import {delayRender} from "./utility.js";
 
 //Helper function that uses BFS to transverse the graph
-export function bfs(adj: number[][],
+export async function bfs(adj: number[][],
              src: number,
              dest:  number,
              v: number,
@@ -32,6 +33,7 @@ export function bfs(adj: number[][],
                 prev[adj[u][i]] = u;
                 queue.push(adj[u][i]);
                 initPrevPath(adj[u][i]);
+                await delayRender(10);
                 if (adj[u][i] == dest){
                     return true;
                 }
@@ -41,12 +43,12 @@ export function bfs(adj: number[][],
     return false;
 }
 //Helper function to backtrack the path and print the shortest path
-export default function getShortestDistanceBFS(adj: number[][], src: number, dest: number){
+export async function getShortestDistanceBFS(adj: number[][], src: number, dest: number){
     let v = adj.length;
     let prev = new Array(v).fill(0);
     let dist = new Array(v).fill(0);
 
-    if (!bfs(adj, src, dest, v, prev, dist)){
+    if (!await bfs(adj, src, dest, v, prev, dist)){
         alert('Source and destination vertex is not connected!');
     }
 
@@ -58,6 +60,8 @@ export default function getShortestDistanceBFS(adj: number[][], src: number, des
         path.push(prev[crawl]);
         crawl = prev[crawl];
     }
-    for (let i = path.length - 1; i >= 0; i--)
+    for (let i = path.length - 1; i >= 0; i--){
+        await delayRender(80);
         initPath(path[i]);
+    }
 }

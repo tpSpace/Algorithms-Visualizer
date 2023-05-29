@@ -4,14 +4,11 @@
 // ts-check
 // constants
 
-import getAdjacencyList from './pathFindingAlgorithms/utility.js';
-import {getEndNode} from "./pathFindingAlgorithms/utility.js";
-import {getSourceNode} from "./pathFindingAlgorithms/utility.js";
-import {getNodeXCoordinates} from "./pathFindingAlgorithms/utility.js";
-import {getNodeYCoordinates} from "./pathFindingAlgorithms/utility.js";
-import getShortestDistanceBFS from "./pathFindingAlgorithms/bfs.js";
+import getAdjacencyList from '../code/pathFindingAlgorithms/utility.js';
+import {getEndNode, getSourceNode, getNodeXCoordinates, getNodeYCoordinates} from "./pathFindingAlgorithms/utility.js";
+import {getShortestDistanceBFS} from "./pathFindingAlgorithms/bfs.js";
 import {getPathDFS} from "./pathFindingAlgorithms/dfs.js";
-import createText from './popup.js';
+import createText from "./popup.js";
 
 const canvas = document.getElementById('canvas') as HTMLCanvasElement;
 const ctx = canvas.getContext('2d') as CanvasRenderingContext2D;
@@ -313,7 +310,7 @@ start.addEventListener('click', ()=>{
       if (selectedAlgorithm !== '') {
         switch (selectedAlgorithm) {
             case 'bfs': {
-              getShortestDistanceBFS(adjList, startNode, endNode);matrix[prevStart[0]][prevStart[1]] = 1; 
+              getShortestDistanceBFS(adjList, startNode, endNode);matrix[prevStart[0]][prevStart[1]] = 1;
               break;
             }
             case 'dfs': {
@@ -330,7 +327,7 @@ start.addEventListener('click', ()=>{
         createText("Please select an algorithms","red");
       }
     } else {
-       createText('Please set the start and end point',"red"); 
+       createText('Please set the start and end point',"red");
     }
 });
 select.addEventListener('change', (event)=>{
