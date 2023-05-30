@@ -7,13 +7,14 @@ var __awaiter = (this && this.__awaiter) || function (thisArg, _arguments, P, ge
         step((generator = generator.apply(thisArg, _arguments || [])).next());
     });
 };
-import { initPath } from "../main.js";
+import { initPath, delay } from "../main.js";
+import createText from "../popup.js";
 import { delayRender } from "./utility.js";
 export function drawPath(stack) {
     return __awaiter(this, void 0, void 0, function* () {
         for (let i in stack) {
             initPath(stack[i]);
-            yield delayRender(10);
+            yield delayRender(delay);
         }
     });
 }
@@ -43,7 +44,7 @@ export function getPathDFS(adjList, source, destination) {
         }
         yield DFS(visited, adjList, source, destination, stack);
         if (stack.length === 0) {
-            alert("No path found!");
+            createText("No path found!", "red");
         }
     });
 }

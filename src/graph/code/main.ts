@@ -302,6 +302,7 @@ wall.addEventListener('click', (event)=>{
     isStart = false;
     isEnd = false;
 });
+
 end.addEventListener('click', ()=>{
     console.log(endNode);
     updateAdjacencyList();

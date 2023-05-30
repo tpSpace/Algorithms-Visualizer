@@ -8,9 +8,10 @@ var __awaiter = (this && this.__awaiter) || function (thisArg, _arguments, P, ge
     });
 };
 //BFS algorithm
-import { initPath } from "../main.js";
+import { initPath, delay } from "../main.js";
 import { initPrevPath } from "../main.js";
 import { delayRender } from "./utility.js";
+import createText from "../popup.js";
 //Helper function that uses BFS to transverse the graph
 export function bfs(adj, src, dest, v, prev, dist) {
     return __awaiter(this, void 0, void 0, function* () {
@@ -34,7 +35,7 @@ export function bfs(adj, src, dest, v, prev, dist) {
                     prev[adj[u][i]] = u;
                     queue.push(adj[u][i]);
                     initPrevPath(adj[u][i]);
-                    yield delayRender(10);
+                    yield delayRender(delay);
                     if (adj[u][i] == dest) {
                         return true;
                     }
@@ -51,7 +52,7 @@ export function getShortestDistanceBFS(adj, src, dest) {
         let prev = new Array(v).fill(0);
         let dist = new Array(v).fill(0);
         if (!(yield bfs(adj, src, dest, v, prev, dist))) {
-            alert('Source and destination vertex is not connected!');
+            createText('Source and destination vertex is not connected!', "red");
         }
         let path = [];
         let crawl = dest;
@@ -61,7 +62,7 @@ export function getShortestDistanceBFS(adj, src, dest) {
             crawl = prev[crawl];
         }
         for (let i = path.length - 1; i >= 0; i--) {
-            yield delayRender(80);
+            yield delayRender(4 * delay);
             initPath(path[i]);
         }
     });
