@@ -24,9 +24,14 @@ const end = document.getElementById('end');
 const wall = document.getElementById('wall');
 const start = document.getElementById('start');
 const select = document.getElementById('select');
+document.querySelector('#slider_time input').addEventListener('input', function () {
+    delay = Number(this.value);
+    document.querySelector('#value_time').textContent = this.value + "ms";
+});
 const width = canvas.width;
 const height = canvas.height;
 const cellSize = 20;
+export let delay = 10;
 const rows = height / cellSize;
 const cols = width / cellSize;
 let matrix = [];
@@ -359,4 +364,22 @@ canvas.addEventListener('contextmenu', (event) => {
     printMatrix(arrays);
     drawGrid();
 })(matrix);
+function featureEnabling(bool) {
+    if (!bool) {
+        clear.setAttribute('disabled', 'true');
+        begin.setAttribute('disabled', 'true');
+        wall.setAttribute('disabled', 'true');
+        end.setAttribute('disabled', 'true');
+        start.setAttribute('disabled', 'true');
+        select.setAttribute('disabled', 'true');
+    }
+    else {
+        clear.removeAttribute('disabled');
+        begin.removeAttribute('disabled');
+        wall.removeAttribute('disabled');
+        end.removeAttribute('disabled');
+        start.removeAttribute('disabled');
+        select.removeAttribute('disabled');
+    }
+}
 export { matrix, cellSize, width, height, rows, cols, ctx, canvas };
