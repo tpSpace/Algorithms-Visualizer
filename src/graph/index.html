@@ -18,34 +18,48 @@
     </header>
     <main>
         <div class="control-panel" >
-            <div id="upper">
-                <button data-tooltip="Clear canvas" id="clear">
-                    <img src="./css-style/icons/eraser.png" alt="Clear"/>
-                </button>
-                <button data-tooltip="Set Start" id="begin">
-                    <img src="./css-style/icons/begin.png" alt="Begin"/>
-                </button>
-                <button data-tooltip="Draw Wall" id="wall">
-                    <img src="./css-style/icons/wall.png" alt="Wall"/>
-                </button>
-                <button data-tooltip="Set Goal" id="end">
-                    <img src="./css-style/icons/end.png" alt="End"/>
-                </button>
-                <button data-tooltip="Run" id="start">
-                    <img src="./css-style/icons/start.png" alt="Start"/>
-                </button>
+            <div class="left">
+                <div class="box">
+                    <div class="slider" id="slider_time">
+                      <input id="time_input"type="Range" min="0.5" max="100" value="10" step="0.5" >
+                    </div>
+                    <div class="content" id="content_time_slider">
+                      <label for="time_input">Speed: </label>
+                      <div class="value" id="value_time">100ms</div>
+                    </div>
+                  </div>
             </div>
-            <div id="lower">
-                <div class="select">
-                    <select name="format" id="select">
-                        <option selected disabled>Pick an algorithm</option>
-                        <option value="bfs">BFS</option>
-                        <option value="dfs">DFS</option>
-                        <!-- <option value="aStar">A*</option> -->
-                        <!-- <option value="dijkstra">Dijkstra</option> -->
-                    </select>
+            <div class="right">
+                <div class="upper">
+                    <div class="select">
+                        <select name="format" id="select">
+                            <option selected disabled>Pick an algorithm</option>
+                            <option value="bfs">Breadth-first Search</option>
+                            <option value="dfs">Depth-first Search</option>
+                            <!-- <option value="aStar">A*</option> -->
+                            <!-- <option value="dijkstra">Dijkstra</option> -->
+                        </select>
+                    </div>
+                </div>
+                <div class="lower">
+                    <button data-tooltip="Clear canvas" id="clear">
+                        <img src="./css-style/icons/eraser.png" alt="Clear"/>
+                    </button>
+                    <button data-tooltip="Set Start" id="begin">
+                        <img src="./css-style/icons/begin.png" alt="Begin"/>
+                    </button>
+                    <button data-tooltip="Draw Wall" id="wall">
+                        <img src="./css-style/icons/wall.png" alt="Wall"/>
+                    </button>
+                    <button data-tooltip="Set Goal" id="end">
+                        <img src="./css-style/icons/end.png" alt="End"/>
+                    </button>
+                    <button data-tooltip="Run" id="start">
+                        <img src="./css-style/icons/start.png" alt="Start"/>
+                    </button>
                 </div>
             </div>
+           
         </div>
         <div class="warning"> </div>
         <div class="container">

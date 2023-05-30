@@ -1,12 +1,12 @@
-import {initPath} from "../main.js";
+import {initPath,delay} from "../main.js";
 import {initPrevPath} from "../main.js";
+import createText from "../popup.js";
 import {delayRender} from "./utility.js";
-
 
 export async function drawPath(stack: number[]) {
     for(let i in stack) {
         initPath(stack[i]);
-        await delayRender(10);
+        await delayRender(delay);
     }
 }
 
@@ -43,7 +43,7 @@ export async function getPathDFS(adjList: number[][], source: number, destinatio
     await DFS(visited, adjList, source, destination, stack);
     
     if (stack.length === 0) {
-      alert("No path found!");
+      createText("No path found!","red");
     }
-  }
+}
   

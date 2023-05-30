@@ -61,5 +61,5 @@ export function generateMazeUsingKruskal(maze: number[][]): number[][] {
     maze[rows - 1][cols - 1] = 3;
   
     return maze;
-  }
+}
   

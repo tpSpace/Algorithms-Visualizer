@@ -89,6 +89,7 @@ function go(){
     createText("Please select an algorithm.", "red");
     return;
   }
+  featureEnabling(false);
   const moves = sort.algo(copy);
   animate(moves);
 }
@@ -162,6 +163,7 @@ function animate(moves: Move[]) {
   if (moves.length == 0) {
     visualizeBookshelf();
     createText("The bookshelf is sorted!", "lime");
+    featureEnabling(true);
     return;
   }
   const move = moves.shift()!;
@@ -194,4 +196,19 @@ function displayBookshelfConsole(bookshelf: Book[]) {
   console.log(bookNames.join(", "));
 }
 displayBookshelfConsole(bookshelf);
-  
+
+function featureEnabling(bool:boolean):void{
+  if (!bool){
+    (document.getElementById('go-button') as HTMLButtonElement).setAttribute('disabled', String(bool));
+    (document.getElementById('random-button') as HTMLButtonElement).setAttribute('disabled', String(bool));
+    (document.getElementById('reset-button') as HTMLButtonElement).setAttribute('disabled', String(bool));
+    (document.getElementById('worst-case-button') as HTMLButtonElement).setAttribute('disabled', String(bool));
+    (document.getElementById('number_book_input') as HTMLInputElement).setAttribute('disabled', String(bool));
+  } else {
+    (document.getElementById('go-button') as HTMLButtonElement).removeAttribute('disabled');
+    (document.getElementById('random-button') as HTMLButtonElement).removeAttribute('disabled');
+    (document.getElementById('reset-button') as HTMLButtonElement).removeAttribute('disabled');
+    (document.getElementById('worst-case-button') as HTMLButtonElement).removeAttribute('disabled');
+    (document.getElementById('number_book_input') as HTMLInputElement).removeAttribute('disabled');
+  }
+}
