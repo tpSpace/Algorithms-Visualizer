@@ -12,7 +12,6 @@ download TypeScript. When you have Node.js installed, you can use npm to install
 + Install Typescript
 ```bash
 npm install -g typescript 
-```bash
 ```
 + Run cmd
 ```bash 
